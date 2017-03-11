@@ -22,3 +22,17 @@ Available on:
 ```
 
 Then open `http://localhost:4321/` in your browser of choice and play away!
+
+Project #ablaze-gala
+
+Team members:
+Sally Maki
+
+Project repository:
+https://github.com/leikissa/browser-games
+
+Goal repository:
+https://github.com/GuildCrafts/browser-games
+
+Goal specs:
+http://jsdev.learnersguild.org/goals/83-Browser_Games-Basic.html
