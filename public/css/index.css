@@ -7,12 +7,13 @@ body {
     height: 100%;
     top: 0px;
     bottom: 0px;
-    /*background-image: url("../img/nasa-63032.jpg");*/
+    background-image: url("../img/adrian-pelletier-9455.jpg");
     font-family: 'Open Sans', sans-serif;
+    text-align: center;
     background-color: #030303;
     color: #FAFAFA;
     background-repeat: no-repeat;
-    /*background-attachment: fixed;*/
+    background-attachment: fixed;
     background-size: cover;
     background-position: absolute;
     -webkit-perspective: 1000px;
@@ -371,12 +372,12 @@ body {
     top: -200px;
 }
 
-.astronaut .planet {
+/*.astronaut .planet {
     width: 70px;
     height: 90px;
     background-image: url("../img/astronaut.png");
     animation: anti-spin 30s infinite linear;
-}
+}*/
 
 /*.astronaut .shadow {
     animation: shadow 100s infinite linear;

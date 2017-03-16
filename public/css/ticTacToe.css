@@ -1,9 +1,10 @@
 html, body {
-    padding: 0;
+    padding-top: 7px;
     margin: 0;
     background: #111;
     text-transform: uppercase;
-    color: #111;
+    text-align: center;
+    color: #FAFAFA;
     font-size: 1.5vh;
     font-family: 'Open Sans', sans-serif;
     background-image: url("../img/gabriel-garcia-marengo-6132.jpg");
@@ -15,9 +16,15 @@ html, body {
     perspective: 1000px;
 }
 
+p {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 2vh;
+    text-transform: none;
+}
+
 #main {
     margin: 0;
-    padding-top: 120px;
+    padding-top: 100px;
     height: auto;
     width: 100%;
     -webkit-perspective: 1000;
