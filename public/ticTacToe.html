@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Tic-Tac-Toe</title>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link rel="stylesheet" href="css/ticTacToe.css">
+</head>
+
+<body>
+    <div id="main">
+        <div id="board">
+            <div class="tile" onclick="claim(this)"></div>
+            <div class="tile" onclick="claim(this)"></div>
+            <div class="tile" onclick="claim(this)"></div>
+            <div class="tile" onclick="claim(this)"></div>
+            <div class="tile" onclick="claim(this)"></div>
+            <div class="tile" onclick="claim(this)"></div>
+            <div class="tile" onclick="claim(this)"></div>
+            <div class="tile" onclick="claim(this)"></div>
+            <div class="tile" onclick="claim(this)"></div>
+            <div class="button1" onclick="aiTurn(state, 0, currentPlayer, true)">Computer</div>
+            <div class="button2" onclick="reset()">Reset</div>
+            <!-- <div id="toggle" onclick="toggle()">Show Value</div> -->
+        </div>
+<ul class="wrapper">
+  <div class="sun">
+    <div class="star"></div>
+  </div>
+  <div class="mercury">
+    <div class="planet">
+      <div class="shadow"></div>
+    </div>
+  </div>
+  <div class="venus">
+    <div class="planet">
+      <div class="shadow"></div>
+    </div>
+  </div>
+  <div class="earth">
+    <div class="planet"><div class="shadow"></div></div>
+  </div>
+  <div class="mars">
+    <div class="planet"><div class="shadow"></div></div>
+  </div>
+  <div class="jupiter">
+    <div class="planet"><div class="shadow"></div></div>
+  </div>
+</ul>
+    </div>
+    <script type="text/javascript" src="js/ticTacToe.js"></script>
+</body>
+
+</html>
