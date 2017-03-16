@@ -17,7 +17,7 @@ html, body {
 
 #main {
     margin: 0;
-    padding: 0;
+    padding-top: 120px;
     height: auto;
     width: 100%;
     -webkit-perspective: 1000;
