@@ -1,0 +1,116 @@
+html, body {
+    padding-top: 7px;
+    margin: 0;
+    background: #111;
+    text-transform: uppercase;
+    text-align: center;
+    color: #FAFAFA;
+    font-size: 1.5vh;
+    font-family: 'Open Sans', sans-serif;
+    background-image: url("../img/gabriel-garcia-marengo-6132.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: absolute;
+    -webkit-perspective: 1000px;
+    perspective: 1000px;
+}
+
+p {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 2vh;
+    text-transform: none;
+}
+
+#main {
+    margin: 0;
+    padding-top: 100px;
+    height: auto;
+    width: 100%;
+    -webkit-perspective: 1000;
+    -webkit-transform: rotateX(20deg);
+    transform: rotateX(50deg);
+    animation: spin 7s 1 linear;
+    transition: all 1s linear;
+    animation-fill-mode: forwards;
+}
+
+
+/*@-webkit-keyframes spin {
+    from {
+        transform: rotateY(90deg);
+    }
+    to {
+        transform: rotateY(360deg);
+    }
+}*/
+
+#board {
+    padding: 0;
+    margin: auto;
+    width: 33vh;
+    height: 33vh;
+}
+
+#toggle {
+    margin: 0.5vh;
+    padding: 0;
+    height: 5vh;
+    width: 32vh;
+    line-height: 5vh;
+    vertical-align: middle;
+    background: #fafafa;
+    text-align: center;
+    border-radius: 5px;
+    cursor: pointer;
+    float: left;
+    color: #ee00ee;
+}
+
+.tile {
+    padding: 0;
+    margin: 0.5vh;
+    height: 10vh;
+    width: 10vh;
+    line-height: 10vh;
+    vertical-align: middle;
+    text-align: center;
+    font-size: 0;
+    border-radius: 5px;
+    background: #fafafa;
+    cursor: pointer;
+    float: left;
+    -webkit-box-shadow: 10px 30px 50px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 10px 10px 30px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: 10px 10px 30px 0px rgba(0, 0, 0, 0.75);
+}
+
+.button1 {
+    margin: 0.5vh;
+    padding: 0;
+    height: 5vh;
+    width: 15.5vh;
+    line-height: 5vh;
+    vertical-align: middle;
+    background: #fff;
+    text-align: center;
+    border-radius: 5px;
+    cursor: pointer;
+    float: left;
+    background-color: #90CAF9;
+}
+
+.button2 {
+    margin: 0.5vh;
+    padding: 0;
+    height: 5vh;
+    width: 15.5vh;
+    line-height: 5vh;
+    vertical-align: middle;
+    background: #fff;
+    text-align: center;
+    border-radius: 5px;
+    cursor: pointer;
+    float: left;
+    background-color: #42A5F5;
+}
