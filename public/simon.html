@@ -5,26 +5,32 @@
     <link rel="stylesheet" href="./css/simon.css">
     <title>Simon Says</title>
   </head>
-  <body class="centered-wrapper">
-    <h1>Simon Says</h1>
-    <div class="centered-content">
-      <div id="topleft" onclick="document.getElementById('sound1').play();">
-        <audio id="sound1" src="./sounds/simonSound1.mp3" preload="auto"></audio>
-      </div>
-      <div id="topright" onclick="document.getElementById('sound2').play();">
-          <audio id="sound2" src="./sounds/simonSound2.mp3" preload="auto"></audio>
-      </div>
-      <div id="bottomleft" onclick="document.getElementById('sound3').play();">
-        <audio id="sound3" src="./sounds/simonSound3.mp3" preload="auto"></audio>
-      </div>
-      <div id="bottomright" onclick="document.getElementById('sound4').play();">
-        <audio id="sound4" src="./sounds/simonSound4.mp3" preload="auto"></audio>
-      </div>
+  <body>
+    <div class="centeredCircle">
+      <button type="button" name="button" onclick="startGame()">start</button>
+      <button type="button" name="button" onclick="strictMode()">strict</button>
     </div>
+    <h1 class="game_title">Simon Says</h1>
+      <div class="divthing">
+        <div id="topleft" class="buttons" onclick="document.getElementById('sound1').play();">
+          <audio id="sound1" src="./sounds/simonSound1.mp3" preload="auto"></audio>
+        </div>
+        <div id="topright" class="buttons" onclick="document.getElementById('sound2').play();">
+            <audio id="sound2" src="./sounds/simonSound2.mp3" preload="auto"></audio>
+        </div>
+        <div id="bottomleft" class="buttons" onclick="document.getElementById('sound3').play();">
+          <audio id="sound3" src="./sounds/simonSound3.mp3" preload="auto"></audio>
+        </div>
+        <div id="bottomright" class="buttons" onclick="document.getElementById('sound4').play();">
+          <audio id="sound4" src="./sounds/simonSound4.mp3" preload="auto"></audio>
+        </div>
+      </div>
+      <script
+      src="https://code.jquery.com/jquery-3.2.1.min.js"
+      integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+      crossorigin="anonymous"></script>
+      <script src="//code.jquery.com/jquery-1.12.4.js"></script>
+      <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script type="text/javascript" src="./js/simon.js"></script>
-    <script
-  src="https://code.jquery.com/jquery-3.2.1.min.js"
-  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-  crossorigin="anonymous"></script>
   </body>
 </html>
