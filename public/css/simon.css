@@ -1,0 +1,84 @@
+body {
+    font-family: 'Finger Paint', cursive;
+}
+
+.wrapper {
+    position: relative;
+    width: 640px;
+    margin: 0 auto;
+}
+
+.back {
+    position: absolute;
+    top: 170px;
+    width: 640px;
+    height: 640px;
+    z-index: 0;
+    background-color: #000;
+    border-radius: 310px;
+}
+
+.pad {
+    width: 300px;
+    height: 300px;
+    float: left;
+    z-index: 1;
+    margin: 10px;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=60)";
+    filter: alpha(opacity=60);
+    opacity: 0.6;
+}
+
+.shape1 {
+    border-top-left-radius: 300px;
+    background-color: green;
+}
+
+.shape2 {
+    float: left;
+    border-top-right-radius: 300px;
+    background-color: red;
+    clear: right;
+}
+
+.shape3 {
+    float: left;
+    border-bottom-left-radius: 300px;
+    background-color: yellow;
+    clear: left;
+}
+
+.shape4 {
+    float: left;
+    border-bottom-right-radius: 300px;
+    background-color: blue;
+}
+
+.circle {
+    position: absolute;
+    top: 195px;
+    left: 195px;
+    width: 250px;
+    height: 250px;
+    background: #000;
+    border-radius: 125px;
+    z-index: 10;
+}
+
+.level,
+.score {
+    width: 50%;
+    float: left;
+    text-align: center;
+}
+
+.sButton {
+    width: 30%;
+    margin: 0 auto;
+}
+
+.start {
+    width: 100%;
+    height: 30px;
+    text-align: center;
+}
