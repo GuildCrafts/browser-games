@@ -6,25 +6,28 @@
     <link rel="stylesheet" href="./css/ticTacToe.css">
   </head>
   <body>
-    <div class="board">
-      <table>
-        <tr id="row1">
-          <td class="square"></td>
-          <td class="square vertical"></td>
-          <td class="square"></td>
-        </tr>
-        <tr id="row2">
-          <td class="square horizontal"></td>
-          <td class="square vertical horizontal"></td>
-          <td class="square horizontal"></td>
-        </tr>
-        <tr id="row3">
-          <td class="square"></td>
-          <td class="square vertical"></td>
-          <td class="square"></td>
-        </tr>
-      </table>
-    </div>
+    <h1>Tic Tac Toe</h1>
+    <p id="player1">Player 1:</p>
+    <p id="player2">Player 2:</p>
+      <div class="centered-wrapper">
+        <table class="centered-content">
+          <tr id="row1">
+            <td id="1" class="square" onclick="playerTurn('1')"></td>
+            <td id="2" class="square vertical" onclick="playerTurn('2')"></td>
+            <td id="3" class="square" onclick="playerTurn('3')"></td>
+          </tr>
+          <tr id="row2">
+            <td id="4" class="square horizontal" onclick="playerTurn('4')"></td>
+            <td id="5" class="square vertical horizontal" onclick="playerTurn('5')"></td>
+            <td id="6" class="square horizontal" onclick="playerTurn('6')"></td>
+          </tr>
+          <tr id="row3">
+            <td id="7" class="square" onclick="playerTurn('7')"></td>
+            <td id="8" class="square vertical" onclick="playerTurn('8')"></td>
+            <td id="9" class="square" onclick="playerTurn('9')"></td>
+          </tr>
+        </table>
+      </div>
     <script type="text/javascript" src="./js/ticTacToe.js"></script>
   </body>
 </html>
