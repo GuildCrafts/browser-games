@@ -16,7 +16,7 @@
   margin: 11px 0 0 357px;
 }
 
-#topleft {
+#blue {
   border-top-left-radius: 100%;
   background-color: #aad5dd;
   width: 250px;
@@ -25,7 +25,7 @@
   margin: -1px 0 0 10px;
 }
 
-#topright {
+#salmon {
   border: 1px solid black;
   border-top-right-radius: 100%;
   background-color: #efbcb1;
@@ -34,7 +34,7 @@
   margin: -252px 0 0 262px;
 }
 
-#bottomleft {
+#pink {
   border: 1px solid black;
   border-bottom-left-radius: 100%;
   background-color: #ddaada;
@@ -43,7 +43,7 @@
   margin: -2px 0 0 10px;
 }
 
-#bottomright {
+#green {
   border: 1px solid black;
   border-bottom-right-radius: 100%;
   background-color: #caddaa;
