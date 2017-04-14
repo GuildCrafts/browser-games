@@ -48,5 +48,5 @@ Your work will be mainly in deciding how to replicate that formal logic and user
  - [X] Variables, functions, files, etc. have appropriate and meaningful names.
  - [X] HTML, CSS, and JS files are well formatted with proper spacing and indentation.
  - [X] All major features are added via pull requests with a clear description and concise commit messages.
- - [ ] Every pull request has been reviewed by at least one other person.
+ - [X] Every pull request has been reviewed by at least one other person.
  - [X] The artifact produced is properly licensed, preferably with the MIT license.
