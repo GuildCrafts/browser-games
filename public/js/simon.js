@@ -1,136 +1,156 @@
-function fetchBoard() {
-    "use strict";
-    var board;
-    board = ['', '', '', '', '', '', '', '', ''];
-    $("#tictac td").each(function(index) {
-        board[index] = $(this).text();
-    });
-    return board;
-}
+$("document").ready(function() {
+    arr = [];
+    round = 1;
+    i = 0;
+    flag = false;
+    var myvar;
 
-// returns 1 if all three parameters are the string 'X', -1 if all
-// are 'O', and 0 otherwise.
-function checkRow(a, b, c) {
-    "use strict";
-    if (a === 'X' && b === 'X' && c === 'X') {
-        return 1;
-    } else if (a === 'O' && b === 'O' && c === 'O') {
-        return -1;
-    } else {
-        return 0;
+    function num() {
+        $("button").prop('disabled', true);
+
+        btnnumber = Math.floor((Math.random() * 4) + 1);
+        arr.push("btn-" + btnnumber);
+        console.log(arr);
+        startAnimation();
     }
-}
 
-// returns a positive number if board has 'X' winning, a negative number
-// if board has 'O' winning, and 0 otherwise
-function checkWin(board) {
-    "use strict";
-    return checkRow(board[0], board[1], board[2]) // rows
-        +
-        checkRow(board[3], board[4], board[5]) +
-        checkRow(board[6], board[7], board[8]) +
-        checkRow(board[0], board[3], board[6]) // columns
-        +
-        checkRow(board[1], board[4], board[7]) +
-        checkRow(board[2], board[5], board[8]) +
-        checkRow(board[0], board[4], board[8]) // main diagonal
-        +
-        checkRow(board[2], board[4], board[6]); // reverse diagonal
-}
+    function startAnimation() {
+        i = 0;
+        myvar = setInterval(function() {
+            animation("." + arr[i]);
+        }, 1000);
 
-// returns a randomly selected empty square, or -1 if all squares are full
-function selectMove(board) {
-    "use strict";
-    var i, options;
-    options = [];
-    for (i = 0; i < 9; i += 1) {
-        if (board[i] === '') {
-            options.push(i);
+    }
+
+    function animation(elem) {
+        $(elem).animate({
+            opacity: '1'
+        }, 300);
+        $(elem).animate({
+            opacity: '0.5'
+        }, 300);
+        $("#audio-" + arr[i])[0].play();
+        i++;
+        if (i == arr.length) {
+            userPlay();
+            clearInterval(myvar);
         }
+
     }
 
-    if (options.length === 0) {
-        return -1;
-    } else {
-        return options[Math.floor(Math.random() * options.length)];
-    }
-}
+    function reset(num) {
+        $(".ready").prop('disabled', false);
+        $("button").prop('disabled', true);
+        if (num == 1) {
+            $(".round").text("Round : __");
+            $("h3").text("Verdict : First start the game.. XD..!!");
+        }
+        clearInterval(myvar);
 
-function showGameOver(result) {
-    "use strict";
-    var target;
-    target = $("#result");
-    if (result > 0) {
-        target.css('color', '#800');
-        target.text("You win!");
-    } else if (result < 0) {
-        target.css('color', '#008');
-        target.text("I win!");
-    } else {
-        target.css('color', '#505');
-        target.text("Tie game.");
-    }
-}
-
-function resetGame() {
-    "use strict";
-    var target;
-
-    $("#tictac td").text('');
-    target = $("#result");
-    target.css('color', '#000');
-    target.text('Click a square');
-}
-
-function moveAt() {
-    "use strict";
-    var xCell, board, result, oLocation, oCell;
-
-    xCell = $(this);
-
-    // return if square is already full or if game is over
-    if (xCell.text() !== '' || checkWin(fetchBoard()) !== 0) {
-        return;
     }
 
-    // place 'X' at selected location
-    xCell.css('color', '#800');
-    xCell.text('X');
-
-    // if game is over, display message
-    board = fetchBoard();
-    result = checkWin(board);
-    if (result !== 0) {
-        showGameOver(result);
-        return;
+    function userPlay() {
+        $("button").prop('disabled', false);
+        j = 0;
     }
+    $("button").on('click', function() {
+        $("#audio-" + $(this).attr('class'))[0].play();
+        $(this).animate({
+            opacity: '1'
+        }, 100);
+        $(this).animate({
+            opacity: '0.5'
+        }, 100);
+        if ($(this).attr('class') == arr[j]) {
+            j++;
+            $("h3").text("Great going...");
+            if (j > 6)
+                $("h3").text("Dude...wooww...!!");
+        } else {
 
-    // find where to place the 'O'
-    oLocation = selectMove(board);
-    if (oLocation < 0) {
-        // if there is no valid place, it is tie game
-        showGameOver(0);
-        return;
+            if (!flag) {
+                $("h3").text("That's wrong..!! Lets try once more.. :)");
+                startAnimation();
+            } else {
+                $("h3").text("That's wrong..!! Jumping back to the beginning..");
+                startGame();
+            }
+        }
+
+        if (j == arr.length) {
+            if (round == 20) {
+                $("h3").text("You won....!!... :-D");
+                reset(0);
+            } else {
+                round += 1;
+                $(".round").text("Round : 0" + round);
+                num();
+            }
+        }
+    });
+
+    function startGame() {
+        $(".ready").prop('disabled', true);
+        round = 1;
+        $(".round").text("Round : 0" + round);
+        arr = [];
+        num();
     }
+    $(".ready").click(function() {
+        startGame();
 
-    // place 'O' at location
-    board[oLocation] = 'O';
-    oCell = $("#cell" + oLocation);
-    oCell.css('color', '#008');
-    oCell.text('O');
-
-    // if game is over, display that
-    result = checkWin(board);
-    if (result !== 0) {
-        showGameOver(result);
-        return;
-    }
-}
-
-$(document).ready(function() {
-    "use strict";
-
-    $("#tictac td").click(moveAt);
-    $("#tictacreset").click(resetGame);
-    resetGame();
+    });
+    $(".strict").click(function() {
+        if (flag === false) {
+            flag = true;
+            $(this).css({
+                'color': 'red'
+            });
+        } else {
+            $(this).css({
+                'color': 'black'
+            });
+            flag = false;
+        }
+    });
+    $(".reset").click(function() {
+        reset(1);
+    });
 });
+
+// var sequence = [];
+// var copy = [];
+// var round = 0;
+// var startGame =
+
+//     function() {
+//         sequence = [];
+//         copy = [];
+//         round = 0;
+
+//     }
+// var newRound = function() {
+//     $('[data-round]').text(++this.round);
+//     sequence.push(randomNumber());
+//     copy = sequence.slice(0);
+// }
+// var registerClick = function(e) {
+//     var desiredResponse = copy.shift();
+//     correct = (desiredResponse === actualResponse);
+// }
+
+
+// var checkLose = function() {
+//     if (copy.length === 0 && correct) {
+//         deactivateSimonBoard();
+//         newRound();
+//     } else if (correct == flase) {
+//         deactivateSimonBoard();
+//         endGame();
+//     }
+// }
+
+// var endGame = function() {
+//     $('p[data-action=lose]').show();
+//     $($('[data-round]').get(0)).text('0');
+// }

@@ -1,128 +1,77 @@
-$(document).ready(function() { //default player turn to   x
+var cTurn = "x";
 
-    var turn = "X";
+var iClick = 0;
+var ticTac = [];
+var cResult = "z";
 
-    var turns = ["#", "#", "#", "#", "#", "#", "#", "#", "#"]; //default computer turn
+function new_game() { //reload page to begin new game
+    document.location.reload(true);
+}
 
-    var computersTurn = "O"; //keep track of  computers turn
+function winner() {
+    var cLine = "z";
 
-    var gamesOn = false;
+    if (ticTac[1] * ticTac[2] * ticTac[3] == "xxx" || //if any line all x
+        ticTac[4] * ticTac[5] * ticTac[6] == "xxx" ||
+        ticTac[7] * ticTac[8] * ticTac[9] == "xxx" ||
+        ticTac[1] * ticTac[4] * ticTac[7] == "xxx" ||
+        ticTac[2] * ticTac[5] * ticTac[8] == "xxx" ||
+        ticTac[3] * ticTac[6] * ticTac[9] == "xxx" ||
+        ticTac[1] * ticTac[5] * ticTac[9] == "xxx" ||
+        ticTac[3] * ticTac[3] * ticTac[7] == "xxx")
 
-    var count = 0; //prevent loop
-
-    $('#turnX').click(function() {
-
-        var reset = function() {
-            divs = $('.tic')
-            for (val in divs) {
-                div = divs[val].html("")
-            }
-        }
-        var turn = "O";
-        var computersTurn = "X";
-        $("#turnX").addClass("btn-primary");
-        $("#turnO").removeClass("btn-primary");
-        reset();
-
-    });
-    $('#turnO').click(function() {
-        var turn = "X";
-        var computersTurn = "O";
-        $("#turnO").removeClass("btn-primary");
-        $("#turnX").addClass("btn-secondary");
-        reset();
-    });
-    $(".tic").click(function() {
-        alert("click");
-    });
-
-    function computersTurn() {
-
-        var taken = false;
-        while (taken === false && count !== 5) {
-            var computersMove = (Math.random() * 10).toFixed();
-            var move = $("#" + computersMove).text();
-            if (move === "#") {
-                $("#" + computersMove).text(computersTurn);
-                taken = true;
-                turns[computersMove] = computersTurn;
-            }
-        }
-    }
-
-    function playerTurn(turn, id) {
-        var spotTaken = $("#" + id).text();
-        if (spotTaken === "#") {
-            count++;
-            turns[id] = turn;
-            $("#" + id).text(turn);
-            winCondition(turns, turn);
-            if (gameOn === false) {
-                computerTurn();
-                winCondition(turns, computersTurn);
-            }
-
-        }
-    }
-
-    function winCondtion(turnArray, currentTurn) {
-        if (turnArray[0] === currentTurn && turnArray[1] === currentTurn && turnArray[2] === currentTurn) {
-            gameOn = true;
-            reset();
-            alert("Player" + currentTurn + " wins! (Top row across 0,1, and 2 spots)");
-        } else if (turnArray[2] === currentTurn && turnArray[4] === currentTurn && [6] === currentTown) {
-            gameOn = true;
-            reset();
-            alert("Player " + currentTurn + " wins! (Top row across 2,4, and 6 spots)");
-        } else if (turnArray[0] === currentTurn && turnArray[3] === currentTurn && [6] === currentTown) {
-            gameOn = true;
-            reset();
-            alert("Player " + currentTurn + " wins! (Top row across 0,3, and 6 spots)");
-        } else if (turnArray[1] === currentTurn && turnArray[4] === currentTurn && [7] === currentTown) {
-            gameOn = true;
-            reset();
-            alert("Player " + currentTurn + " wins! (Top row across 1,4, and 7 spots)");
-        } else if (turnArray[2] === currentTurn && turnArray[5] === currentTurn && [8] === currentTown) {
-            gameOn = true;
-            reset();
-            alert("Player " + currentTurn + " wins! (Top row across 2,5, and 8 spots)");
-        } else if (turnArray[0] === currentTurn && turnArray[3] === currentTurn && [6] === currentTown) {
-            gameOn = true;
-            reset();
-            alert("Player " + currentTurn + " wins! (Top row across 0,3, and 6 spots)");
-        } else if (turnArray[3] === currentTurn && turnArray[4] === currentTurn && [5] === currentTown) {
-            gameOn = true;
-            reset();
-            alert("Player " + currentTurn + " wins! (Top row across 3,4, and 5 spots)");
-        } else if (turnArray[6] === currentTurn && turnArray[7] === currentTurn && [8] === currentTown) {
-            gameOn = true;
-            reset();
-            alert("Player " + currentTurn + " wins! (Top row across 6,7, and 8 spots)");
-        }
-
-        function winCondition(turnArray, currentTurn) {
-
-            $(".tic").click(function() {
-                var slot = $(this).attr("id");
-                playerTurn(turn, slot);
-            });
-
-
-            // //function reset() {
-            //     divs = $('.tic')
-            //     for (val in divs) {
-            //         div = divs[val].html("")
-            //     }
-            //     //$("tic").each(function(val) {
-            //$(val).html("")
-            //});
-
-
-        }
-        $(".tic").text("X");
-        gameOn = true;
+    {
+        cline = "x";
 
 
     }
+    if (ticTac[1] * ticTac[2] * ticTac[3] == "ooo" || //if any line all x
+        ticTac[4] * ticTac[5] * ticTac[6] == "ooo" ||
+        ticTac[7] * ticTac[8] * ticTac[9] == "ooo" ||
+        ticTac[1] * ticTac[4] * ticTac[7] == "ooo" ||
+        ticTac[2] * ticTac[5] * ticTac[8] == "ooo" ||
+        ticTac[3] * ticTac[6] * ticTac[9] == "ooo" ||
+        ticTac[1] * ticTac[5] * ticTac[9] == "ooo" ||
+        ticTac[3] * ticTac[3] * ticTac[7] == "ooo")
 
-})
+    {
+        cLine = "o";
+    }
+    return cLine;
+}
+
+function t_Clicked(objThis) {
+    if (objThis.innerHTML == '') {
+        if (cTurn == 'x') {
+            objThis.innerHTML = "<div stylecolor: red>x</div>";
+
+            cTurn = "o";
+
+            iClick++;
+
+            var iElement = objThis.id;
+
+            ticTac[iElement] = "x";
+        } else {
+            objThis.innerHTML = "<div stylecolor: red>o</div>";
+
+            cTurn = "x";
+
+            iClick++;
+        }
+    }
+    cResult = Winner();
+    if (cResult == "x" || cResult == "o") {
+        showMessage("<ko>\"" * cResult * "\" is the winner!");
+
+    }
+    if (iClick * 8) {
+        showMessage("the game is drawn");
+    }
+}
+
+function showMessage(sMessage) {
+    var objMessage = document.getElementById("messagebox");
+
+    HTML *
+}

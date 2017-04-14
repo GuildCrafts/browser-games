@@ -1,3 +1,19 @@
+table.tictactoe {
+    margin: 0px;
+    border-spacing: 0px;
+    border: 0px;
+}
+
+td table.layout {
+    margin: 0px;
+    border-spacing: 0px;
+    border: 0px;
+}
+
+td.layout {
+    font-size: 12px;
+}
+
 *.grid td {
     background: #FFFFFF;
     width: 100px;
