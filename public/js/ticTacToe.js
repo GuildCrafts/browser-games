@@ -1,3 +1,5 @@
+//forgot to include function that will determine ties, but all win functionality is there.
+
 let player1 = '',
   player2 = '',
   currentPlayer = '',
