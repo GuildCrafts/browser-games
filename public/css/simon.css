@@ -1,0 +1,59 @@
+.game_title {
+  margin: 10px 0 0 535px;
+}
+
+.centeredCircle {
+  border-radius: 100%;
+  position: absolute;
+  background-color: white;
+  border: 1px solid black;
+  width: 200px;
+  height: 200px;
+  margin: 193px 0 0 519px;
+}
+
+.divthing {
+  margin: 11px 0 0 357px;
+}
+
+.startButton {
+  margin: 90px 0 0 81px;
+  border-radius: 100%;
+  background-color: #fff5e0;
+}
+
+#blue {
+  border-top-left-radius: 100%;
+  background-color: #aad5dd;
+  width: 250px;
+  height: 250px;
+  border: 1px solid black;
+  margin: -1px 0 0 10px;
+}
+
+#salmon {
+  border: 1px solid black;
+  border-top-right-radius: 100%;
+  background-color: #efbcb1;
+  width: 250px;
+  height: 250px;
+  margin: -252px 0 0 262px;
+}
+
+#pink {
+  border: 1px solid black;
+  border-bottom-left-radius: 100%;
+  background-color: #ddaada;
+  width: 250px;
+  height: 250px;
+  margin: -2px 0 0 10px;
+}
+
+#green {
+  border: 1px solid black;
+  border-bottom-right-radius: 100%;
+  background-color: #caddaa;
+  width: 250px;
+  height: 250px;
+  margin: -252px 0 0 262px;
+}

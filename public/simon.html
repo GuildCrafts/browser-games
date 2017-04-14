@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="./css/simon.css">
+    <title>Simon Says</title>
+  </head>
+  <body>
+    <div class="centeredCircle">
+      <button type="button" name="button" class="startButton" onclick="startGame()">start</button>
+    </div>
+    <h1 class="game_title">Simon Says</h1>
+      <div class="divthing">
+        <div id="blue" class="buttons">
+          <audio id="sound1" src="./sounds/simonSound1.mp3" preload="auto"></audio>
+        </div>
+        <div id="salmon" class="buttons">
+            <audio id="sound2" src="./sounds/simonSound2.mp3" preload="auto"></audio>
+        </div>
+        <div id="pink" class="buttons">
+          <audio id="sound3" src="./sounds/simonSound3.mp3" preload="auto"></audio>
+        </div>
+        <div id="green" class="buttons">
+          <audio id="sound4" src="./sounds/simonSound4.mp3" preload="auto"></audio>
+        </div>
+      </div>
+      <script
+      src="https://code.jquery.com/jquery-3.2.1.min.js"
+      integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+      crossorigin="anonymous"></script>
+      <script src="//code.jquery.com/jquery-1.12.4.js"></script>
+      <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script type="text/javascript" src="./js/simon.js"></script>
+  </body>
+</html>

@@ -39,20 +39,17 @@ function playerTurn(selected) {
         currentPlayer = player1
         document.getElementById(selected).innerHTML = currentPlayer;
         boxes[selected] = currentPlayer
-        console.log('player1count', player1Count);
         player1Count++
         if(player1Count >= 3 && currentPlayer === "O") {
           determineWinForO()
         } else if(player1Count >= 3 && currentPlayer === "X") {
           determineWinForX()
         }
-        console.log('boxes1', boxes);
       } else if(player1Count > player2Count) {
         currentPlayer = player2
         document.getElementById(selected).innerHTML = currentPlayer;
         boxes[selected] = currentPlayer
         player2Count++
-        console.log('boxes', boxes);
       }
     }
   } else {
@@ -303,5 +300,5 @@ function determineWinForX() {
     player1Count = 0,
     player2Count = 0
 
-  } 
+  }
 }
