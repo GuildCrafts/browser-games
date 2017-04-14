@@ -1,0 +1,115 @@
+table.tictactoe {
+    margin: 0px;
+    border-spacing: 0px;
+    border: 0px;
+}
+
+td table.layout {
+    margin: 0px;
+    border-spacing: 0px;
+    border: 0px;
+}
+
+td.layout {
+    font-size: 12px;
+}
+
+*.grid td {
+    background: #FFFFFF;
+    width: 100px;
+    height: 100px;
+}
+
+* {
+    padding: 0px;
+    margin: 0px;
+}
+
+.cell {
+    width: 80px;
+    height: 80px;
+    border: 1px solid #000000;
+    background: #FFFFFF;
+    font-size: 36pt;
+    font-family: arial;
+    font-weight: bold;
+    text-align: center;
+}
+
+.cell:hover {
+    background: #C2DBFC;
+}
+
+body {
+    text-align: center;
+    font-family: 'Finger Paint', cursive;
+    background-color: black;
+}
+
+#canvasDiv {
+    margin: 140px auto 40px;
+}
+
+canvas {
+    background: skyblue;
+    -webkit-transform: rotate(180deg);
+    transform: rotate(180deg);
+}
+
+canvas:hover {
+    width: 51px;
+    height: 49px;
+    opacity: 0.5;
+}
+
+#reloadButton {
+    text-decoration: none;
+    color: black;
+    font: 20px tahoma;
+}
+
+#reloadButton:hover {
+    font: 22px;
+}
+
+body* {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    font-family: sans-serif;
+}
+
+h1 {
+    color: #930;
+}
+
+table#tictac td {
+    width: 1.3em;
+    height: 1.3em;
+    text-align: center;
+    vertical-align: middle;
+    font: bold 36px sans-serif;
+}
+
+td#cell0,
+td#cell1,
+td#cell2,
+td#cell3,
+td#cell4,
+td#cell5 {
+    border-bottom: 3px solid #930;
+}
+
+td#cell0,
+td#cell1,
+td#cell3,
+td#cell4,
+td#cell6,
+td#cell7 {
+    border-right: 3px solid #930;
+}
+
+div#result {
+    margin: 0.5em;
+    font: 24px sans-serif;
+}
