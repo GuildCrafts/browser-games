@@ -1,5 +1,4 @@
-let userPlays = []
-let aiPlays = []
+let userPlays = [], aiPlays = []
 
 let options = ['blue', 'salmon', 'pink', 'green']
 
@@ -9,6 +8,7 @@ let sounds = {
   'pink': document.getElementById('sound3'),
   'green': document.getElementById('sound4')
 }
+
 let colorOfSounds = {
   'blue': '#cff5fc',
   'salmon': '#ffebe5',
@@ -18,13 +18,15 @@ let colorOfSounds = {
 
 function startGame() {
   let randomNumber = Math.floor(Math.random()*4)
-  userPlays = []
+  userPlays;
+  aiPlays;
+
   aiPlays.push(options[randomNumber])
   console.log('aiPlays[]', aiPlays);
   for(let i = 0; i < aiPlays.length; i++) {
     timeoutSound(i, 1000 * (i+1))
   }
-  
+
   usersTurn()
 }
 
@@ -39,11 +41,11 @@ function aiTurn() {
   console.log('userplays', userPlays);
   if(JSON.stringify(aiPlays) === JSON.stringify(userPlays)) {
     startGame()
-    userPlays = []
   }
   else {
     alert('booooooo, you lose!')
     userPlays = []
+    aiPlays = []
   }
 }
 
@@ -53,30 +55,36 @@ function usersTurn() {
       $(this).effect("highlight", {color: '#cff5fc'}, 1000);
       sounds[options[0]].play()
       userPlays.push(options[0])
+
       if(endTurn()){
         aiTurn()
         userPlays = []
       }
-      })
+
+    })
     $('#salmon').unbind().click(function() {
       $(this).effect("highlight", {color: '#ffebe5'}, 1000);
       sounds[options[1]].play()
       userPlays.push(options[1])
+
+
       if(endTurn()){
         aiTurn()
         userPlays = []
       }
-      })
+    })
 
     $('#pink').unbind().click(function() {
       $(this).effect("highlight", {color: '#ffd6fc'}, 1000);
       sounds[options[2]].play()
       userPlays.push(options[2])
+  
       if(endTurn()){
         aiTurn()
         userPlays = []
       }
-      })
+    })
+
     $('#green').unbind().click(function () {
       $(this).effect("highlight", {color: '#ebffc9'}, 1000);
       sounds[options[3]].play()
@@ -85,6 +93,7 @@ function usersTurn() {
         aiTurn()
         userPlays = []
       }
+
     });
   });
 }
