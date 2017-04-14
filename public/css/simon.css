@@ -16,6 +16,12 @@
   margin: 11px 0 0 357px;
 }
 
+.startButton {
+  margin: 90px 0 0 81px;
+  border-radius: 100%;
+  background-color: #a05b6f;
+}
+
 #blue {
   border-top-left-radius: 100%;
   background-color: #aad5dd;
