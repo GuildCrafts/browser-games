@@ -43,7 +43,7 @@ Your work will be mainly in deciding how to replicate that formal logic and user
 
  - [X] Artifact produced is a fork of the browser-games repo.
  - [X] For both of the games Tic-Tac-Toe and Simon, there exists:
-      - [] A playable, complete version of the game at public/GAME_NAME.html (e.g. public/ticTacToe.html)
+      - [ ] A playable, complete version of the game at public/GAME_NAME.html (e.g. public/ticTacToe.html)
       - [X] A link to the game page from public/index.html
  - [X] Variables, functions, files, etc. have appropriate and meaningful names.
  - [X] HTML, CSS, and JS files are well formatted with proper spacing and indentation.
