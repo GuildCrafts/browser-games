@@ -22,17 +22,17 @@ function startGame() {
   aiPlays.push(options[randomNumber])
   console.log('aiPlays[]', aiPlays);
   for(let i = 0; i < aiPlays.length; i++) {
-    timeoutSound(i)
-  
+    timeoutSound(i, 1000 * (i+1))
   }
+  
   usersTurn()
 }
 
-function timeoutSound(i) {
-  setInterval(function() {
+function timeoutSound(i, delay) {
+  setTimeout(function() {
     sounds[aiPlays[i]].play()
     $('#'+aiPlays[i]).effect('highlight', {color: colorOfSounds[aiPlays[i]]}, 1000)
-  }, 1000)
+  }, delay)
 }
 
 function aiTurn() {
@@ -46,7 +46,6 @@ function aiTurn() {
     userPlays = []
   }
 }
-
 
 function usersTurn() {
   $(document).ready(function() {
