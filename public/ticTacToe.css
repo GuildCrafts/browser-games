@@ -1,0 +1,71 @@
+body {
+  height: 100%;
+  margin: auto;
+  text-align: center;
+  background: black;
+}
+
+h1 {
+  color: #622569;
+}
+
+.empty {
+  font-size: 0em;
+}
+
+a {
+  color: #484f4f;
+}
+
+a.btn {
+  top: 50%;
+}
+
+.winner {
+  color: white;
+  font-size: 5em;
+}
+
+.reset {
+  color: white;
+  font-size: 1.5em;
+}
+
+.tic {
+  font-size: 4em;
+  height: 100px;
+  width: 100px;
+  border-radius: 0;
+  background-color: #b8a9c9;
+  border: 0;
+  margin: 2px 0;
+}
+
+.button {
+  display: inline-block;
+  padding: 10px 10px;
+  font-size: 24px;
+  text-align: center;
+  color: black;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+  margin-top: 50px;
+}
+
+.button:hover {
+  color: white;
+}
+
+.button:active {
+  color: red;
+  background: white;
+}
+
+.box-disabled {
+  background-color: orange;
+  color: white;
+  border-style: solid;
+  border-width: 3px;
+  border-color: grey;
+  cursor: not-allowed;
+}
