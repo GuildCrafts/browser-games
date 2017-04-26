@@ -1,37 +1,41 @@
 <!DOCTYPE html>
 <html>
-<header>
+<head>
   <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" media="screen" />
   <link rel="stylesheet" href="ticTacToe.css" />
+  <link href="https://fonts.googleapis.com/css?family=Rubik:500,700,900" rel="stylesheet">
   <script src="bower_components/jquery/dist/jquery.js"></script>
-</header>
+  <script src=ticTacToe.js></script>
+</head>
+
+
 
 <body>
-  <div class="container">
+ <div class="container-fluid">
     <h1>Tic Tac Toe-zle</h1>
-
+  <div>
+  <div class="flex-container">
+    <ul class="row">
+      <div class="flex-box" id="0">#</div>
+      <div class="flex-box" id="3">#</div>
+      <div class="flex-box" id="6">#</div>
+    </ul>
+    <ul class="row">
+      <div class="flex-box" id="1">#</div>
+      <div class="flex-box" id="4">#</div>
+      <div class="flex-box" id="7">#</div>
+    </ul>
+    <ul class="row">
+      <div class="flex-box" id="2">#</div>
+      <div class="flex-box" id="5">#</div>
+      <div class="flex-box" id="8">#</div>
+    </ul>
   </div>
-  <div class='row' style="margin-top:50px">
-    <a class='btn tic' id='0'><span class='empty'>#</span></a>
-    <a class='btn tic' id='1'><span class='empty'>#</span></a>
-    <a class='btn tic' id='2'><span class='empty'>#</span></a>
-  </div>
-  <div class='row'>
-    <a class='btn tic' id='3'><span class='empty'>#</span></a>
-    <a class='btn tic' id='4'><span class='empty'>#</span></a>
-    <a class='btn tic' id='5'><span class='empty'>#</span></a>
-  </div>
-  <div class='row'>
-    <a class='btn tic' id='6'><span class='empty'>#</span></a>
-    <a class='btn tic' id='7'><span class='empty'>#</span></a>
-    <a class='btn tic' id='8'><span class='empty'>#</span></a>
-  </div>
-  <div class='winner'></div>
-  <div class='reset'>
   </div>
   <div>
     <button class="button btn-danger">Reset</button>
   </div>
-  <script src='/js/tictactoe.js'></script>
+  </div>
+
 </body>
 </html>

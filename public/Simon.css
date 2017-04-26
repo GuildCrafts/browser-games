@@ -1,0 +1,155 @@
+body {
+  height: 100%;
+  margin: auto;
+  background: black;
+  text-align: center;
+  font-family: 'Russo One', sans-serif;
+}
+
+.circle {
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 40px;
+  position: relative;
+  box-shadow: 0 5px #525252;
+  background: #000000;
+  background: -moz-radial-gradient(center, ellipse cover, #000000 0%, #525252 50%, #525252 51%, #000000 100%);
+  background: -webkit-radial-gradient(center, ellipse cover, #000000 0%, #525252 50%, #525252 51%, #000000 100%);
+  background: radial-gradient(ellipse at center, #000000 0%, #525252 50%, #525252 51%, #000000 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#000000', GradientType=1);
+}
+
+.red {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  border-radius: 100% 0 0 0;
+  margin: 30 0 0 30;
+  box-shadow: 0 9px #525252;
+  background: rgba(255, 255, 255, 1);
+  background: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 1) 0%, rgba(139, 26, 26, 1) 78%, rgba(139, 26, 26, 1) 100%);
+  background: -webkit-gradient(left top, right bottom, color-stop(0%, rgba(255, 255, 255, 1)), color-stop(78%, rgba(139, 26, 26, 1)), color-stop(100%, rgba(139, 26, 26, 1)));
+  background: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 1) 0%, rgba(139, 26, 26, 1) 78%, rgba(139, 26, 26, 1) 100%);
+  background: -o-linear-gradient(-45deg, rgba(255, 255, 255, 1) 0%, rgba(139, 26, 26, 1) 78%, rgba(139, 26, 26, 1) 100%);
+  background: -ms-linear-gradient(-45deg, rgba(255, 255, 255, 1) 0%, rgba(139, 26, 26, 1) 78%, rgba(139, 26, 26, 1) 100%);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 1) 0%, rgba(139, 26, 26, 1) 78%, rgba(139, 26, 26, 1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#8b1a1a', GradientType=1);
+}
+
+.red:active {
+  background: red;
+  box-shadow: 0 2px #525252;
+  transform: translateY(10px);
+}
+
+.blue {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  border-radius: 0 100% 0 0;
+  margin: 30 0 0 270;
+  box-shadow: 0 9px #525252;
+  background: rgba(16, 78, 139, 1);
+  background: -moz-linear-gradient(45deg, rgba(16, 78, 139, 1) 0%, rgba(16, 78, 139, 1) 40%, rgba(255, 255, 255, 1) 100%);
+  background: -webkit-gradient(left bottom, right top, color-stop(0%, rgba(16, 78, 139, 1)), color-stop(40%, rgba(16, 78, 139, 1)), color-stop(100%, rgba(255, 255, 255, 1)));
+  background: -webkit-linear-gradient(45deg, rgba(16, 78, 139, 1) 0%, rgba(16, 78, 139, 1) 40%, rgba(255, 255, 255, 1) 100%);
+  background: -o-linear-gradient(45deg, rgba(16, 78, 139, 1) 0%, rgba(16, 78, 139, 1) 40%, rgba(255, 255, 255, 1) 100%);
+  background: -ms-linear-gradient(45deg, rgba(16, 78, 139, 1) 0%, rgba(16, 78, 139, 1) 40%, rgba(255, 255, 255, 1) 100%);
+  background: linear-gradient(45deg, rgba(16, 78, 139, 1) 0%, rgba(16, 78, 139, 1) 40%, rgba(255, 255, 255, 1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#104e8b', endColorstr='#ffffff', GradientType=1);
+}
+
+.blue:active {
+  background: blue;
+  box-shadow: 0 2px #525252;
+  transform: translateY(10px);
+}
+
+.green {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  border-radius: 0 0 100% 0;
+  margin: 270 0 0 270;
+  box-shadow: 0 9px #525252;
+  background: rgba(48, 128, 20, 1);
+  background: -moz-linear-gradient(-45deg, rgba(48, 128, 20, 1) 0%, rgba(255, 255, 255, 1) 100%);
+  background: -webkit-gradient(left top, right bottom, color-stop(0%, rgba(48, 128, 20, 1)), color-stop(100%, rgba(255, 255, 255, 1)));
+  background: -webkit-linear-gradient(-45deg, rgba(48, 128, 20, 1) 0%, rgba(255, 255, 255, 1) 100%);
+  background: -o-linear-gradient(-45deg, rgba(48, 128, 20, 1) 0%, rgba(255, 255, 255, 1) 100%);
+  background: -ms-linear-gradient(-45deg, rgba(48, 128, 20, 1) 0%, rgba(255, 255, 255, 1) 100%);
+  background: linear-gradient(135deg, rgba(48, 128, 20, 1) 0%, rgba(255, 255, 255, 1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#308014', endColorstr='#ffffff', GradientType=1);
+}
+
+.green:active {
+  background: #00FF00;
+  box-shadow: 0 2px #525252;
+  transform: translateY(10px);
+}
+
+.yellow {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  border-radius: 0 0 0 100%;
+  margin: 270 0 0 30;
+  box-shadow: 0 9px #525252;
+  background: rgba(255, 255, 255, 1);
+  background: -moz-linear-gradient(45deg, rgba(255, 255, 255, 1) 0%, rgba(254, 182, 69, 1) 100%);
+  background: -webkit-gradient(left bottom, right top, color-stop(0%, rgba(255, 255, 255, 1)), color-stop(100%, rgba(254, 182, 69, 1)));
+  background: -webkit-linear-gradient(45deg, rgba(255, 255, 255, 1) 0%, rgba(254, 182, 69, 1) 100%);
+  background: -o-linear-gradient(45deg, rgba(255, 255, 255, 1) 0%, rgba(254, 182, 69, 1) 100%);
+  background: -ms-linear-gradient(45deg, rgba(255, 255, 255, 1) 0%, rgba(254, 182, 69, 1) 100%);
+  background: linear-gradient(45deg, rgba(255, 255, 255, 1) 0%, rgba(254, 182, 69, 1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#feb645', GradientType=1);
+}
+
+.yellow:active {
+  background: yellow;
+  box-shadow: 0 2px #525252;
+  transform: translateY(10px);
+}
+
+.panel {
+  position: absolute;
+  height: 200px;
+  width: 200px;
+  border-radius: 100%;
+  margin-top: 150px;
+  margin-left: 150px;
+  font-size: 2em;
+  padding-top: 10px;
+  color: grey;
+  background: #000000;
+  box-shadow: 0 5px #525252;
+  background: -moz-radial-gradient(center, ellipse cover, #000000 0%, #525252 50%, #525252 51%, #000000 100%);
+  background: -webkit-radial-gradient(center, ellipse cover, #000000 0%, #525252 50%, #525252 51%, #000000 100%);
+  background: radial-gradient(ellipse at center, #000000 0%, #525252 50%, #525252 51%, #000000 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#000000', GradientType=1);
+}
+
+.counter {
+  height: 50px;
+  width: 80px;
+  margin-top: 5px;
+  margin-left: 60px;
+  background-color: black;
+  padding: 6px;
+}
+
+.newgame {
+  position: absolute;
+  height: 50px;
+  width: 50px;
+  border-radius: 100%;
+  margin-top: 20px;
+  margin-left: 10px;
+  background-color: darkred;
+  font-size: small;
+  padding-top: 5px;
+  box-shadow: 0 5px #525252;
+}
