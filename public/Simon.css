@@ -24,6 +24,7 @@ body {
 
 .but {
   box-shadow: 0 9px #525252;
+  transition:all 400ms linear;
 }
 
 .red {
