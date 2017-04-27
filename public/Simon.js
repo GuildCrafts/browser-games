@@ -1,63 +1,118 @@
 $(document).ready(function () {
-  var userArray = [];
-  var memoryArray = [];
-  var levelCount = 0;
-
-  //Counter display
-  function update_levelCount() {
-    $('#count span').text(levelCount);
-  };
+      var userSequence = [];
+      var comSequence = [];
+      var countSeq = 0;
+      var strictMode = false;
 
 
-  //computer turn
-  function memoryturn() {
-    var num = Math.floor(Math.random() * 4);
-    for (var i = 0; i <= memoryArray; i++){
-      $(memoryArray[i]).trigger('click');
-      console.log (memoryArray);
-    };
-    $("#" + num).trigger('click', true);
-    memoryArray.push(num);
-    levelCount++;
+// original game mode
+      $('#btn-original').on('click', function(){
+        $(this).addClass('.buttonmode');
+        strictMode = false;
+        if ($('#btn-strict').hasClass('.buttonmode')){
+          $('#btn-strict').removeClass('.buttonmode');
+        } else{
+          return;
+        }
+      })
 
-  };
-  function wincheck(){
-    if (turnCount=20) {
-      console.log("You Win!");
-      userArray=[];
-      return;
-    };
-    userArray=[];
-    memoryturn();
-  };
 
-  //Restart button
-  $(".newgame").on('click', function () {
-    userArray = [];
-    memoryArray = [];
-    levelCount = 0;
-    update_levelCount();
-    memoryturn();
-  });
+//strict mode button
+      $('#btn-strict').on('click',function(){
+        $(this).addClass('.buttonmode');
+        strictMode = true;
+        if ($('#btn-original').hasClass('.buttonmode')){
+          $('#btn-original').removeClass('.buttonmode');
+        } else{
+          return;
+        }
 
-  // clicking on the buttons
-  $(".but").on('click', function(e,skip){
-    if(skip) return ;
-    userArray.push(this.id);
-    var a = userArray.toString();
-    var b = memoryArray.toString();
 
-    if ( a === b ) {
-      console.log("yay");
-      wincheck();
+  })
 
-    } else{
-      console.log("no");
 
-    };
-      console.log("user" + a);
-      console.log("comp" + b);
+// Check if strict or normal mode
+      function strict_orig() {
+        if (strict = true) {
+          //something about restarting game if wincheck is false
+        } // i dont think i will need an else statment but i could be wrong
 
-    });
+      }
 
-});
+
+//counter display
+      function update_count() {
+        countSeq++;
+        $('#count').text(countSeq);
+      }
+
+
+//win check
+      function win_check() {
+        if (countSeq >= 20) {
+          console.log("Game Over, You Win");
+        } else {
+          userSequence = [];
+        }
+      }
+
+
+//Computer turn
+      function comTurn(){
+        var ranNum = Math.floor(Math.random()*4);
+        var randomID = "#" + ranNum;
+        comSequence.push(ranNum);
+        update_count();
+        console.log(comSequence);
+        return;
+      }
+
+
+// Computer to repeat sequence if user entered incorrect sequence
+  //Original mode only
+      function sequence_repeat(){
+
+      }
+
+
+//Start Button
+      $('#start').on('click', function () {
+        userSequence = [];
+        comSequence = [];
+        countSeq = 0;
+        comTurn();
+
+      })
+
+
+//Sequence Check
+      function sequence_check() {
+        if (userSequence.toString() === comSequence.toString()) {
+          win_check();
+          console.log("yay")
+          comTurn();
+        } else{
+          console.log("nay")
+          if (strictMode === false){
+            userSequence=[];
+            sequence_repeat();
+          } else {
+            userSequence=[];
+            comSequence=[];
+            countSeq= 0;
+          }
+        }
+      }
+
+
+// coloured button click and added to sequence
+      $('.but').on('click', function() {
+        $(this).addClass('redclick').delay(500).removeClass('redclick');
+        userSequence.push(this.id);
+        if (userSequence.length === comSequence.length){
+          sequence_check();
+        }
+        })
+
+
+})
