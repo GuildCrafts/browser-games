@@ -9,6 +9,7 @@ $(document).ready(function () {
       $('#btn-original').on('click', function(){
         $(this).addClass('.buttonmode');
         strictMode = false;
+        $('#display').text("ORIGINAL MODE");
         if ($('#btn-strict').hasClass('.buttonmode')){
           $('#btn-strict').removeClass('.buttonmode');
         } else{
@@ -21,6 +22,7 @@ $(document).ready(function () {
       $('#btn-strict').on('click',function(){
         $(this).addClass('.buttonmode');
         strictMode = true;
+        $('#display').text("STRICT MODE");
         if ($('#btn-original').hasClass('.buttonmode')){
           $('#btn-original').removeClass('.buttonmode');
         } else{
@@ -50,7 +52,7 @@ $(document).ready(function () {
 //win check
       function win_check() {
         if (countSeq >= 20) {
-          console.log("Game Over, You Win");
+          $('#display').text("YOU WIN!")
         } else {
           userSequence = [];
         }
@@ -64,7 +66,7 @@ $(document).ready(function () {
         comSequence.push(ranNum);
         update_count();
         console.log(comSequence);
-        return;
+        $('#display').text("WATCH CARFULLY...")
       }
 
 
@@ -81,7 +83,7 @@ $(document).ready(function () {
         comSequence = [];
         countSeq = 0;
         comTurn();
-
+        $('#display').text("GAME START")
       })
 
 
@@ -91,18 +93,17 @@ $(document).ready(function () {
           win_check();
           console.log("yay")
           comTurn();
-        } else{
-          console.log("nay")
-          if (strictMode === false){
+        } else if (strictMode === false){
             userSequence=[];
             sequence_repeat();
+            $('#display').text("TRY AGAIN")
           } else {
             userSequence=[];
             comSequence=[];
             countSeq= 0;
           }
         }
-      }
+
 
 
 // coloured button click and added to sequence

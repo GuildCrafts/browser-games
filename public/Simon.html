@@ -6,12 +6,16 @@
   <link rel="stylesheet" href="Simon.css" />
   <link href="https://fonts.googleapis.com/css?family=Russo+One" rel="stylesheet">
   <script src="bower_components/jquery/dist/jquery.js"></script>
-  <script src=Simon.js></script>
+  <script src="Simon.js"></script>
 </head>
 
 <body>
-  <div class="container-fluid" style="margin-top:10%">
-
+  <div class="container-fluid" style="margin-top:20px">
+    <div class="display" id="display">SIMON</div>
+     <div>
+      <button class="button" id="btn-original">ORIGINAL</button>
+      <button class="button" id="btn-strict">STRICT</button>
+    </div>
     <div class="circle">
 
       <div class="position:absolute">
@@ -22,12 +26,8 @@
         <div class="panel">
           SIMON
           <div class="counter"><span id="count">999</span></div>
-          <div>
-            <button class="button" id="btn-original">ORIGINAL</button>
-            <button class="button" id="btn-strict">STRICT</button>
-          </div>
           <div class="start" id="start">
-            <div>RESTART</div>
+            <div>START</div>
           </div>
         </div>
       </div>

@@ -1,23 +1,35 @@
 body {
   height: 100%;
-  background: black;
+  background: ;
   text-align: center;
   font-family: 'Russo One', sans-serif;
 }
-
+.display {
+  background: black;
+  width 50%;
+  height: 50px;
+  position: relative;
+  margin: auto;
+  font-size: 35px;
+  color: white;
+  text-align: center;
+}
 .circle {
   width: 500px;
   height: 500px;
   border-radius: 50%;
   margin: auto;
-  margin-top: auto;
+  margin-top: 40px;
   position: relative;
   box-shadow: 0 5px #525252;
+  background: #161616;
+/*
   background: #000000;
   background: -moz-radial-gradient(center, ellipse cover, #000000 0%, #525252 50%, #525252 51%, #000000 100%);
   background: -webkit-radial-gradient(center, ellipse cover, #000000 0%, #525252 50%, #525252 51%, #000000 100%);
   background: radial-gradient(ellipse at center, #000000 0%, #525252 50%, #525252 51%, #000000 100%);
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#000000', GradientType=1);
+*/
 }
 
 .but {
@@ -30,7 +42,7 @@ body {
   width: 200px;
   height: 200px;
   border-radius: 100% 0 0 0;
-  margin: 30 0 0 30;
+  margin: 30px 0px 0px 30px;
   background: rgba(255, 255, 255, 1);
   background: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 1) 0%, rgba(139, 26, 26, 1) 78%, rgba(139, 26, 26, 1) 100%);
   background: -webkit-gradient(left top, right bottom, color-stop(0%, rgba(255, 255, 255, 1)), color-stop(78%, rgba(139, 26, 26, 1)), color-stop(100%, rgba(139, 26, 26, 1)));
@@ -52,7 +64,7 @@ body {
   width: 200px;
   height: 200px;
   border-radius: 0 100% 0 0;
-  margin: 30 0 0 270;
+  margin: 30px 0px 0px 270px;
   background: rgba(16, 78, 139, 1);
   background: -moz-linear-gradient(45deg, rgba(16, 78, 139, 1) 0%, rgba(16, 78, 139, 1) 40%, rgba(255, 255, 255, 1) 100%);
   background: -webkit-gradient(left bottom, right top, color-stop(0%, rgba(16, 78, 139, 1)), color-stop(40%, rgba(16, 78, 139, 1)), color-stop(100%, rgba(255, 255, 255, 1)));
@@ -74,7 +86,7 @@ body {
   width: 200px;
   height: 200px;
   border-radius: 0 0 100% 0;
-  margin: 0 0 100 0;
+  margin: 270px 0px 0px 270px;
   box-shadow: 0 9px #525252;
   background: rgba(48, 128, 20, 1);
   background: -moz-linear-gradient(-45deg, rgba(48, 128, 20, 1) 0%, rgba(255, 255, 255, 1) 100%);
@@ -97,7 +109,7 @@ body {
   width: 200px;
   height: 200px;
   border-radius: 0 0 0 100%;
-  margin:;
+  margin: 270px 0px 0px 30px ;
   background: rgba(255, 255, 255, 1);
   background: -moz-linear-gradient(45deg, rgba(255, 255, 255, 1) 0%, rgba(254, 182, 69, 1) 100%);
   background: -webkit-gradient(left bottom, right top, color-stop(0%, rgba(255, 255, 255, 1)), color-stop(100%, rgba(254, 182, 69, 1)));
@@ -115,55 +127,55 @@ body {
 }
 
 .panel {
-  position: absolute;
-  height: 200px;
-  width: 200px;
+  position:absolute;
+  height: 250px;
+  width: 250px;
   border-radius: 100%;
-  margin-top: 150px;
-  margin-left: 150px;
-  font-size: 2em;
-  padding-top: 10px;
-  color: black;
+  margin: 130px 0px 0px 125px;
+  font-size: 4em;
+  padding-top: 40px;
+  color: grey;
+  background: #161616;
+/*
   background: #000000;
   box-shadow: 0 5px #525252;
   background: -moz-radial-gradient(center, ellipse cover, #000000 0%, #525252 50%, #525252 51%, #000000 100%);
   background: -webkit-radial-gradient(center, ellipse cover, #000000 0%, #525252 50%, #525252 51%, #000000 100%);
   background: radial-gradient(ellipse at center, #000000 0%, #525252 50%, #525252 51%, #000000 100%);
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#000000', GradientType=1);
+*/
 }
 
 .counter {
   height: 50px;
   width: 80px;
-  margin-top: 5px;
-  margin-left: 60px;
+  margin-left: 85px;
   background-color: black;
   padding: 6px;
   color: red;
+  font-size:30px;
 }
 
 .button {
-  font-size: 10;
-  width: 75px;
+  font-size: 20px;
+  width: 200px;
   background: grey;
 }
 
 .buttonmode {
-  font-size: 10;
-  width: 75px;
   background: darkred;
 }
 
 .start {
-  position: absolute;
-  height: 25px;
-  width: 50px;
+  position: relative;
+  height: 40px;
+  width: 100px;
   color: black;
   border-radius: 20%;
   margin-top: 10px;
   margin-left: 75px;
   background-color: darkred;
-  font-size: 9;
+  font-size: 18px;
   padding-top: 8px;
   box-shadow: 0 5px #000000;
   transition: .5s ease;
