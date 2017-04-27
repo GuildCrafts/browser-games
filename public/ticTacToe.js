@@ -47,7 +47,7 @@ $(".flex-box").on('click',function() {
 
 
 $('.btn-danger').click(function reset(){
-    location.reload()
+    location.reload();
 
 });
 

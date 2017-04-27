@@ -22,13 +22,16 @@ body {
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#000000', GradientType=1);
 }
 
+.but {
+  box-shadow: 0 9px #525252;
+}
+
 .red {
   position: absolute;
   width: 200px;
   height: 200px;
   border-radius: 100% 0 0 0;
   margin: 30 0 0 30;
-  box-shadow: 0 9px #525252;
   background: rgba(255, 255, 255, 1);
   background: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 1) 0%, rgba(139, 26, 26, 1) 78%, rgba(139, 26, 26, 1) 100%);
   background: -webkit-gradient(left top, right bottom, color-stop(0%, rgba(255, 255, 255, 1)), color-stop(78%, rgba(139, 26, 26, 1)), color-stop(100%, rgba(139, 26, 26, 1)));
@@ -42,7 +45,7 @@ body {
 .red:active {
   background: red;
   box-shadow: 0 2px #525252;
-  transform: translateY(10px);
+  transform: translateY(7px);
 }
 
 .blue {
@@ -51,7 +54,6 @@ body {
   height: 200px;
   border-radius: 0 100% 0 0;
   margin: 30 0 0 270;
-  box-shadow: 0 9px #525252;
   background: rgba(16, 78, 139, 1);
   background: -moz-linear-gradient(45deg, rgba(16, 78, 139, 1) 0%, rgba(16, 78, 139, 1) 40%, rgba(255, 255, 255, 1) 100%);
   background: -webkit-gradient(left bottom, right top, color-stop(0%, rgba(16, 78, 139, 1)), color-stop(40%, rgba(16, 78, 139, 1)), color-stop(100%, rgba(255, 255, 255, 1)));
@@ -65,7 +67,7 @@ body {
 .blue:active {
   background: blue;
   box-shadow: 0 2px #525252;
-  transform: translateY(10px);
+  transform: translateY(7px);
 }
 
 .green {
@@ -88,7 +90,7 @@ body {
 .green:active {
   background: #00FF00;
   box-shadow: 0 2px #525252;
-  transform: translateY(10px);
+  transform: translateY(7px);
 }
 
 .yellow {
@@ -97,7 +99,6 @@ body {
   height: 200px;
   border-radius: 0 0 0 100%;
   margin: 270 0 0 30;
-  box-shadow: 0 9px #525252;
   background: rgba(255, 255, 255, 1);
   background: -moz-linear-gradient(45deg, rgba(255, 255, 255, 1) 0%, rgba(254, 182, 69, 1) 100%);
   background: -webkit-gradient(left bottom, right top, color-stop(0%, rgba(255, 255, 255, 1)), color-stop(100%, rgba(254, 182, 69, 1)));
@@ -111,7 +112,7 @@ body {
 .yellow:active {
   background: yellow;
   box-shadow: 0 2px #525252;
-  transform: translateY(10px);
+  transform: translateY(7px);
 }
 
 .panel {
@@ -123,7 +124,7 @@ body {
   margin-left: 150px;
   font-size: 2em;
   padding-top: 10px;
-  color: grey;
+  color: black;
   background: #000000;
   box-shadow: 0 5px #525252;
   background: -moz-radial-gradient(center, ellipse cover, #000000 0%, #525252 50%, #525252 51%, #000000 100%);
@@ -139,17 +140,37 @@ body {
   margin-left: 60px;
   background-color: black;
   padding: 6px;
+  color: red;
+}
+
+.button {
+  font-size: 10;
+  width: 75px;
+  background: grey;
+}
+
+.buttonmode {
+  font-size: 10;
+  width: 75px;
+  background: darkred;
 }
 
 .newgame {
   position: absolute;
-  height: 50px;
+  height: 25px;
   width: 50px;
-  border-radius: 100%;
-  margin-top: 20px;
-  margin-left: 10px;
+  color: black;
+  border-radius: 20%;
+  margin-top: 10px;
+  margin-left: 75px;
   background-color: darkred;
-  font-size: small;
-  padding-top: 5px;
-  box-shadow: 0 5px #525252;
+  font-size: 9;
+  padding-top: 8px;
+  box-shadow: 0 5px #000000;
+  transition: .5s ease;
+}
+
+.newgame:active {
+  box-shadow: 0 1px #000000;
+  transform: translateY(4px);
 }
