@@ -70,100 +70,102 @@ $(document).ready(function () {
   // play comArray sequence... it works but really fast so it is a challenge
   function playSequence() {
     for (var i = 0; i < comSequence.length; i++) {
-      setTimeout(function () {
-        if (comSequence[i] === 0) {
-          $('#0').addClass('redclick').delay(1000).queue(function (next) {
+      if (comSequence[i] === 0) {
+        setTimeout(function () {
+          $('#0').addClass('redclick').delay(800).queue(function (next) {
             $('#0').removeClass('redclick');
             next();
             $('#redsound')[0].play();
           })
-        }
-      }, 1000)
-      setTimeout(function () {
-        if (comSequence[i] === 1) {
-          $('#1').addClass('blueclick').delay(1000).queue(function (next) {
+        }, i * 1000)
+      }
+      if (comSequence[i] === 1) {
+        setTimeout(function () {
+          $('#1').addClass('blueclick').delay(800).queue(function (next) {
             $('#1').removeClass('blueclick');
             next();
             $('#yellowsound')[0].play();
           })
-        }
-      }, 1000)
-      setTimeout(function () {
-        if (comSequence[i] === 2) {
-          $('#2').addClass('yellowclick').delay(1000).queue(function (next) {
+        }, i * 1000)
+      }
+      if (comSequence[i] === 2) {
+        setTimeout(function () {
+          $('#2').addClass('yellowclick').delay(800).queue(function (next) {
             $('#2').removeClass('yellowclick');
             next();
             $('#greensound')[0].play();
           })
-        }
-      }, 1000)
-      setTimeout(function () {
-        if (comSequence[i] === 3) {
-          $('#3').addClass('greenclick').delay(1000).queue(function (next) {
+        }, i * 1000)
+      }
+      if (comSequence[i] === 3) {
+        setTimeout(function () {
+          $('#3').addClass('greenclick').delay(800).queue(function (next) {
             $('#3').removeClass('greenclick');
             next();
             $('#greensound')[0].play()
           })
-        }
-      }, 1000)
+        }, i * 1000)
+      }
     }
   }
 
 
 
 
-//Computer turn
-function comTurn() {
-  var ranNum = Math.floor(Math.random() * 4);
-  var randomID = "#" + ranNum;
-  comSequence.push(ranNum);
-  update_count();
-  console.log(comSequence);
-  $('#display').text("WATCH CARFULLY...")
-  setTimeout(function () {
-    playSequence();
-  }, 1000)
-}
+  //Computer turn
+  function comTurn() {
+    var ranNum = Math.floor(Math.random() * 4);
+    var randomID = "#" + ranNum;
+    comSequence.push(ranNum);
+    update_count();
+    console.log(comSequence);
+    $('#display').text("WATCH CARFULLY...")
+    setTimeout(function () {
+      playSequence();
+    }, 1000)
+  }
 
 
-//Start Button
-$('#start').on('click', function () {
-  userSequence = [];
-  comSequence = [];
-  countSeq = 0;
-  comTurn();
-  $('#display').text("GAME START")
-})
-
-
-//Sequence Check
-function sequence_check() {
-  if (userSequence.toString() === comSequence.toString()) {
-    win_check();
-    console.log("yay")
-    comTurn();
-  } else if (strictMode === false) {
-    userSequence = [];
-    sequence_repeat();
-    $('#losesound')[0].play();
-    $('#display').text("TRY AGAIN")
-    playSequence();
-  } else {
-    $('#losesound')[0].play();
+  //Start Button
+  $('#start').on('click', function () {
     userSequence = [];
     comSequence = [];
     countSeq = 0;
     comTurn();
-  }
-}
+    $('#display').text("GAME START")
+  })
 
 
-// coloured button click and added to sequence
-$('.but').on('click', function () {
-  $(this).addClass('redclick').delay(500).removeClass('redclick');
-  userSequence.push(this.id);
-  if (userSequence.length === comSequence.length) {
-    sequence_check();
+  //Sequence Check
+  function sequence_check() {
+    if (userSequence.toString() === comSequence.toString()) {
+      win_check();
+      console.log("yay")
+      comTurn();
+    } else if (strictMode === false) {
+      userSequence = [];
+      sequence_repeat();
+      $('#losesound')[0].play();
+      $('#display').text("TRY AGAIN")
+      playSequence();
+    } else {
+      $('#losesound')[0].play();
+      $('#display').text("GAME OVER");
+      $('#losesound')[0].play();
+      userSequence = [];
+      comSequence = [];
+      countSeq = 0;
+      comTurn();
+    }
   }
-});
+
+
+  // coloured button click and added to sequence
+  $('.but').on('click', function () {
+    $(this).addClass('redclick').delay(500).removeClass('redclick');
+    userSequence.push(this.id);
+    if (userSequence.length === comSequence.length) {
+      sequence_check();
+    }
+  });
 });

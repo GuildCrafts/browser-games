@@ -46,7 +46,14 @@ div {
   justify-content: center;
 }
 
-p
+.player {
+  background: grey;
+}
+
+.selected {
+  background: darkred;
+  color:white;
+}
 
 .button {
   display: inline-block;
