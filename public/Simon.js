@@ -29,64 +29,86 @@ $(document).ready(function () {
   })
 
 
-  $('.mode').on('click', function ($('.mode').toggleClass('.selected')));
-    if (strictMode === true){
-      strictMode = false;
-    } else
-     strictMode = true;
-})
-
-
-
-//counter display
-function update_count() {
-  countSeq++;
-  $('#count').text(countSeq);
-}
-
-
-//win check
-function win_check() {
-  if (countSeq >= 20) {
-    $('#display').text("YOU WIN!")
+  $('.mode').on('click', function () {
+    var selected = $('.mode').removeClass('selected').filter(this).addClass('selected');
+    var which = selected.prop('id');
+    console.log("now you can use ", which, " to make decisions about game mode");
+    /*
+      In English:
+      gather every element that has a .mode class.
+      remove the selected class from all of them.
+      filter the elements down until we have only the current element
+      add selected class to it.
+    */
+  });
+  if (strictMode === true) {
+    strictMode = false;
   } else {
-    userSequence = [];
+    strictMode = true;
   }
-}
 
 
-// play comArray sequence...hopefully
-function playSequence() {
-  for (var i = 0; i <= comSequence.length; i++) {
-    if (comSequence[i] === 0) {
-      $('#0').addClass('redclick').delay(2000).queue(function (next) {
-        $('#0').removeClass('redclick');
-        next();
-        $('#redsound')[0].play();
-      })
-    } else if (comSequence[i] === 1) {
-      $('#1').addClass('blueclick').delay(2000).queue(function (next) {
-        $('#1').removeClass('blueclick');
-        next();
-        $('#yellowsound')[0].play();
-      })
-    } else if (comSequence[i] === 2) {
-      $('#2').addClass('yellowclick').delay(2000).queue(function (next) {
-        $('#2').removeClass('yellowclick');
-        next();
-        $('#greensound')[0].play();
-      })
-    } else if (comSequence[i] === 3) {
-      $('#3').addClass('greenclick').delay(2000).queue(function (next) {
-        $('#3').removeClass('greenclick');
-        next();
-        $('#greensound')[0].play()
-      })
+
+
+  //counter display
+  function update_count() {
+    countSeq++;
+    $('#count').text(countSeq);
+  }
+
+
+  //win check
+  function win_check() {
+    if (countSeq >= 20) {
+      $('#display').text("YOU WIN!");
     } else {
-      console.log("you fucked up somewhere coding");
+      userSequence = [];
     }
   }
-}
+
+
+  // play comArray sequence... it works but really fast so it is a challenge
+  function playSequence() {
+    for (var i = 0; i < comSequence.length; i++) {
+      setTimeout(function () {
+        if (comSequence[i] === 0) {
+          $('#0').addClass('redclick').delay(1000).queue(function (next) {
+            $('#0').removeClass('redclick');
+            next();
+            $('#redsound')[0].play();
+          })
+        }
+      }, 1000)
+      setTimeout(function () {
+        if (comSequence[i] === 1) {
+          $('#1').addClass('blueclick').delay(1000).queue(function (next) {
+            $('#1').removeClass('blueclick');
+            next();
+            $('#yellowsound')[0].play();
+          })
+        }
+      }, 1000)
+      setTimeout(function () {
+        if (comSequence[i] === 2) {
+          $('#2').addClass('yellowclick').delay(1000).queue(function (next) {
+            $('#2').removeClass('yellowclick');
+            next();
+            $('#greensound')[0].play();
+          })
+        }
+      }, 1000)
+      setTimeout(function () {
+        if (comSequence[i] === 3) {
+          $('#3').addClass('greenclick').delay(1000).queue(function (next) {
+            $('#3').removeClass('greenclick');
+            next();
+            $('#greensound')[0].play()
+          })
+        }
+      }, 1000)
+    }
+  }
+
 
 
 
@@ -98,15 +120,9 @@ function comTurn() {
   update_count();
   console.log(comSequence);
   $('#display').text("WATCH CARFULLY...")
-  playSequence();
-}
-
-
-
-// Computer to repeat sequence if user entered incorrect sequence
-//Original mode only
-function sequence_repeat() {
-
+  setTimeout(function () {
+    playSequence();
+  }, 1000)
 }
 
 
@@ -144,10 +160,10 @@ function sequence_check() {
 
 // coloured button click and added to sequence
 $('.but').on('click', function () {
-$(this).addClass('redclick').delay(500).removeClass('redclick');
-userSequence.push(this.id);
-if (userSequence.length === comSequence.length) {
-  sequence_check();
-}
+  $(this).addClass('redclick').delay(500).removeClass('redclick');
+  userSequence.push(this.id);
+  if (userSequence.length === comSequence.length) {
+    sequence_check();
+  }
 });
 });

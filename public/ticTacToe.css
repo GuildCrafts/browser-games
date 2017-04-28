@@ -9,18 +9,28 @@ body {
   color: #622569;
 }
 
-div {
-  font-family: 'Rubik', sans-serif;
+.container-fluid {
+  justify-content: center;
 }
 
-.clean {
-  font-size: 0em;
+.display {
+  width: 100%;
+  height 50px;
+  background: black;
+  justify-content: center;
+  object-position: center;
+  font-size: 30px;
+}
+
+div {
+  font-family: 'Rubik', sans-serif;
 }
 
 .flex-container {
   display: flex;
   justify-content: center;
   flex-flow: row nowrap;
+  margin-top: 20px;
 }
 
 .flex-box {
@@ -36,6 +46,8 @@ div {
   justify-content: center;
 }
 
+p
+
 .button {
   display: inline-block;
   padding: 10px 10px;
@@ -50,3 +62,8 @@ div {
 .box-disabled {
   cursor: not-allowed;
 }
+
+.clean {
+  font-size: 0em;
+}
+
