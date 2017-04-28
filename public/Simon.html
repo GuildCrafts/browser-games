@@ -7,17 +7,14 @@
   <link href="https://fonts.googleapis.com/css?family=Russo+One" rel="stylesheet">
   <script src="bower_components/jquery/dist/jquery.js"></script>
   <script src="Simon.js"></script>
-  <audio id="red">
-    <source src="audio/simonSound1.mp3">
-  </audio>
 </head>
 
 <body>
   <div class="container-fluid" style="margin-top:20px">
     <div class="display" id="display">SIMON</div>
      <div>
-      <button class="button" id="btn-original">ORIGINAL</button>
-      <button class="button" id="btn-strict">STRICT</button>
+      <button class="mode selected" id="btnoriginal ">ORIGINAL</button>
+      <button class="mode" id="btnstrict">STRICT</button>
     </div>
     <div class="circle">
 
@@ -36,6 +33,11 @@
       </div>
 
     </div>
+  <audio id="redsound" src="audio/simonSound1.mp3" preload="auto"></audio>
+  <audio id="bluesound" src="audio/simonSound2.mp3" preload="auto"></audio>
+  <audio id="yellowsound" src="audio/simonSound3.mp3" preload="auto"></audio>
+  <audio id="greensound" src="audio/simonSound4.mp3" preload="auto"></audio>
+  <audio id="losesound" src="audio/DONKEY_C.WAV" preload="auto"></audio>
 </body>
 
 </html>

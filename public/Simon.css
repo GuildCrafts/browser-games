@@ -23,13 +23,6 @@ body {
   position: relative;
   box-shadow: 0 5px #525252;
   background: #161616;
-/*
-  background: #000000;
-  background: -moz-radial-gradient(center, ellipse cover, #000000 0%, #525252 50%, #525252 51%, #000000 100%);
-  background: -webkit-radial-gradient(center, ellipse cover, #000000 0%, #525252 50%, #525252 51%, #000000 100%);
-  background: radial-gradient(ellipse at center, #000000 0%, #525252 50%, #525252 51%, #000000 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#000000', GradientType=1);
-*/
 }
 
 .but {
@@ -41,7 +34,7 @@ body {
   position: absolute;
   width: 200px;
   height: 200px;
-  border-radius: 100% 0 0 0;
+  border-radius: 100% 5% 5% 5%;
   margin: 30px 0px 0px 30px;
   background: rgba(255, 255, 255, 1);
   background: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 1) 0%, rgba(139, 26, 26, 1) 78%, rgba(139, 26, 26, 1) 100%);
@@ -59,11 +52,17 @@ body {
   transform: translateY(7px);
 }
 
+.redclick {
+  background: red;
+  box-shadow: 0 2px #525252;
+  transform: translateY(7px);
+}
+
 .blue {
   position: absolute;
   width: 200px;
   height: 200px;
-  border-radius: 0 100% 0 0;
+  border-radius: 5% 100% 5% 5%;
   margin: 30px 0px 0px 270px;
   background: rgba(16, 78, 139, 1);
   background: -moz-linear-gradient(45deg, rgba(16, 78, 139, 1) 0%, rgba(16, 78, 139, 1) 40%, rgba(255, 255, 255, 1) 100%);
@@ -81,11 +80,17 @@ body {
   transform: translateY(7px);
 }
 
+.blueclick {
+  background: blue;
+  box-shadow: 0 2px #525252;
+  transform: translateY(7px);
+}
+
 .green {
   position: absolute;
   width: 200px;
   height: 200px;
-  border-radius: 0 0 100% 0;
+  border-radius: 5% 5% 100% 5%;
   margin: 270px 0px 0px 270px;
   box-shadow: 0 9px #525252;
   background: rgba(48, 128, 20, 1);
@@ -104,11 +109,17 @@ body {
   transform: translateY(7px);
 }
 
+.greenclick {
+  background: #00FF00;
+  box-shadow: 0 2px #525252;
+  transform: translateY(7px);
+}
+
 .yellow {
   position: absolute;
   width: 200px;
   height: 200px;
-  border-radius: 0 0 0 100%;
+  border-radius: 5% 5% 5% 100%;
   margin: 270px 0px 0px 30px ;
   background: rgba(255, 255, 255, 1);
   background: -moz-linear-gradient(45deg, rgba(255, 255, 255, 1) 0%, rgba(254, 182, 69, 1) 100%);
@@ -126,6 +137,12 @@ body {
   transform: translateY(7px);
 }
 
+.yellowclick {
+  background: yellow;
+  box-shadow: 0 2px #525252;
+  transform: translateY(7px);
+}
+
 .panel {
   position:absolute;
   height: 250px;
@@ -136,14 +153,6 @@ body {
   padding-top: 40px;
   color: grey;
   background: #161616;
-/*
-  background: #000000;
-  box-shadow: 0 5px #525252;
-  background: -moz-radial-gradient(center, ellipse cover, #000000 0%, #525252 50%, #525252 51%, #000000 100%);
-  background: -webkit-radial-gradient(center, ellipse cover, #000000 0%, #525252 50%, #525252 51%, #000000 100%);
-  background: radial-gradient(ellipse at center, #000000 0%, #525252 50%, #525252 51%, #000000 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#000000', GradientType=1);
-*/
 }
 
 .counter {
@@ -156,13 +165,13 @@ body {
   font-size:30px;
 }
 
-.button {
+.mode {
   font-size: 20px;
   width: 200px;
   background: grey;
 }
 
-.buttonmode {
+.selected {
   background: darkred;
 }
 
