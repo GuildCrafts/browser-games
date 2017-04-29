@@ -144,7 +144,7 @@ Other resources: https://github.com/jhlywa/chess.js and http://chessboardjs.com/
 
 ### Tetris
 
-Create a web version of the game [Tetris](https://en.wikipedia.org/wiki/Tetris).  It is recommended that you use [jQuery][jquery].
+Create a web version of the game [Tetris](https://en.wikipedia.org/wiki/Tetris). It is recommended that you use [jQuery][jquery].
 
 For guidance, consider using this tutorial: https://github.com/jonhoo/tetris-tutorial/ and/or this video series: [part 1](https://www.youtube.com/watch?v=Z3wvP27eW98), [part 2](https://www.youtube.com/watch?v=JRcjqwktccc), [part 3](https://www.youtube.com/watch?v=pSPx2JXSRfM), and [part 4](https://www.youtube.com/watch?v=TZrRS14G8Ns).
 
