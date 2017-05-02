@@ -1,0 +1,22 @@
+.nav{
+  position:relative;
+  /*z-index:5;*/
+}
+.nav_container{
+  background-color:#ddd;
+  margin-top:-16px;
+  padding-top:6%;
+}
+
+#top_section:after {
+    content:'';
+    border-top: solid 51px #ddd;
+    border-right: solid 100vw transparent;
+    position:absolute;
+    margin-top:-30px;
+}
+
+.nav_title{
+  font-size:30px;
+  padding-left:15%
+}
