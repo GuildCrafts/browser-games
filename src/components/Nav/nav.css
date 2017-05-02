@@ -1,22 +1,49 @@
 .nav{
   position:relative;
   /*z-index:5;*/
+  /*margin-bottom:-30px;*/
 }
 .nav_container{
-  background-color:#ddd;
+  background-color:rgb(240,240,240);
   margin-top:-16px;
   padding-top:6%;
 }
 
 #top_section:after {
     content:'';
-    border-top: solid 51px #ddd;
+    border-top: solid 51px rgb(240,240,240);
     border-right: solid 100vw transparent;
     position:absolute;
-    margin-top:-30px;
+    margin-top:-36px;
+    /*margin-top:-45px;*/
+    /*margin-top:-64px;*/
 }
 
 .nav_title{
-  font-size:30px;
-  padding-left:15%
+  font-size:35px;
+  /*font-size:4em;*/
+  padding-left:6%;
+  font-family: 'Wendy One', sans-serif;
 }
+
+@media (min-width: 490px){
+  .nav{
+    margin-bottom:-30px;
+  }
+
+  .nav_title{
+    font-size:4em;
+  }
+
+  .nav_container{
+    margin-top:-64px;
+  }
+
+  #top_section:after {
+    margin-top:-64px;
+  }
+
+}
+/*.home_tictactoe_link{
+  background-color:red;
+}*/
