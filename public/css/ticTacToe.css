@@ -3,7 +3,11 @@
   margin: 0px;
 }
 
-
+h1 {
+  color: white;
+  margin: 20px;
+  font-size: 50px;
+}
 body {
   background: #AA3939;
   text-align: center;
