@@ -3,10 +3,6 @@
   margin: 0px;
 }
 
-h1 {
-  color: white;
-  margin: 20px;
-}
 
 body {
   background: #AA3939;
@@ -15,14 +11,17 @@ body {
 
 canvas {
   background: #FFAAAA;
-  width: 100px;
-  height: 100px;
-  -webkit-transkition: -webkit-transfrom 2s;
+  transition: transform 1s;
+  -webkit-transition: -webkit-transform 1s;
+  -moz-transition: -moz-transform 1s;
+  -ms-transition: -ms-transform 1s;
+  -o-transition: -o-transform 1s;
+
 }
 
 canvas:hover {
-  width: 102px;
-  height: 98px;
+  width: 101px;
+  height: 99px;
 }
 
 #canvasDiv {
