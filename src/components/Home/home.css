@@ -1,0 +1,70 @@
+.home_container{
+  /*margin-left:25%*/
+  height:420px;
+}
+
+.home_bowser_hero{
+  margin-top: -55px;
+  position: absolute;
+  width: 134%;
+  height: 190%;
+  max-width: 500px;
+  max-height: 500px;
+  padding-left:30%;
+  z-index:2;
+}
+
+.home_princess_castle{
+  position:absolute;
+  margin-left:10px;
+  margin-bottom:5px;
+  border-radius:5px;
+  z-index: -10;
+  margin-top:-30px;
+}
+
+.home_link_container{
+  margin-left:5%;
+  margin-top:7%;
+  position:absolute;
+  z-index:2;
+}
+
+.home_links{
+  padding:10px;
+  border:4px solid black;
+  border-radius:5px;
+  margin-bottom:10px;
+  cursor:pointer;
+  background-color:white;
+  min-width:90px;
+  width:35vw;
+  font-size:20px;
+}
+
+.home_tictactoe_link{
+  margin-top:8%;
+}
+
+.home_tictactoe_link:hover{
+  border:4px solid skyblue;
+}
+
+.home_simon_link:hover{
+  border:4px solid limegreen;
+}
+
+.home_empty_link:hover{
+  border:4px solid red;
+}
+
+@media (min-width: 600px) and (max-width:1000px){
+  .home_empty_link{
+    background-color:gainsboro;
+  }
+  .home_bowser_hero{
+    padding-left:43%;
+    width: 570px;
+    height: 545%;
+  }
+}

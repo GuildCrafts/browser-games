@@ -17,8 +17,8 @@ $ npm start
 ...
 Starting up http-server, serving ./public
 Available on:
-  http://127.0.0.1:4321
-  http://10.0.1.11:4321
+  http://127.0.0.1:8080
+  http://10.0.1.11:8080
 ```
 
-Then open `http://localhost:4321/` in your browser of choice and play away!
+Then open `http://localhost:8080/` in your browser of choice and play away!
