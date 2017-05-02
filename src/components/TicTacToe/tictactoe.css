@@ -23,7 +23,7 @@
 
 .ttt_Square:hover{
   cursor:pointer;
-  background-color:lightcyan;
+  background-color:papayawhip;
 }
 
 .ttt_parent_column_container{
@@ -72,6 +72,56 @@
   margin:auto;
 }
 
+.ttt_landing_title_text{
+  margin-top:-20px;
+}
+
+.ttt_green_koopa{
+  /*position:absolute;
+  margin-top:-66px;
+  margin-left:-26%;*/
+}
+
+.ttt_red_koopa{
+  /*position:absolute;
+  margin-top:-74px;
+  margin-left:14%;*/
+}
+
+.ttt_koopaBoard{
+  width:300px;
+  text-align:center;
+  border:2px solid rgb(120,69,19);
+  background-image: linear-gradient(rgb(160,82,45) 50%, rgb(170,82,45) 50%);
+  background-size: 50px 50px;
+  padding:20%;
+  margin: 120px 0 0 -86px;
+}
+
 .ttt_player1_title, .ttt_player2_title{
   padding-bottom:10px;
+}
+
+.ttt_player1_query, .ttt_player2_query{
+  width:235px;
+  margin:auto;
+}
+.ttt_name1_input, .ttt_name2_input{
+  display:inline-block;
+  width:70%;
+  margin-right:3px;
+}
+
+.ttt_player1_name_btn, .ttt_player2_name_btn{
+  display:inline-block;
+  border:2px solid black;
+  border-radius:5px;
+  color:black;
+  width:25%;
+  background-color:white;
+}
+
+.ttt_player1_name_btn:hover, .ttt_player2_name_btn:hover {
+  background-color:papayawhip;
+  cursor:pointer;
 }
