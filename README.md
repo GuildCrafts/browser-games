@@ -1,3 +1,7 @@
+#diminutive-rat
+Somaya Bounouar
+http://jsdev.learnersguild.org/goals/83-Browser_Games-Basic.html
+
 # Browser Games
 
 A collection of games to play in a web browser. See the full list of games in the [games.md](games.md) file.
