@@ -11,7 +11,7 @@ export default class Index extends React.Component{
           <div className="home_select_game_text">Play</div>
           <div className="home_links home_tictactoe_link">Tic Tac Toe</div>
           <div className="home_links home_simon_link">Simon</div>
-          <div className="home_links home_empty_link">Empty</div>
+        <div className="home_links home_empty_link">Connect Four</div>
         </div>
       </div>
     )
