@@ -1,5 +1,6 @@
 .home_container{
   /*margin-left:25%*/
+  height:420px;
 }
 
 .home_bowser_hero{
@@ -14,7 +15,7 @@
 }
 
 .home_princess_castle{
-  position:absolute; 
+  position:absolute;
   margin-left:10px;
   margin-bottom:5px;
   border-radius:5px;
