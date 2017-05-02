@@ -1,0 +1,41 @@
+* {
+  padding: 0px;
+  margin: 0px;
+}
+
+h1 {
+  color: white;
+  margin: 20px;
+}
+
+body {
+  background: #AA3939;
+  text-align: center;
+}
+
+canvas {
+  background: #FFAAAA;
+  width: 100px;
+  height: 100px;
+  -webkit-transkition: -webkit-transfrom 2s;
+}
+
+canvas:hover {
+  width: 102px;
+  height: 98px;
+}
+
+#canvasDiv {
+  margin: 150px auto 40px;
+  padding: 0px;
+}
+
+#reloadButton {
+  text-decoration: none;
+  color: white;
+  font-size: 20px;
+}
+
+#reloadButton:hover {
+  font-size: 22px;
+}

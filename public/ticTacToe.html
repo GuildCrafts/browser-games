@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Tic Tac Toe</title>
+    <link rel="stylesheet" type="text/css" href="css/ticTacToe.css">
+  </head>
+  <body>
+    <h1>Tic Tac Toe</h1>
+
+    <div id="canvasDiv">
+      <canvas id="canvas1" onclick="loop(1)"></canvas>
+      <canvas id="canvas2" onclick="loop(2)"></canvas>
+      <canvas id="canvas3" onclick="loop(3)"></canvas><br/>
+      <canvas id="canvas4" onclick="loop(4)"></canvas>
+      <canvas id="canvas5" onclick="loop(5)"></canvas>
+      <canvas id="canvas6" onclick="loop(6)"></canvas><br/>
+      <canvas id="canvas7" onclick="loop(7)"></canvas>
+      <canvas id="canvas8" onclick="loop(8)"></canvas>
+      <canvas id="canvas9" onclick="loop(9)"></canvas>
+    </div>
+
+    <a href="ticTacToe.html" id="reloadButton">Play Again!</a>
+
+    <script src="ticTacToe.js"></script>
+  </body>
+</html>
+
+
+<!-- Refactoring:
+  change html onclick to js eventlistener click -->
