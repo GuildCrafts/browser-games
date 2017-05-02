@@ -12,18 +12,3 @@ export default class Nav extends React.Component{
     )
   }
 }
-
-
-{/* <h1>Browser Games!</h1>
-
-<p>A collection of games to play in a web browser.</p>
-
-<hr>
-
-<nav>
-  <ul>
-    <li><a>LINK TO FIRST GAME</a></li>
-    <li><a>LINK TO SECOND GAME</a></li>
-    <li>...</li>
-  </ul>
-</nav> */}
