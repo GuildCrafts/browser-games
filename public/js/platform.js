@@ -195,7 +195,149 @@ Level.prototype.actorAt = function(actor) {
   }
 }
 
+let maxStep = 0.05
 
+Level.prototype.animate = function(step, keys) {
+  if (this.status != null) {
+    this.finishDelay -= step
+  }
+
+  while (step > 0) {
+    let thisStep = Math.min(step, maxStep)
+    this.actors.forEach(function(actor) {
+      actor.act(thisStep, this, keys)
+    }, this)
+    step -= thisStep
+  }
+}
+
+Lava.prototype.act = function(step, level) {
+  let newPos = this.pos.plus(this.speed.times(step))
+  if (!level.obstableAt(newPos, this.size)) {
+    this.pos = newPos
+  } else if (this.repeatPos) {
+    this.pos = this.repeatPos
+  } else {
+    this.speed = this.speed.times(-1)
+  }
+}
+
+//
+let wobbleSpeed = 8,
+    wobbleDist = 0.07
+
+Coin.prototype.act = function(step) {
+  this.wobble += step * wobbleSpeed
+
+  let wobblePos = Math.sin(this.wobble) * wobbleDist
+  this.pos = this.basePos.plus(new Vector(0, wobblePos))
+}
+
+// horizontal motion
+
+let playerXSpeed = 7
+
+Player.prototype.moveX = function(step, level, keys) {
+  this.speed.x = 0
+  if (keys.left) {
+    this.speed.x -= playerXSpeed
+  }
+  if (keys.right) {
+    this.speed.x += playerXSpeed
+  }
+  let motion = new Vector(this.speed.x * step, 0),
+      newPos = this.pos.plus(motion),
+      obstacle = level.obstableAt(newPos, this.size)
+  if (obstacle) {
+    level.playerTouched(obstacle)
+  } else {
+    this.pos = newPos
+  }
+}
+
+// vertical motion - jumping
+
+let gravity = 30,
+    jumpSpeed = 17
+
+Player.prototype.moveY = function(step, level, keys) {
+  this.speed.y += step * gravity
+
+  let motion = new Vector(0, this.speed.y * step),
+      newPos = this.pos.plus(motion),
+      obstacle = level.obstableAt(newPos, this.size)
+
+  if (obstacle) {
+    level.playerTouched(obstacle)
+    if (keys.up && this.speed.y > 0) {
+      this.speed.y = -jumpSpeed
+    } else {
+      this.speed.y = 0
+    }
+  } else {
+    this.pos = newPos
+  }
+}
+
+Player.prototype.act = function(step, level, keys) {
+  this.moveX(step, level, keys)
+  this.moveY(step, level, keys)
+
+  let otherActor = level.actorAt(this)
+
+  if (otherActor) {
+    level.playerTouched(otherActor.type, otherActor)
+  }
+
+  // Losing animation
+  if (level.status == 'lost') {
+    this.pos.y += step
+    this.pos.x -= step
+  }
+}
+
+//
+
+Level.prototype.playerTouched = function(type, actor) {
+  if (type == 'lava' && this.status == null) {
+    this.status = 'lost'
+    this.finishDelay = 1
+  } else if (type == 'coin') {
+      this.actors = this.actors.filter(function(other) {
+        return other != actor
+    })
+  }
+
+  if (!this.actors.some(function(actor) { // Need some clarity on this syntax
+        return actor.type == "coin";
+      })) {
+        this.status = "won";
+        this.finishDelay = 1;
+      }
+    }
+//
+
+// Tracking keys
+
+let arrowCodes = {
+  37: 'left',
+  38: 'up',
+  39: 'right'
+}
+
+function trackKeys(codes) {
+  let pressed = Object.create(null)
+  function handler(event) {
+    if (codes.hasOwnProperty(event.keyCode)) {
+      let down = event.type == 'keydown'
+      pressed[codes[event.keyCode]] = down
+      event.preventDefault()
+    }
+  }
+  addEventListener('keydown', handler)
+  addEventListener('keyup', handler)
+  return pressed
+}
 
 
 
