@@ -32,7 +32,7 @@ var mainState = {
     })
     //move anchor left and downward
     this.bird.anchor.setTo(-0.2, 0.5)
-    this.jumpSound =  flappy.add.audio('jump')
+    this.jumpSound = flappy.add.audio('jump')
   },
   addOnePipe: function(x,y) {
     //create pipe
@@ -45,7 +45,7 @@ var mainState = {
     pipe.outOfBoundsKill = true
   },
   addRowOfPipes: function() {
-    var hole = Math.floor(Math.random() * 5) + 1
+    var hole = Math.floor(Math.random() * 6) + 1
     for (var i = 0; i < 8; i++)
       if(i != hole && i != hole + 1)
         this.addOnePipe(400, i * 60 + 1)
@@ -87,7 +87,6 @@ var mainState = {
     flappy.state.start('main')
   }
 }
-
 //add the mainState and call it
 flappy.state.add('main', mainState)
 //makes mainState start the game
