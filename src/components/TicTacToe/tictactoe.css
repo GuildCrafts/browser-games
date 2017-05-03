@@ -3,6 +3,7 @@
   padding:0 6% 6% 6%;
   width:160px;
   margin:auto;
+  margin-top:-42px;
 }
 
 .ttt_title{
@@ -57,11 +58,12 @@
 
 .ttt_player_container{
   padding-top:5px;
-  padding-bottom:10px;
+  padding-bottom:5px;
 }
 
 .ttt_player1_scores, .ttt_player2_scores{
-  width:30%;
+  /*width:30%;*/
+  padding: 0 7px 0 7px;
   display:inline-block;
 }
 
@@ -107,21 +109,38 @@
   margin:auto;
 }
 .ttt_name1_input, .ttt_name2_input{
-  display:inline-block;
-  width:70%;
+  /*display:inline-block;*/
+  width:100%;
   margin-right:3px;
+  padding:4px;
+  margin-top:10px;
+  text-align:center;
+  font-size:20px;
+}
+
+.ttt_name1_input:focus, .ttt_name2_input:focus{
+  outline:none;
 }
 
 .ttt_player1_name_btn, .ttt_player2_name_btn{
-  display:inline-block;
+  /*display:inline-block;*/
   border:2px solid black;
   border-radius:5px;
-  color:black;
-  width:25%;
+  margin-top:10px;
+  width:50%;
   background-color:white;
 }
 
 .ttt_player1_name_btn:hover, .ttt_player2_name_btn:hover {
   background-color:papayawhip;
   cursor:pointer;
+}
+
+@media (max-width: 490px){
+
+  .ttt_koopaBoard{
+    padding:0 0 20px 0;
+    margin: 120px 0 0 -71px;
+  }
+
 }
