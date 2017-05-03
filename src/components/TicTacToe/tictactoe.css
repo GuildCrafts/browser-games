@@ -6,6 +6,10 @@
   margin-top:-42px;
 }
 
+.tictactoe_board_container{
+  margin-top:70px;
+}
+
 .ttt_title{
   margin:auto;
   text-align:center;
@@ -20,6 +24,8 @@
   width:24px;
   font-size:2em;
   margin-right:2px;
+  min-height:37px;
+  min-width:28px;
 }
 
 .ttt_Square:hover{
@@ -44,16 +50,18 @@
   border:2px solid grey;
   text-align:center;
   padding:5px;
+  width:163px;
 }
 
-.ttt_reset{
+.ttt_reset, .ttt_quit{
   border:none;
   border-radius:5px;
-  cursor:pointer;
+  margin:2px;
 }
 
-.ttt_reset:hover{
+.ttt_reset:hover, .ttt_quit:hover, .ttt_gameover_reset:hover, .ttt_gameover_quit:hover{
   color:white;
+  cursor:pointer;
 }
 
 .ttt_player_container{
@@ -69,25 +77,21 @@
 
 .ttt_player1_score, .ttt_player2_score{
   border:1px solid black;
-  height:30px;
+  height:20px;
   width:56%;
   margin:auto;
 }
 
+.ttt_player1_score{
+  color:green;
+}
+
+.ttt_player2_score{
+  color:red;
+}
+
 .ttt_landing_title_text{
   margin-top:-20px;
-}
-
-.ttt_green_koopa{
-  /*position:absolute;
-  margin-top:-66px;
-  margin-left:-26%;*/
-}
-
-.ttt_red_koopa{
-  /*position:absolute;
-  margin-top:-74px;
-  margin-left:14%;*/
 }
 
 .ttt_koopaBoard{
@@ -108,8 +112,8 @@
   width:235px;
   margin:auto;
 }
+
 .ttt_name1_input, .ttt_name2_input{
-  /*display:inline-block;*/
   width:100%;
   margin-right:3px;
   padding:4px;
@@ -123,7 +127,6 @@
 }
 
 .ttt_player1_name_btn, .ttt_player2_name_btn{
-  /*display:inline-block;*/
   border:2px solid black;
   border-radius:5px;
   margin-top:10px;
@@ -134,6 +137,44 @@
 .ttt_player1_name_btn:hover, .ttt_player2_name_btn:hover {
   background-color:papayawhip;
   cursor:pointer;
+}
+
+.ttt_ingame_message{
+  color:orange;
+}
+
+.ttt_winning_colors{
+  background-color: orange;
+  padding: 31%;
+  border-radius: 50%;
+  margin-bottom: -13px;
+  margin-left: -9px;
+}
+
+.ttt_gameover_reset, .ttt_gameover_quit{
+  border:none;
+  border-radius:5px;
+  margin:2px;
+}
+
+.ttt_gameover_container{
+  margin-top: 120px;
+  margin-left: -42%;
+  background-color: oldlace;
+  border: 2px solid black;
+  padding: 30px;
+  width: 233px;
+  text-align: center;
+}
+
+.ttt_gameover_winner{
+  color:indianred;
+  font-size:3em;
+  padding:5px;
+}
+
+.ttt_gameover_title{
+  margin-bottom: -10px;
 }
 
 @media (max-width: 490px){
