@@ -1,8 +1,25 @@
-.nav{
-  position:relative;
-  /*z-index:5;*/
-  /*margin-bottom:-30px;*/
+.nav_title{
+  font-size:35px;
+  padding-left:6%;
+  font-family: 'Wendy One', sans-serif;
 }
+
+.nav_title{
+  font-size:30px;
+}
+
+.nav_title_logo{
+  display:inline-block;
+  margin-right:10px;
+  width:13%;
+  max-width:50px;
+}
+
+.nav_title_text{
+  display:inline-block;
+  margin-bottom:5px;
+}
+
 .nav_container{
   background-color:rgb(240,240,240);
   margin-top:-16px;
@@ -14,16 +31,14 @@
     border-top: solid 51px rgb(240,240,240);
     border-right: solid 100vw transparent;
     position:absolute;
-    margin-top:-36px;
-    /*margin-top:-45px;*/
-    /*margin-top:-64px;*/
 }
 
-.nav_title{
-  font-size:35px;
-  /*font-size:4em;*/
-  padding-left:6%;
-  font-family: 'Wendy One', sans-serif;
+@media (max-width: 490px){
+
+  .nav_title{
+    font-size:30px;
+  }
+
 }
 
 @media (min-width: 490px){
@@ -32,18 +47,12 @@
   }
 
   .nav_title{
-    font-size:4em;
+    font-size:3em;
+    background-color:rgb(240,240,240);
   }
 
   .nav_container{
     margin-top:-64px;
   }
 
-  #top_section:after {
-    margin-top:-64px;
-  }
-
 }
-/*.home_tictactoe_link{
-  background-color:red;
-}*/
