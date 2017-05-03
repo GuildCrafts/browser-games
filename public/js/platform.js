@@ -160,8 +160,40 @@ DOMDisplay.prototype.clear = function() {
   this.wrap.parentNode.removeChild(this.wrap);
 };
 
+Level.prototype.obstableAt = function(pos, size) {
+  let xStart = Math.floor(pos.x),
+      xEnd = Math.ceil(pos.x + size.x),
+      yStart = Math.floor(pos.y),
+      yEnd = Math.ceil(pos.y + size.y)
 
+  if (xStart < 0 || xEnd > this.width || yStart < 0) {
+    return 'wall'
+  }
+  if (yEnd > this.height) {
+    return 'lava'
+  }
+  for (let y = yStart; y < yEnd; y++) {
+    for (let x = xStart; x < xEnd; x++) {
+      let fieldType = this.grid[y][x]
+      if (fieldType) {
+        return fieldType
+      }
+    }
+  }
+}
 
+Level.prototype.actorAt = function(actor) {
+  for (let i = 0; i < this.actors.length; i++) {
+    let other = this.actors[i]
+    if (other != actor &&
+        actor.pos.x + actor.size.x > other.pos.x &&
+        actor.pos.x < other.pos.x + other.size.x &&
+        actor.pos.y + actor.size.y > other.pos.y &&
+        actor.pos.y < other.pos.y + other.size.y) {
+          return other
+    }
+  }
+}
 
 
 
