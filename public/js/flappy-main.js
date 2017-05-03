@@ -8,6 +8,7 @@ var mainState = {
     flappy.load.audio('jump', 'sounds/jump.wav')
   },
   create: function() {
+    var spaceBar = flappy.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR)
     flappy.stage.backgroundColor = '#B22222'
     //start arcade physics
     flappy.physics.startSystem(Phaser.Physics.Arcade)
@@ -23,7 +24,6 @@ var mainState = {
     this.pipes = flappy.add.group()
     this.bird.body.gravity.y = 1000
     //makes bird able to fall
-    var spaceBar = flappy.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR)
     spaceBar.onDown.add(this.jump, this)
     this.timer = flappy.time.events.loop(1500, this.addRowOfPipes, this)
     this.score = 0
@@ -47,7 +47,7 @@ var mainState = {
   addRowOfPipes: function() {
     var hole = Math.floor(Math.random() * 6) + 1
     for (var i = 0; i < 8; i++)
-      if(i != hole && i != hole + 1)
+      if(i != hole && i != hole + 1) 
         this.addOnePipe(400, i * 60 + 1)
     //increase score when pass pipes
     this.score += 1
