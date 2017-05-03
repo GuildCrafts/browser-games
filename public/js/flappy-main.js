@@ -1,10 +1,11 @@
 //initialize phaser framework and create board
-const flappy = new Phaser.Game(400, 499)
+var flappy = new Phaser.Game(400, 499)
 //creates the main state for the game
-const mainState = {
+var mainState = {
   preload: function() {
     flappy.load.image('bird', 'img/bird.png')
     flappy.load.image('pipe', 'img/pipe.png')
+    flappy.load.audio('jump', 'sounds/jump.wav')
   },
   create: function() {
     flappy.stage.backgroundColor = '#B22222'
@@ -22,14 +23,16 @@ const mainState = {
     this.pipes = flappy.add.group()
     this.bird.body.gravity.y = 1000
     //makes bird able to fall
-    const spaceBar = flappy.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR)
+    var spaceBar = flappy.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR)
     spaceBar.onDown.add(this.jump, this)
-    // this.pipes = flappy.add.group()
     this.timer = flappy.time.events.loop(1500, this.addRowOfPipes, this)
     this.score = 0
     this.labelScore = flappy.add.text(20, 20, '0', {
       font: '30px Arial', fill: '#FFD700'
     })
+    //move anchor left and downward
+    this.bird.anchor.setTo(-0.2, 0.5)
+    this.jumpSound =  flappy.add.audio('jump')
   },
   addOnePipe: function(x,y) {
     //create pipe
@@ -42,7 +45,7 @@ const mainState = {
     pipe.outOfBoundsKill = true
   },
   addRowOfPipes: function() {
-    const hole = Math.floor(Math.random() * 5) + 1
+    var hole = Math.floor(Math.random() * 5) + 1
     for (var i = 0; i < 8; i++)
       if(i != hole && i != hole + 1)
         this.addOnePipe(400, i * 60 + 1)
@@ -50,21 +53,34 @@ const mainState = {
     this.score += 1
     this.labelScore.text = this.score
   },
+  hitPipe: function() {
+    //bird hit pipe do nithing
+    if (this.bird.alive == false)
+      return;
+    this.bird.alive = false
+    flappy.time.events.remove(this.timer)
+    this.pipes.forEach(function(p){
+      p.body.velocity.x = 0
+    }, this)
+  },
   update: function() {
     //when the bird goes off the screen the game will reset
     if(this.bird.y < 0 || this.bird.y > 490)
       this.restartGame()
     //restart game on collision
-    flappy.physics.arcade.overlap(this.bird, this.pipe, this.restartGame, null, this)
+    flappy.physics.arcade.overlap(this.bird, this.pipes, this.hitPipe, null, this)
     //rotates bird
     if (this.bird.angle < 20)
       this.bird.angle += 1
   },
   jump: function() {
-    const animation = flappy.add.tween(this.bird)
+    var animation = flappy.add.tween(this.bird).to({angle: -20}, 100).start
+    //stops dead bird from jumping
+    if (this.bird.alive === false)
+      return;
     //adds vertical velocity to bird
     this.bird.body.velocity.y = -350
-
+    this.jumpSound.play()
   },
   restartGame: function() {
     //start game over
