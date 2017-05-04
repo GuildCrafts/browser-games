@@ -1,0 +1,116 @@
+.simon{
+  height:100vh;
+  min-height:485px;
+  padding:0 6% 6% 6%;
+  width:160px;
+  margin:auto;
+  margin-top:-42px;
+}
+
+.simon_container{
+  background-color: transparent;
+  margin-top: 100px;
+  width: 300px;
+  margin-left: -23%;
+  text-align: center;
+  position: absolute;
+  z-index:3;
+}
+
+.simon_interface{
+  border: 20px solid black;
+  border-radius: 50%;
+  height: 264px;
+  width: 266px;
+  position: relative;
+}
+
+.simon_horizontal_line{
+  border-top: 20px solid black;
+  margin-top:45%;
+  width: 245px;
+  margin-left: 10px;
+}
+
+.simon_vertical_line{
+  width: 23px;
+  height: 270px;
+  background-color: black;
+  margin-left: 46%;
+  margin-top: -54%;
+}
+
+.simon_controls_circle{
+  content: ' ';
+  border: 7px solid black;
+  border-radius: 50%;
+  height: 100px;
+  width: 100px;
+  top: 94px;
+  left: 100px;
+  position: absolute;
+  background-color: white;
+  text-align: center;
+  z-index:3;
+}
+
+.simon_title{
+  margin-top:5px;
+}
+
+.redBox{
+  background-color: rgb(178,34,34);
+  opacity:2;
+  position: absolute;
+  height: 130px;
+  width: 130px;
+  top: 5%;
+  left: 55%;
+  z-index: 1;
+  border-radius: 0 100% 0 0;
+}
+
+.redBox:hover, .blueBox:hover, .yellowBox:hover, .greenBox:hover{
+  cursor:pointer;
+}
+
+.redBox:hover{}
+
+.blueBox:hover{}
+
+.yellowBox:hover{}
+
+.greenBox:hover{}
+
+.blueBox{
+  background-color: rgb(30,144,255);
+  position: absolute;
+  height: 130px;
+  width: 130px;
+  top: 52%;
+  left: 55%;
+  z-index: 1;
+  border-radius: 0 0 100% 0;
+}
+
+.yellowBox{
+  background-color: rgb(255,255,0);
+  position: absolute;
+  height: 130px;
+  width: 130px;
+  top: 5%;
+  right: 52%;
+  z-index: 1;
+  border-radius: 100% 0 0 0;
+}
+
+.greenBox{
+  background-color: rgb(50,205,50);
+  position: absolute;
+  height: 130px;
+  width: 130px;
+  top: 52%;
+  left: 5%;
+  z-index: 1;
+  border-radius: 0 0 0 100%;
+}
