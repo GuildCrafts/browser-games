@@ -1,0 +1,58 @@
+.nav_title{
+  font-size:35px;
+  padding-left:6%;
+  font-family: 'Wendy One', sans-serif;
+}
+
+.nav_title{
+  font-size:30px;
+}
+
+.nav_title_logo{
+  display:inline-block;
+  margin-right:10px;
+  width:13%;
+  max-width:50px;
+}
+
+.nav_title_text{
+  display:inline-block;
+  margin-bottom:5px;
+}
+
+.nav_container{
+  background-color:rgb(240,240,240);
+  margin-top:-16px;
+  padding-top:6%;
+}
+
+#top_section:after {
+    content:'';
+    border-top: solid 51px rgb(240,240,240);
+    border-right: solid 100vw transparent;
+    position:absolute;
+}
+
+@media (max-width: 490px){
+
+  .nav_title{
+    font-size:30px;
+  }
+
+}
+
+@media (min-width: 490px){
+  .nav{
+    margin-bottom:-30px;
+  }
+
+  .nav_title{
+    font-size:3em;
+    background-color:rgb(240,240,240);
+  }
+
+  .nav_container{
+    margin-top:-64px;
+  }
+
+}
