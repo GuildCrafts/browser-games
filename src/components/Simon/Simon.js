@@ -15,7 +15,14 @@ export default class Simon extends React.Component{
           <div className="greenBox"></div>
           <div className="yellowBox"></div>
           <div className="simon_controls_circle">
-            <div className="simon_title">Simon</div>
+            <div className="simon_title">
+              <div className="simon_completion">15</div>
+              <div className="simon_buttons_container">
+                <div className="simon_control_btns simon_last_btn"><p>reset</p></div>
+              <div className="simon_control_btns simon_start_btn"><p>quit</p></div>
+              </div>
+              <div className="simon_strict_mode"><p>s</p></div>
+            </div>
           </div>
         </div>
       </div>
