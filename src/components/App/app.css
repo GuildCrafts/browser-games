@@ -4,3 +4,7 @@
 .app_WendyOne_font{
   font-family: 'Wendy One', sans-serif;
 }
+
+button:focus {
+  outline:0;
+}

@@ -13,7 +13,7 @@ export default class App extends React.Component{
     return(
       <div className="app_container">
         <Nav />
-        <TicTacToe />
+        <Simon />
         <Footer />
       </div>
     )
