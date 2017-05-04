@@ -535,6 +535,6 @@ var Phaser = Phaser || {    // jshint ignore:line
         NEAREST:1
     },
 
-    PIXI: PIXI || {}
+//    PIXI: PIXI || {}
 
 };
