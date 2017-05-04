@@ -29,8 +29,8 @@ canvas:hover {
 }
 
 #canvasDiv {
-  margin: 150px auto 40px;
-  padding: 0px;
+  margin: 80px auto 40px;
+  padding-top: -50px;
 }
 
 #reloadButton {
