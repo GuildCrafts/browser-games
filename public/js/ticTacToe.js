@@ -1,11 +1,10 @@
 var button = []
 for(var i = 1; i < 10; i++) {
-  button[i] = document.getElementById('canvas'+i)
-
+  button[i] = document.getElementById('canvas'+ i)
 }
 
 var canvasContext = []
-for(var i = 1; i < 10; i++){
+for(var i = 1; i < 10; i++) {
   canvasContext[i] = button[i].getContext('2d')
 }
 
@@ -15,35 +14,35 @@ for(var i = 1; i < 10; i++) {
 }
 
 var isGameOver = false
-var content = []
+var btnContent = []
 var isComputerTurn = false
 
 
-function loop(x) {
+function loop(currentButton) { //Need help giving this function a better name
   if (isGameOver || isComputerTurn) return
-  if(!buttonDisabled[x]) {
-    buttonDisabled[x] = true
-    button[x].style.opacity = 0.7
-    content[x] = 'x'
+  if(!buttonDisabled[currentButton]) {
+    buttonDisabled[currentButton] = true
+    button[currentButton].style.opacity = 0.7
+    btnContent[currentButton] = 'x'
 
-    button[x].style.Transform = 'rotateY(180deg)'
-    button[x].style.webkitTransform = 'rotateY(180deg)'
-    button[x].style.mozTransform = 'rotateY(180deg)'
-    button[x].style.msTransform = 'rotateY(180deg)'
-    button[x].style.oTransform = 'rotateY(180deg)'
+    button[currentButton].style.Transform = 'rotateY(180deg)'
+    button[currentButton].style.webkitTransform = 'rotateY(180deg)'
+    button[currentButton].style.mozTransform = 'rotateY(180deg)'
+    button[currentButton].style.msTransform = 'rotateY(180deg)'
+    button[currentButton].style.oTransform = 'rotateY(180deg)'
 
     isComputerTurn = true
     checkWinner()
 
     setTimeout(function(){
-      canvasContext[x].lineWidth = 3
-      canvasContext[x].beginPath()
-      canvasContext[x].moveTo(10,10)
-      canvasContext[x].lineTo(90,90)
-      canvasContext[x].moveTo(90,10)
-      canvasContext[x].lineTo(10,90)
-      canvasContext[x].stroke()
-      canvasContext[x].closePath()
+      canvasContext[currentButton].lineWidth = 3
+      canvasContext[currentButton].beginPath()
+      canvasContext[currentButton].moveTo(10,10)
+      canvasContext[currentButton].lineTo(90,90)
+      canvasContext[currentButton].moveTo(90,10)
+      canvasContext[currentButton].lineTo(10,90)
+      canvasContext[currentButton].stroke()
+      canvasContext[currentButton].closePath()
 
       computerTurn()
     }, 300)
@@ -79,7 +78,7 @@ function computerTurn() {
 function draw0(x) {
   buttonDisabled[x] = true
   button[x].style.opacity = 0.7
-  content[x] = '0'
+  btnContent[x] = '0'
   button[x].style.webkitTransform = "rotateX(180deg)"
 
   setTimeout(function(){
@@ -94,36 +93,36 @@ function draw0(x) {
 
 function checkWinner(){
   if(!isGameOver){
-    if(content[1] == 'x' && content[2] == 'x' && content[3] == 'x') showWinner('You won!')
-    else if(content[4] == 'x' && content[5] == 'x' && content[6] == 'x') showWinner('You won!')
-    else if(content[7] == 'x' && content[8] == 'x' && content[9] == 'x') showWinner('You won!')
-    else if(content[1] == 'x' && content[4] == 'x' && content[7] == 'x') showWinner('You won!')
-    else if(content[2] == 'x' && content[5] == 'x' && content[8] == 'x') showWinner('You won!')
-    else if(content[3] == 'x' && content[6] == 'x' && content[9] == 'x') showWinner('You won!')
-    else if(content[1] == 'x' && content[5] == 'x' && content[9] == 'x') showWinner('You won!')
-    else if(content[3] == 'x' && content[5] == 'x' && content[7] == 'x') showWinner('You won!')
+    if(btnContent[1] == 'x' && btnContent[2] == 'x' && btnContent[3] == 'x') showWinner('You won!')
+    else if(btnContent[4] == 'x' && btnContent[5] == 'x' && btnContent[6] == 'x') showWinner('You won!')
+    else if(btnContent[7] == 'x' && btnContent[8] == 'x' && btnContent[9] == 'x') showWinner('You won!')
+    else if(btnContent[1] == 'x' && btnContent[4] == 'x' && btnContent[7] == 'x') showWinner('You won!')
+    else if(btnContent[2] == 'x' && btnContent[5] == 'x' && btnContent[8] == 'x') showWinner('You won!')
+    else if(btnContent[3] == 'x' && btnContent[6] == 'x' && btnContent[9] == 'x') showWinner('You won!')
+    else if(btnContent[1] == 'x' && btnContent[5] == 'x' && btnContent[9] == 'x') showWinner('You won!')
+    else if(btnContent[3] == 'x' && btnContent[5] == 'x' && btnContent[7] == 'x') showWinner('You won!')
 
-    else if(content[1] == '0' && content[2] == '0' && content[3] == '0') showWinner('You lost!')
-    else if(content[4] == '0' && content[5] == '0' && content[6] == '0') showWinner('You lost!')
-    else if(content[7] == '0' && content[8] == '0' && content[9] == '0') showWinner('You lost!')
-    else if(content[1] == '0' && content[4] == '0' && content[7] == '0') showWinner('You lost!')
-    else if(content[2] == '0' && content[5] == '0' && content[8] == '0') showWinner('You lost!')
-    else if(content[3] == '0' && content[6] == '0' && content[9] == '0') showWinner('You lost!')
-    else if(content[1] == '0' && content[5] == '0' && content[9] == '0') showWinner('You lost!')
-    else if(content[3] == '0' && content[5] == '0' && content[7] == '0') showWinner('You lost!')
+    else if(btnContent[1] == '0' && btnContent[2] == '0' && btnContent[3] == '0') showWinner('You lost!')
+    else if(btnContent[4] == '0' && btnContent[5] == '0' && btnContent[6] == '0') showWinner('You lost!')
+    else if(btnContent[7] == '0' && btnContent[8] == '0' && btnContent[9] == '0') showWinner('You lost!')
+    else if(btnContent[1] == '0' && btnContent[4] == '0' && btnContent[7] == '0') showWinner('You lost!')
+    else if(btnContent[2] == '0' && btnContent[5] == '0' && btnContent[8] == '0') showWinner('You lost!')
+    else if(btnContent[3] == '0' && btnContent[6] == '0' && btnContent[9] == '0') showWinner('You lost!')
+    else if(btnContent[1] == '0' && btnContent[5] == '0' && btnContent[9] == '0') showWinner('You lost!')
+    else if(btnContent[3] == '0' && btnContent[5] == '0' && btnContent[7] == '0') showWinner('You lost!')
 
     else if(
-      (content[1] == 'x' || content[1] == '0') &&
-      (content[2] == 'x' || content[2] == '0') &&
-      (content[3] == 'x' || content[3] == '0') &&
-      (content[4] == 'x' || content[4] == '0') &&
-      (content[5] == 'x' || content[5] == '0') &&
-      (content[6] == 'x' || content[6] == '0') &&
-      (content[7] == 'x' || content[7] == '0') &&
-      (content[8] == 'x' || content[8] == '0') &&
-      (content[9] == 'x' || content[9] == '0')
-
-    ) showWinner("It's a draw. Play again!")
+      (btnContent[1] == 'x' || btnContent[1] == '0') &&
+      (btnContent[2] == 'x' || btnContent[2] == '0') &&
+      (btnContent[3] == 'x' || btnContent[3] == '0') &&
+      (btnContent[4] == 'x' || btnContent[4] == '0') &&
+      (btnContent[5] == 'x' || btnContent[5] == '0') &&
+      (btnContent[6] == 'x' || btnContent[6] == '0') &&
+      (btnContent[7] == 'x' || btnContent[7] == '0') &&
+      (btnContent[8] == 'x' || btnContent[8] == '0') &&
+      (btnContent[9] == 'x' || btnContent[9] == '0')
+    )
+      showWinner("It's a draw. Play again!")
   }
 }
 
