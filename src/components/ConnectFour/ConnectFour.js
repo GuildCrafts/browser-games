@@ -1,5 +1,7 @@
 import React from 'react';
-import './connectFour.css'
+import './connectFour.css';
+import Nav from 'components/Nav/Nav';
+import Footer from 'components/Footer/Footer';
 
 export default class ConnectFour extends React.Component{
   constructor(props){
@@ -94,38 +96,38 @@ export default class ConnectFour extends React.Component{
       }
     }
 
-    connectFour_angled_lr_board = [
-      ['','','',''],
-      ['','','','',''],
-      ['','','','','',''],
-      ['','','','','',''],
-      ['','','','',''],
-      ['','','','']
-    ]
-
-    let origStartingPlace = 21;
-
-    for(let i = 0; i < 6; i++){
-      let startingPlace = origStartingPlace
-      for(let x = 0; x < connectFour_angled_lr_board[i].length; x++){
-        connectFour_angled_lr_board[i][x] = startingPlace;
-        startingPlace -= 6;
-      }
-        if(i <= 3){
-          startingPlace = origStartingPlace + 7;
-        } else {
-          startingPlace = origStartingPlace + 1;
-        }
-    }
-
-    connectFour_angled_rl_board = [
-      ['','','',''],
-      ['','','','',''],
-      ['','','','','',''],
-      ['','','','','',''],
-      ['','','','',''],
-      ['','','','']
-    ]
+    // connectFour_angled_lr_board = [
+    //   ['','','',''],
+    //   ['','','','',''],
+    //   ['','','','','',''],
+    //   ['','','','','',''],
+    //   ['','','','',''],
+    //   ['','','','']
+    // ]
+    //
+    // let origStartingPlace = 21;
+    //
+    // for(let i = 0; i < 6; i++){
+    //   let startingPlace = origStartingPlace
+    //   for(let x = 0; x < connectFour_angled_lr_board[i].length; x++){
+    //     connectFour_angled_lr_board[i][x] = startingPlace;
+    //     startingPlace -= 6;
+    //   }
+    //     if(i <= 3){
+    //       startingPlace = origStartingPlace + 7;
+    //     } else {
+    //       startingPlace = origStartingPlace + 1;
+    //     }
+    // }
+    //
+    // connectFour_angled_rl_board = [
+    //   ['','','',''],
+    //   ['','','','',''],
+    //   ['','','','','',''],
+    //   ['','','','','',''],
+    //   ['','','','',''],
+    //   ['','','','']
+    // ]
 
 
     this.setState({
@@ -242,7 +244,7 @@ export default class ConnectFour extends React.Component{
 
 
     // CHECK ANGLED ARRAYS
-    if(connectFour_angled_lr_board[innerPos].indexOf(player) >= 0){}
+    // if(connectFour_angled_lr_board[innerPos].indexOf(player) >= 0){}
 
 
 
@@ -293,11 +295,13 @@ export default class ConnectFour extends React.Component{
 
   render(){
     return(
-      <div className="connectFour">
-        <div className="connectFour_container">
-          <div className="app_LoveYa_font connectFour_title">Connect Four</div>
+      <div>
+        <Nav />
+        <div className="connectFour">
+          <div className="connectFour_container">
+            <div className="app_LoveYa_font connectFour_title">Connect Four</div>
 
-          <div className="connectFour_interface">
+            <div className="connectFour_interface">
               <div className="connectFour_nodes">
                 <div className="connectFour_single_node" onClick={() => this.connectFourAddNewPiece(0,0,0)} >{this.state.connectFour_insert_piece_at_position[0][0]}</div>
                 <div className="connectFour_single_node" onClick={() => this.connectFourAddNewPiece(0,1,1)} >{this.state.connectFour_insert_piece_at_position[0][1]}</div>
@@ -351,41 +355,44 @@ export default class ConnectFour extends React.Component{
                 <div className="connectFour_single_node" onClick={() => this.connectFourAddNewPiece(5,4,39)} >{this.state.connectFour_insert_piece_at_position[5][4]}</div>
                 <div className="connectFour_single_node" onClick={() => this.connectFourAddNewPiece(5,5,40)} >{this.state.connectFour_insert_piece_at_position[5][5]}</div>
                 <div className="connectFour_single_node" onClick={() => this.connectFourAddNewPiece(5,6,41)} >{this.state.connectFour_insert_piece_at_position[5][6]}</div>
+              </div>
             </div>
-          </div>
 
-          <div className="connectFour_scoreboard">
-            <div className="connectFour_player_scores_container">
+            <div className="connectFour_scoreboard">
+              <div className="connectFour_player_scores_container">
 
-              <div className="connectFour_player1_scores">
-                <div className="connectFour_player1_div">
-                  <div className="app_LoveYa_font">Player 1</div>
-                <div className="connectFour_player1_score">{this.state.connectFour_player1_score}</div>
+                <div className="connectFour_player1_scores">
+                  <div className="connectFour_player1_div">
+                    <div className="app_LoveYa_font">Player 1</div>
+                    <div className="connectFour_player1_score">{this.state.connectFour_player1_score}</div>
+                  </div>
                 </div>
+
+                <div className="connectFour_player2_scores">
+                  <div className="connectFour_player2_div">
+                    <div className="app_LoveYa_font">Player 2</div>
+                    <div className="connectFour_player2_score">{this.state.connectFour_player2_score}</div>
+                  </div>
+                </div>
+
               </div>
 
-              <div className="connectFour_player2_scores">
-                <div className="connectFour_player2_div">
-                  <div className="app_LoveYa_font">Player 2</div>
-                <div className="connectFour_player2_score">{this.state.connectFour_player2_score}</div>
-                </div>
+              <div className="connectFour_message">
+                {this.state.connectFour_ingame_msg}
               </div>
 
-            </div>
-
-            <div className="connectFour_message">
-              {this.state.connectFour_ingame_msg}
-            </div>
-
-            <div className="connectFour_controls">
-              <div className="connectFour_buttons_container">
-                <button className="connectFour_controls_btns connectFour_reset_game_btn">reset</button>
-                <button className="connectFour_controls_btns connectFour_quit_game_btn">quit</button>
+              <div className="connectFour_controls">
+                <div className="connectFour_buttons_container">
+                  <button className="connectFour_controls_btns connectFour_reset_game_btn">reset</button>
+                  <button className="connectFour_controls_btns connectFour_quit_game_btn">quit</button>
+                </div>
               </div>
             </div>
           </div>
         </div>
+        <Footer />
       </div>
+
     )
   }
 }

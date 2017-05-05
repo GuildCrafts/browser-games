@@ -1,5 +1,7 @@
 import React from 'react';
 import './simon.css';
+import Nav from 'components/Nav/Nav';
+import Footer from 'components/Footer/Footer';
 
 export default class Simon extends React.Component{
   constructor(props){
@@ -196,27 +198,31 @@ export default class Simon extends React.Component{
     let reset_btn_text = this.state.reset_btn_text;
 
     return(
-      <div className="simon">
-        <div className="simon_container">
-          <div className="simon_interface">
-            <div className="simon_horizontal_line"></div>
-            <div className="simon_vertical_line"></div>
-          </div>
-          <div className="redBox" style={{opacity:simon_red_btn_opacity}}></div>
-        <div className="blueBox" style={{opacity:simon_blue_btn_opacity}}></div>
-      <div className="greenBox" style={{opacity:simon_green_btn_opacity}}></div>
-    <div className="yellowBox" style={{opacity:simon_yellow_btn_opacity}}></div>
-          <div className="simon_controls_circle">
-            <div className="simon_title">
-              <div className="simon_completion">{simon_count}</div>
-              <div className="simon_buttons_container">
-                <button className="simon_control_btns simon_last_btn" onClick={this.simonReset}><p>{reset_btn_text}</p></button>
-              <button className="simon_control_btns simon_start_btn" onClick={this.simonQuit}><p>quit</p></button>
+      <div>
+        <Nav />
+        <div className="simon">
+          <div className="simon_container">
+            <div className="simon_interface">
+              <div className="simon_horizontal_line"></div>
+              <div className="simon_vertical_line"></div>
+            </div>
+            <div className="redBox" style={{opacity:simon_red_btn_opacity}}></div>
+            <div className="blueBox" style={{opacity:simon_blue_btn_opacity}}></div>
+            <div className="greenBox" style={{opacity:simon_green_btn_opacity}}></div>
+            <div className="yellowBox" style={{opacity:simon_yellow_btn_opacity}}></div>
+            <div className="simon_controls_circle">
+              <div className="simon_title">
+                <div className="simon_completion">{simon_count}</div>
+                <div className="simon_buttons_container">
+                  <button className="simon_control_btns simon_last_btn" onClick={this.simonReset}><p>{reset_btn_text}</p></button>
+                  <button className="simon_control_btns simon_start_btn" onClick={this.simonQuit}><p>quit</p></button>
+                </div>
+                <div className="simon_strict_mode"><p>s</p></div>
               </div>
-              <div className="simon_strict_mode"><p>s</p></div>
             </div>
           </div>
         </div>
+      <Footer />
       </div>
     )
   }

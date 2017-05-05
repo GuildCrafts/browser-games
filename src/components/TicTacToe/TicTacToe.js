@@ -1,5 +1,8 @@
 import React from 'react';
 import './tictactoe.css';
+import Nav from 'components/Nav/Nav';
+import Footer from 'components/Footer/Footer';
+
 
 export default class TicTacToe extends React.Component{
 
@@ -322,19 +325,23 @@ export default class TicTacToe extends React.Component{
     let ttt_gameover_display = this.state.ttt_gameover_display;
 
     return(
-      <div className="tictactoe">
-        <div style={{display:ttt_landing_display}}>
-          {this.KoopaLandingScreen()}
-        </div>
-        <div style={{display:ttt_player2Select_display}}>
-          {this.KoopaPlayer2SelectScreen()}
-        </div>
-        <div style={{display:ttt_gameBoard_display}}>
-          {this.KoopaGameBoard()}
-        </div>
-        <div style={{display:ttt_gameover_display}}>
-          {this.TttGameOver()}
-        </div>
+      <div>
+        <Nav/>
+          <div className="tictactoe">
+            <div style={{display:ttt_landing_display}}>
+              {this.KoopaLandingScreen()}
+            </div>
+            <div style={{display:ttt_player2Select_display}}>
+              {this.KoopaPlayer2SelectScreen()}
+            </div>
+            <div style={{display:ttt_gameBoard_display}}>
+              {this.KoopaGameBoard()}
+            </div>
+            <div style={{display:ttt_gameover_display}}>
+              {this.TttGameOver()}
+            </div>
+          </div>
+        <Footer/>
       </div>
     )
   }
