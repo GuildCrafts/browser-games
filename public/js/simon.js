@@ -23,34 +23,67 @@ var randomNumber = function() {
 
 var animate = function(sequence) {
 	var i = 0;
-	var that = this;
 	var interval = setInterval(function() {
-		// that.playSound(sequence[i]);
-		that.lightUp(sequence[i]);
+		playSound(sequence[i]);
+		lightUp(sequence[i]);
 
 		i++;
 		if (i >= sequence.length) {
 			clearInterval(interval);
-			that.activateSimonBoard();
+			activateSimonBoard();
 		}
 	}, 600);
 }
 
-// var playSound = function(tile) {
-// 	var audio = $('<audio autoplay></audio>');
-// 	audio.append('<source src="sounds/' + tile + '.ogg" type="audio/ogg" />');
-// 	audio.append('<source src="sounds/' + tile + '.mp3" type="audio/mp3" />');
-// 	document.querySelector('[data-action=sound]').innerHTMLhtml(audio);
-// }
+var playSound = function(tile) {
+  let audio = document.createElement('audio')
+  audio.setAttribute('autoplay', true)
+  let source1 = document.createElement('source')
+  source1.src = 'js/simonSounds/' + tile + '.ogg'
+  source1.type = 'audio/ogg'
+  let source2 = document.createElement('source')
+  source2.src = 'js/simonSounds/' + tile + '.mp3'
+  source2.type = 'audio/mp3'
+  audio.appendChild(source1)
+  audio.appendChild(source2)
+  document.querySelector('[data-action="sound"]').appendChild(audio)
+}
 
 var lightUp = function(tile) {
-	var $tile = document.querySelector('[data-tile=' + tile + ']').className += ' lit';
+	var tileDom = document.querySelector('[data-tile="' + tile + '"]')
+  tileDom.className += ' lit';
 	window.setTimeout(function() {
-		$tile.classList.remove('lit');
+		tileDom.classList.remove('lit');
 	}, 300);
 }
 
+var activateSimonBoard = function() {
+  document.querySelector('.simon').addEventListener('click', function(event) {
+    let num = event.target.getAttribute('data-tile')
+    registerClick(num)
+  })
+}
 
+//
+//
+// 				.on('mousedown', '[data-tile]', function(){
+// 					$(this).addClass('active');
+// 					that.playSound($(this).data('tile'));
+// 				})
+//
+// 				.on('mouseup', '[data-tile]', function(){
+// 					$(this).removeClass('active');
+// 				});
+//
+// 			$('[data-tile]').addClass('hoverable');
+// 		},
+
+var registerClick = function(num) {
+	var desiredResponse = this.copy.shift();
+	var actualResponse = num
+	this.active = (desiredResponse === actualResponse);
+	this.checkLose();
+}
 
 window.onload = function() {
   document.querySelector('[data-action=start]').addEventListener('click', function() {
