@@ -59,14 +59,14 @@ let platform = [{ // 0
   y: 310,
   width: 70,
   height: 70,
-  img: "./img/cakeHillLeftBig.png"
+  img: "./img/cakeCenter.png"
 },
 { // 5
   x: 280,
   y: 240,
   width: 70,
   height: 70,
-  img: "./img/cakeHillLeft1.png"
+  img: "./img/cake6.png"
 },
 { //6
   x: 350,
@@ -103,7 +103,7 @@ let platform = [{ // 0
   height: 70,
   img: "./img/cake4.png"
 },
-{//11
+{
   x: 490,
   y: 240,
   width: 70,
@@ -112,7 +112,7 @@ let platform = [{ // 0
 }]
 
 let platformReady = []
-for(let i = 0; i < 11; i++) {
+for(let i = 0; i <= 11; i++) {
   platformReady[i] = {
     value: false,
     image: new Image()
@@ -124,99 +124,14 @@ for(let i = 0; i < 11; i++) {
   platformReady[i].image.src = platform[i].img
 }
 
-// let platformReady = false;
-// let platformImage = new Image();
-// platformImage.onload = function () {
-//   platformReady = true
-// }
-// platformImage.src = "./img/cake.png"
-//
-// let platformReady1 = false;
-// let platformImage1 = new Image()
-//  platformImage1.onload = function () {
-//    platformReady1 = true
-//  }
-//  platformImage1.src = "./img/cake1.png"
-//
-//  let platformReady2 = false;
-//  let platformImage2 = new Image()
-//  platformImage2.onload = function () {
-//    platformReady2 = true
-//  }
-//  platformImage2.src = "./img/cake2.png"
-//
-//  let platformReady3 = false;
-//  let platformImage3 = new Image()
-//  platformImage3.onload = function () {
-//    platformReady3 = true
-//  }
-//  platformImage3.src = "./img/cake3.png"
-//
-// let platformReady4 = false
-// let platformImage4 = new Image()
-// platformImage4.onload = function () {
-//   platformReady4 = true
-// }
-// platformImage4.src = "./img/cakeHillLeftBig.png"
-//
-// let platformReady5 = false
-// let platformImage5 = new Image()
-// platformImage5.onload = function () {
-//   platformReady5 = true
-// }
-// platformImage5.src = "./img/cakeHillLeft1.png"
-//
-// let platformReady6 = false
-// let platformImage6 = new Image()
-// platformImage6.onload = function () {
-//   platformReady6 = true
-// }
-// platformImage6.src = "./img/cakeCenter.png"
-//
-// let platformReady7 = false
-// let platformImage7 = new Image()
-// platformImage7.onload = function () {
-//   platformReady7 = true
-// }
-
-// platformImage7.src = "./img/cakeCenter1.png"
-//
-// let platformReady8 = false
-// let platformImage8 = new Image()
-// platformImage8.onload = function () {
-//   platformReady8 = true
-// }
-// platformImage8.src = "./img/cakeCenter2.png"
-//
-// let platformReady9 = false
-// let platformImage9 = new Image()
-// platformImage9.onload = function () {
-//   platformReady9 = true
-// }
-// platformImage9.src = "./img/cake3.png"
-//
-// let platformReady10 = false
-// let platformImage10 = new Image()
-// platformImage10.onload = function () {
-//   platformReady10 = true
-// }
-// platformImage10.src = "./img/cake4.png"
-//
-// let platformReady11 = false
-// let platformImage11 = new Image()
-// platformImage11.onload = function () {
-//   platformReady11 = true
-// }
-// platformImage11.src = "./img/cake5.png"
-
 let hero = {
   speed: 150,
   x: 0,
   y: 0,
   jumping: false,
   upwardVelocity: 0,
-  width: 120,
-  height: 120,
+  width: 43,
+  height: 50,
   grounded: false
 },
 gravity = 0.3,
@@ -227,7 +142,6 @@ let monster = {
   x: 0,
   y: 0
 };
-
 
 
 let monstersCaught = 0;
@@ -244,69 +158,73 @@ addEventListener("keyup", function (e) {
 
 let reset = function () {
   hero.x = canvas.width - 500
-  hero.y = canvas.height - 105
+  hero.y = canvas.height - 120
 
   monster.x = (Math.random() * (canvas.width - 250))
   monster.y = (Math.random() * (canvas.height - 100))
 };
 
+let isColliding = hero => {
+  let colliding = false
+
+  for(let platformItem of platform) {
+    colliding = colliding || (
+      hero.x < platformItem.x + platformItem.width &&
+      hero.x + hero.width > platformItem.x &&
+      hero.y < platformItem.y + platformItem.height &&
+      hero.height + hero.y > platformItem.y
+    )
+  }
+
+  return colliding
+}
+
 let update = function (modifier) {
+  let lastHero = Object.assign( {}, hero )
+
   if(32 in keysDown) {
+    hero.jumping = true
+    hero.jumpY = hero.y
+
     if(hero.upwardVelocity === 0) {
-      hero.upwardVelocity = 5
+      hero.upwardVelocity = 2
     }
   }
 
   if (hero.upwardVelocity > 0) hero.upwardVelocity -= gravityDelta
   if (hero.upwardVelocity < 0) hero.upwardVelocity = 0
-  hero.y += gravity + gravityDelta - hero.upwardVelocity
-  gravityDelta *= 1.10
+  if (hero.jumpY - hero.y > 30) hero.upwardVelocity *= -.1
+  if (hero.jumping) hero.y += gravity + gravityDelta - hero.upwardVelocity
+  gravityDelta *= .1
 
+  if( isColliding( hero )) {
+    hero = lastHero
+  }
   // console.log('FRAME', hero)
-  hero.grounded = false;
-  for(let platformItem of platform) {
-    // if(hero.x <= (platformItem.x + platformItem.width/2)
-    // && platformItem.x <= (hero.x + hero.width/2)
-    // && hero.y <= (platformItem.y + 51)
-    // && platformItem.y <= (hero.y + hero.height/2)) {
-    //   console.log('Hero touched floor')
-    //   hero.y = platformItem.y - 51
-    //   hero.jumping = false
-    //   gravityDelta = 0.1
-    //   break
-    // }
+
+  let colliding = isColliding( hero )
 
 
-    let dir = colCheck(hero, platformItem)
-    if(dir === "l" || dir === "r") {
-      hero.x = 0
-      hero.jumping = false;
-    } else if(dir === "b") {
-      hero.grounded = true;
-      hero.jumping = false
-      // gravityDelta = 0.1
-    } else if (dir === "t") {
-      hero.x *= -1
+  // if(hero.y >= canvas.height - hero.height) {
+  //   hero.y = canvas.height -hero.height
+  //   hero.jumping = false;
+  //   gravityDelta = 0.1
+  // }
+  if( ! colliding ) {
+    const delta = hero.speed * modifier
+
+    if(37 in keysDown) {
+      hero.x -= delta
+    }
+    if(39 in keysDown) {
+      hero.x += delta
     }
   }
 
-  if(hero.y >= canvas.height - hero.height) {
-    hero.y = canvas.height -hero.height
-    hero.jumping = false;
-    gravityDelta = 0.1
+  if( isColliding( hero )) {
+    hero = lastHero
   }
-  if(40 in keysDown) {
-    hero.y += hero.speed * modifier
-  }
-  if(37 in keysDown) {
-    hero.x -= hero.speed * modifier
-  }
-  if(39 in keysDown) {
-    hero.x += hero.speed * modifier
-  }
-  if(hero.grounded){
-         hero.y = 0;
-    }
+
   if(
     hero.x <= (monster.x + 32)
     && monster.x <= (hero.x + 32)
