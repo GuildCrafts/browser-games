@@ -1,3 +1,8 @@
+// Constants:
+const GRAVITY_DELTA = 0.1
+const GRAVITY_CONST = 0.4
+const GRAVITY_DELTA_DELTA = 1.1
+
 let canvas = document.createElement('canvas');
 let ctx = canvas.getContext("2d");
 canvas.width = 560;
@@ -103,16 +108,58 @@ let platform = [{ // 0
   height: 70,
   img: "./img/cake4.png"
 },
-{
+{//11
   x: 490,
   y: 240,
   width: 70,
   height: 70,
   img: "./img/cake5.png"
+},
+{
+  x: 30,
+  y: 160,
+  width: 70,
+  height: 5,
+  img: "./img/cakeHalfAltLeft1.png"
+},
+{
+  x: 100,
+  y: 160,
+  width: 70,
+  height: 5,
+  img: "./img/cakeHalfAltMid1.png"
+},
+{
+  x: 170,
+  y: 160,
+  width: 100,
+  height: 5,
+  img: "./img/cakeHalfAltRight1.png"
+},
+{
+  x: 280,
+  y: 90,
+  width: 70,
+  height: 5,
+  img: "./img/cakeHalfAltLeft1.png"
+},
+{
+  x: 350,
+  y: 90,
+  width: 70,
+  height: 5,
+  img: "./img/cakeHalfAltMid1.png"
+},
+{
+  x: 420,
+  y: 90,
+  width: 70,
+  heigth: 5,
+  img: "./img/cakeHalfAltRight2.png"
 }]
 
 let platformReady = []
-for(let i = 0; i <= 11; i++) {
+for(let i = 0; i <= 17; i++) {
   platformReady[i] = {
     value: false,
     image: new Image()
@@ -125,18 +172,17 @@ for(let i = 0; i <= 11; i++) {
 }
 
 let hero = {
-  speed: 150,
+  speed: 110,
   x: 0,
   y: 0,
   jumping: false,
   upwardVelocity: 0,
   width: 43,
   height: 50,
-  grounded: false
+  grounded: false,
+  gravityDelta: GRAVITY_DELTA
 },
-gravity = 0.3,
-friction = 1,
-gravityDelta = 0.1;
+gravity = GRAVITY_CONST;
 
 let monster = {
   x: 0,
@@ -160,8 +206,25 @@ let reset = function () {
   hero.x = canvas.width - 500
   hero.y = canvas.height - 120
 
-  monster.x = (Math.random() * (canvas.width - 250))
-  monster.y = (Math.random() * (canvas.height - 100))
+  let monsterPositionX = [260, 360, 430, 510]
+  let monsterPositionX2 = [10, 80, 140, 210]
+  let monsterPositionX3 = [400, 330, 300, 270]
+  let monsterPositionY = [200, 123, 50]
+  let number = Math.floor(Math.random() * (monsterPositionY.length))
+  let number2 = Math.floor(Math.random() * (monsterPositionX.length))
+  let number3 = Math.floor(Math.random() * (monsterPositionX2.length))
+  let number4 = Math.floor(Math.random() * (monsterPositionX3.length))
+
+
+  monster.y = monsterPositionY[number]
+
+  if(monster.y === 200) {
+    monster.x = monsterPositionX[number2]
+  } else if (monster.y === 123) {
+    monster.x = monsterPositionX2[number3]
+  } else if(monster.y === 50) {
+    monster.x = monsterPositionX3[number4]
+  }
 };
 
 let isColliding = hero => {
@@ -169,15 +232,16 @@ let isColliding = hero => {
 
   for(let platformItem of platform) {
     colliding = colliding || (
-      hero.x < platformItem.x + platformItem.width &&
+      hero.x < platformItem.x + platformItem.width / 2 &&
       hero.x + hero.width > platformItem.x &&
-      hero.y < platformItem.y + platformItem.height &&
+      hero.y < platformItem.y + platformItem.height /2 &&
       hero.height + hero.y > platformItem.y
     )
   }
 
   return colliding
 }
+
 
 let update = function (modifier) {
   let lastHero = Object.assign( {}, hero )
@@ -187,29 +251,26 @@ let update = function (modifier) {
     hero.jumpY = hero.y
 
     if(hero.upwardVelocity === 0) {
-      hero.upwardVelocity = 2
+      hero.upwardVelocity = 7.5
     }
   }
 
-  if (hero.upwardVelocity > 0) hero.upwardVelocity -= gravityDelta
+  if (hero.upwardVelocity > 0) hero.upwardVelocity -= hero.gravityDelta
   if (hero.upwardVelocity < 0) hero.upwardVelocity = 0
-  if (hero.jumpY - hero.y > 30) hero.upwardVelocity *= -.1
-  if (hero.jumping) hero.y += gravity + gravityDelta - hero.upwardVelocity
-  gravityDelta *= .1
+  if (hero.jumpY - hero.y > 70) hero.upwardVelocity *= -.2
+  if (hero.jumping) {
+    hero.y += gravity + hero.gravityDelta - hero.upwardVelocity
+    if(hero.y > canvas.height) hero.y = canvas.height
+    hero.gravityDelta *= GRAVITY_DELTA_DELTA
+  }
 
   if( isColliding( hero )) {
     hero = lastHero
+    hero.gravityDelta = GRAVITY_DELTA
   }
-  // console.log('FRAME', hero)
 
   let colliding = isColliding( hero )
 
-
-  // if(hero.y >= canvas.height - hero.height) {
-  //   hero.y = canvas.height -hero.height
-  //   hero.jumping = false;
-  //   gravityDelta = 0.1
-  // }
   if( ! colliding ) {
     const delta = hero.speed * modifier
 
@@ -237,46 +298,17 @@ let update = function (modifier) {
 };
 
 
-function colCheck(shapeA, shapeB) {
-  // get the vectors to check against
-  var vX = (shapeA.x + (shapeA.width / 2)) - (shapeB.x + (shapeB.width / 2)),
-    vY = (shapeA.y + (shapeA.height / 2)) - (shapeB.y + (shapeB.height / 2)),
-    // add the half widths and half heights of the objects
-    hWidths = (shapeA.width / 2) + (shapeB.width / 2),
-    hHeights = (shapeA.height / 2) + (shapeB.height / 2),
-    colDir = null;
-
-  // if the x and y vector are less than the half width or half height, they we must be inside the object, causing a collision
-  if (Math.abs(vX) < hWidths && Math.abs(vY) < hHeights) {
-    // figures out on which side we are colliding (top, bottom, left, or right)
-    var oX = hWidths - Math.abs(vX),
-      oY = hHeights - Math.abs(vY);
-    if (oX >= oY) {
-      if (vY > 0) {
-        colDir = "t";
-        shapeA.y += oY;
-      } else {
-        colDir = "b";
-        shapeA.y -= oY;
-      }
-    } else {
-      if (vX > 0) {
-        colDir = "l";
-        shapeA.x += oX;
-      } else {
-        colDir = "r";
-        shapeA.x -= oX;
-      }
-    }
-  }
-  return colDir;
-}
-
-
 let render = function () {
   if(bgReady) {
     ctx.drawImage(bgImage, 0, 0)
   }
+
+  for(let i = 0; i <= 17; i++) {
+    if(platformReady[i].value === true) {
+      ctx.drawImage(platformReady[i].image, platform[i].x, platform[i].y)
+    }
+  }
+
   if(heroReady) {
     ctx.drawImage(heroImage, hero.x, hero.y)
   }
@@ -285,11 +317,6 @@ let render = function () {
     ctx.drawImage(monsterImage, monster.x, monster.y);
   }
 
-  for(let i = 0; i < 11; i++) {
-    if(platformReady[i].value === true) {
-      ctx.drawImage(platformReady[i].image, platform[i].x, platform[i].y)
-    }
-  }
 
   ctx.fillStyle = "#C99AFE"
   ctx.font = "24px Helvetica"
