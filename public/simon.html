@@ -5,6 +5,11 @@
 	<!-- <meta name=viewport content="width=device-width, initial-scale=1"> -->
 	<title>Simon</title>
 	<link rel="stylesheet" href="css/simon.css"/>
+  <script
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
+  <script src="js/simon.js"></script>
 </head>
 <body>
 
@@ -23,11 +28,11 @@
 					</ul>
 				</div>
 			</div>
-			<div class="game-info">
-				<h2>Round: <span class="round="0"">0</span></h2>
-				<button class="start">Start</button>
-				<p class="lose">Sorry, you lost after <span data-round="0"></span> rounds!</p>
+      <div class="game-info">
+				<h2>Round: <span data-round="0">0</span></h2>
+				<button data-action="start" >Start</button>
+				<p data-action="lose">Sorry, you lost after <span data-round="0"></span> rounds!</p>
 			</div>
-      <script src="js/simon.js"></script>
+      <div data-action="sound"></div>
 </body>
 </html>
