@@ -66,11 +66,6 @@ export default class TicTacToe extends React.Component{
     pos1 = parseInt(pos1)
     pos2 = parseInt(pos2)
     pos3 = parseInt(pos3)
-    var ace = [1,2,3,4,'yolo']
-    console.log('ace[pos1] => ', ace[pos1])
-    console.log('pos1 =======> ',pos1)
-    console.log('pos2 ===========> ',pos2)
-    console.log('pos3 ===============> ',pos3)
 
     ttt_insert_shell_at_position[pos1] = <img src={require('url-loader?limit=10000!./x_green_koopa_shell.png')} /> ? ttt_insert_shell_at_position[pos1] = <img src={require('url-loader?limit=10000!./x_green_koopa_shell.png')} className="ttt_winning_colors" /> : ttt_insert_shell_at_position[pos1] = <img src={require('url-loader?limit=10000!./y_red_koopa_shell.png')} className="ttt_winning_colors" />
 

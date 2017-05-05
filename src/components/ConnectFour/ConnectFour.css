@@ -9,7 +9,7 @@
 
 .connectFour_container{
   background-color: transparent;
-  margin-top: 38%;
+  margin-top: 25%;
   width: 300px;
   margin-left: -22%;
   text-align: center;
@@ -85,8 +85,8 @@
   cursor:pointer;
   background-color:gainsboro;
 }
-.connectFour_outer_red_piece{
-  background-color: red;
+
+/*.connectFour_outer_red_piece, .connectFour_outer_yellow_piece{
   border-radius: 50%;
   height: 88%;
   width: 88%;
@@ -94,11 +94,9 @@
   display: inline-block;
   position: absolute;
   margin-left: -46%;
-  border: 1px solid firebrick;
 }
 
-.connectFour_red_piece{
-  background-color: red;
+.connectFour_red_piece, .connectFour_yellow_piece{
   border-radius: 50%;
   height: 75%;
   width: 75%;
@@ -107,9 +105,34 @@
   position: absolute;
   margin-left: -40%;
   margin-top: 8%;
+}
+
+.connectFour_outer_red_piece, .connectFour_red_piece{
+  background-color: red;
   border: 1px solid firebrick;
+}
+
+.connectFour_outer_yellow_piece, .connectFour_yellow_piece{
+  background-color: yellow;
+  border: 1px solid orange;
 }
 
 .connectFour_emblem{
   margin-top:-2px;
+}*/
+
+.connectFour_message{
+  color:orange;
+  border-bottom:1px solid gainsboro;
+  padding: 5px 0 5px 0;
+}
+
+.connectFour_yellow_coin{
+  height: 30px;
+  width: 26px;
+}
+
+.connectFour_red_mushroom{
+  height: 30px;
+  width: 30px;
 }
