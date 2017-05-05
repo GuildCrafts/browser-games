@@ -10,14 +10,14 @@ var state = [
 ]
 
 class ChessBoard {
-  constructor(rows, cells) {
+  constructor(rows, cells){
     this.board = []
     this.rows = 8
     this.cells = 8
 
-    for (var i = 0; i < state.length; i++) {
+    for (var i = 0; i < state.length; i++){
       var row = []
-      for (var j = 0; j < state[i].length; j++) {
+      for (var j = 0; j < state[i].length; j++){
         row.push(state[i][j])
       }
       this.board.push(row)
@@ -40,41 +40,52 @@ class ChessBoard {
     })
     return returnValue
   }
-
-  pawnIsValidMove(startCoordinate, endCoordinate) {
-    // if pawn is at the begining position, it can move 2
-    //implement isEmpty function
-    var pawnsCanOnlyMoveTwoSteps = startCoordinate.x + 1 === endCoordinate.x && startCoordinate.y === endCoordinate.y
-    if(pawnsCanOnlyMoveTwoSteps || startCoordinate.x + 2 == endCoordinate.x){
-    this.move(startCoordinate, endCoordinate)
+  isEmpty(endCoordinate){
+    return this.board[endCoordinate.y][endCoordinate.x] == 0
   }
-    else {
-    console.log(`invalid move:: Cant move ${startCoordinate} to ${endCoordinate}`)
+
+  knightIsValidMove(startCoordinate, endCoordinate){
+    var knightsMoveLShape = startCoordinate.x + 2 === endCoordinate.x && startCoordinate.y + 1 === endCoordinate.y
+    if(knightsMoveLShape && this.isEmpty(endCoordinate)){
+      return true
     }
-    // if the pawn is not at the begining position it can only move 1
-    // if the pawn is blocked by another piece, it cannot move.
+  }
+
+  pawnIsValidMove(startCoordinate, endCoordinate){
+    var pawnsCanOnlyMoveTwoSteps = startCoordinate.x === endCoordinate.x && startCoordinate.y + 1 || startCoordinate.y + 2 === endCoordinate.y
+    if(pawnsCanOnlyMoveTwoSteps && this.isEmpty(endCoordinate) ){
+    return true
+    }
    }
 
-
-  checkIfMoveIsValid(startCoordinate, pieceType, endCoordinate) {
+  checkIfMoveIsValid(startCoordinate, pieceType, endCoordinate){
     var rules = {
-      pawn: {isValidMove: this.pawnIsValidMove(startCoordinate, endCoordinate)}
+      pawn: {isValidMove: this.pawnIsValidMove(startCoordinate, endCoordinate)},
+      knight: {isValidMove: this.knightIsValidMove(startCoordinate, endCoordinate)}
     }
-    return rules[pieceType].isValidMove
+    if(rules[pieceType].isValidMove){
+      this.move(startCoordinate, endCoordinate)
+    }
+    else {
+      alert('Invalid move')
+    }
   }
 
-  move(pieceCoordinate, destinationCoordinate) {
+
+  move(pieceCoordinate, destinationCoordinate){
   var currentPiece = this.board[pieceCoordinate.x][pieceCoordinate.y]
-  console.log('=================',currentPiece, destinationCoordinate);
   this.board[destinationCoordinate.x][destinationCoordinate.y] = currentPiece
   this.board[pieceCoordinate.x][pieceCoordinate.y] = 0
   }
 }
 
+function resetGame(){
+  return new ChessBoard()
+}
+
 $(document).ready(function(){
   var chess = new ChessBoard()
-console.log(  chess.checkIfMoveIsValid({x: 1,y: 0},"pawn", {x:3, y: 0}))
-  var squareCount = 8*8;
+console.log(  chess.checkIfMoveIsValid({x: 0,y: 2}, "knight", {x:2, y: 3}))
   var container = $('#chess-board')
   var row = $('<div>').addClass('chess-board-row')
 
