@@ -1,15 +1,26 @@
-##Setup
+## Specifications
 
-- A jquery function creates the game board
-- use :nth child to create the checker effect
-- create pawns in the second row
-- allow pawns to move two spaces in their first turn and one space after
-- create the rooks (end pieces) and allow them to move horizontally
-- create the knights and allow them to move in an l shaped pattern
-- create the bishops that move diagonally
-- create king and allow him to move one space in any direction
-- create queen and allow her to move wherever she wants in her boundaries
-- mirror the board on the other side in a different color and flip the king and queen
-- check for wins by checking the location on the game board
-- reset game triggers when a button is clicked and returns pieces to their original location
-- handle moves by deleting divs and creating new ones
+#### General
+
+- [x] Artifact produced is a fork of the [browser-games][browser-games] repo.
+- [x] Variables, functions, files, etc. have appropriate and meaningful names.
+- [x] HTML, CSS, and JS files are well formatted with proper spacing and indentation.
+- [x] There is a clear separation of game logic code from view/rendering code.
+- [x] All major features are added via pull requests with a clear description and concise commit messages.
+- [x] The artifact produced is properly licensed, preferably with the [MIT license][mit-license].
+
+#### Chess
+
+- [x] [User stories](http://searchsoftwarequality.techtarget.com/definition/user-story) and features for the game are added as issues to your repo with the label `feature` or `user-story` (DEAR REVIEWER: I have organized this as a project on my repo)
+  <br>_You'll have to define these yourself by looking at the rules of the game and coming up with the right user stories & features_
+- [x] jQuery is used for DOM manipulation code
+- [x] Chess game can be found at `public/chess.html`
+- [ ] Chess game is playable by two people
+- [x] Pieces can only be moved according to the rules of chess
+- [ ] The game state is persisted (so reloading the page resumes where you left off)
+- [ ] The board can scale to the window size
+- [ ] Game page is linked from `public/index.html`
+
+### Stretch
+
+- [ ] Game can be played against a computer AI (i.e. human v. computer)
