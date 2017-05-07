@@ -9,12 +9,12 @@
 
 .connectFour_container{
   background-color: transparent;
-  margin-top: 25%;
   width: 300px;
-  margin-left: -22%;
   text-align: center;
   position: absolute;
   z-index:3;
+  margin: 82px 0 0 -70px;
+  padding: 3% 3% 3% 0;
 }
 
 .connectFour_title{
@@ -106,4 +106,45 @@
 .connectFour_red_mushroom{
   height: 30px;
   width: 30px;
+}
+
+.connectFour_gameover_reset, .connectFour_gameover_quit{
+  border:none;
+  border-radius:5px;
+  margin:2px;
+}
+
+.connectFour_lakituBoard{
+  width:300px;
+  text-align:center;
+  border:2px solid rgb(120,69,19);
+  background-image: linear-gradient(rgb(160,82,45) 50%, rgb(170,82,45) 50%);
+  background-size: 50px 50px;
+  padding:20%;
+  margin: 120px 0 0 -86px;
+}
+
+.connectFour_gameover_container{
+  margin-top: 120px;
+  margin-left: -42%;
+  background-color: oldlace;
+  border: 2px solid black;
+  padding: 30px;
+  width: 233px;
+  text-align: center;
+}
+
+.connectFour_gameover_winner{
+  color:indianred;
+  font-size:3em;
+  padding:5px;
+}
+
+@media (max-width: 490px){
+
+  .connectFour_lakituBoard{
+    padding:0 0 20px 0;
+    margin: 120px 0 0 -71px;
+  }
+
 }
