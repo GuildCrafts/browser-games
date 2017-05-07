@@ -263,7 +263,7 @@ export default class ConnectFour extends React.Component{
       let winner;
       let player1_score = this.state.player1_score;
       let player2_score = this.state.player2_score;
-      player1_score > player2_score  ? winner = 'player 1' : winner = 'testing'
+      player1_score > player2_score  ? winner = 'player 1' : winner = 'player 2'
       this.setState({
         connectFour_landing_display : 'none',
         connectFour_player2Select_display : 'none',
