@@ -31,7 +31,7 @@ export default class TicTacToe extends React.Component{
     this.KoopaGameBoard = KoopaGameBoard.bind(this);
     this.KoopaLandingScreen = KoopaLandingScreen.bind(this);
     this.KoopaPlayer2SelectScreen = KoopaPlayer2SelectScreen.bind(this);
-    this.TttGameOver = TttGameOver.bind(this);
+    this.KoopaGameOver = KoopaGameOver.bind(this);
     this.tttUpdateBoard = this.tttUpdateBoard.bind(this);
     this.tttCheckForSolutions = this.tttCheckForSolutions.bind(this);
     this.tttResetGame = this.tttResetGame.bind(this);
@@ -338,7 +338,7 @@ export default class TicTacToe extends React.Component{
               {this.KoopaGameBoard()}
             </div>
             <div style={{display:ttt_gameover_display}}>
-              {this.TttGameOver()}
+              {this.KoopaGameOver()}
             </div>
           </div>
         <Footer/>
@@ -431,7 +431,7 @@ const KoopaGameBoard = function(){
   </div>
 }
 
-const TttGameOver = function(){
+const KoopaGameOver = function(){
   let ttt_winner = this.state.ttt_winner;
   return <div className="ttt_gameover_container">
     <h1 className="ttt_gameover_title">Winner:</h1>
