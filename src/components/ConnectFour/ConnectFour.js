@@ -38,11 +38,11 @@ export default class ConnectFour extends React.Component{
     // this.connectFourResetGame = this.connectFourResetGame.bind(this);
     // this.connectFourQuitGame = this.connectFourQuitGame.bind(this);
     // this.connectFourWinnerWasFound = this.connectFourWinnerWasFound.bind(this);
-    // this.handleKeyPress = this.handleKeyPress.bind(this);
-    // this.connectFourStorePlayerName = this.connectFourStorePlayerName.bind(this);
-    // this.Player1_query = Player1_query.bind(this);
-    // this.Player2_query = Player2_query.bind(this);
-    // this.connectFourSaveInput = this.connectFourSaveInput.bind(this);
+    this.handleKeyPress = this.handleKeyPress.bind(this);
+    this.connectFourStorePlayerName = this.connectFourStorePlayerName.bind(this);
+    this.Player1_query = Player1_query.bind(this);
+    this.Player2_query = Player2_query.bind(this);
+    this.connectFourSaveInput = this.connectFourSaveInput.bind(this);
     // this.connectFourUpdateBoard = this.connectFourUpdateBoard.bind(this);
     this.connectFourAddNewPiece = this.connectFourAddNewPiece.bind(this);
     this.connectFourConstructBoard.bind(this);
@@ -227,7 +227,7 @@ export default class ConnectFour extends React.Component{
       let winner;
       let player1_score = this.state.player1_score;
       let player2_score = this.state.player2_score;
-      player1_score > player2_score  ? winner = 'player 1' : winner = 'player 2'
+      player1_score > player2_score  ? winner = 'player 1' : winner = 'testing'
       this.setState({
         connectFour_landing_display : 'none',
         connectFour_player2Select_display : 'none',
@@ -466,6 +466,43 @@ export default class ConnectFour extends React.Component{
    })
   }
 
+  handleKeyPress(e){
+    if(e.key == 'Enter'){
+      this.connectFourStorePlayerName(e)
+    }
+  }
+
+  connectFourStorePlayerName(e){
+    e.preventDefault();
+
+    if(this.state.connectFour_player1_name === ''){
+      this.refs.player1_name_input.value = '';
+      let player1_name_input = this.state.connectFour_input_val;
+      this.setState({
+        connectFour_player1_name : player1_name_input,
+        connectFour_input_val : '',
+        connectFour_landing_display : 'none',
+        connectFour_player2Select_display : 'block'
+      })
+    } else if(this.state.connectFour_player1_name !== ''){
+      this.refs.player2_name_input.value = '';
+      let player2_name_input = this.state.connectFour_input_val;
+      this.setState({
+        connectFour_player2_name : player2_name_input,
+        connectFour_input_val : '',
+        connectFour_player2Select_display : 'none',
+        connectFour_gameBoard_display : 'block',
+      })
+    }
+  }
+
+  connectFourSaveInput(e){
+    let targetValue = e.target.value
+    this.setState({
+      connectFour_input_val : targetValue
+    })
+  }
+
 
 
   render(){
@@ -501,30 +538,58 @@ export default class ConnectFour extends React.Component{
 }
 
 const ConnectFourLandingScreen = function(){
-  return <div className="connectFour_lakituBoard">landing</div>
+  return <div className="connectFour_lakituBoard">
+    <div className="connectFour_lakituBoard_border">
+      <h3 className="app_LoveYa_font connectFour_Landing_welcome_text">shock and awe for</h3>
+    <h1 className="app_LoveYa_font connectFour_landing_title_text">Lakitu's Connect Four</h1>
+    </div>
+    <img className="connectFour_lakitu_img" src={require('url-loader?limit=10000!./connectFour_Lakitu.png')} />
+    <div className="connectFour_player_select_div">
+      <div className="connectFour_player_select_container">
+        <div className="connectFour_player_character_border">
+          <img className="connectFour_mushroom_img" src={require('url-loader?limit=10000!./connectFour_mushroom_select.png')} />
+        </div>
+      </div>
+      <div className="connectFour_player1_query_container">{this.Player1_query()}</div>
+    </div>
+  </div>
 }
 
 const ConnectFourPlayer2SelectScreen = function(){
-  return <div className="connectFour_lakituBoard">player2 select</div>
+  return  <div className="connectFour_lakituBoard">
+      <div className="connectFour_lakituBoard_border">
+        <h3 className="app_LoveYa_font connectFour_Landing_welcome_text">shock and awe for</h3>
+      <h1 className="app_LoveYa_font connectFour_landing_title_text">Lakitu's Connect Four</h1>
+      </div>
+      <img className="connectFour_lakitu_img" src={require('url-loader?limit=10000!./connectFour_Lakitu.png')} />
+      <div className="connectFour_player_select_div">
+        <div className="connectFour_player_select_container">
+          <div className="connectFour_player_character_border">
+            <img className="connectFour_coin_img" src={require('url-loader?limit=10000!./connectFour_coin_select.png')} />
+          </div>
+        </div>
+        <div className="connectFour_player2_query_container">{this.Player2_query()}</div>
+      </div>
+    </div>
 }
 
-// const Player1_query = function(){
-//
-//   return <div className="connectFour_player1_query">
-//       <input className="connectFour_name1_input" placeholder="Player1, Type your name" onChange={this.connectFourSaveInput} onKeyPress={this.handleKeyPress} ref="player1_name_input"/>
-//       <button className="connectFour_player1_name_btn" onClick={this.connectFourStorePlayerName}>Enter</button>
-//     </div>
-//
-// }
-//
-// const Player2_query = function(){
-//
-//   return <div className="connectFour_player2_query">
-//     <input className="connectFour_name2_input" placeholder="Player2, Type your name" onChange={this.connectFourSaveInput} onKeyPress={this.handleKeyPress} ref="player2_name_input"/>
-//     <button className="connectFour_player2_name_btn" onClick={this.connectFourStorePlayerName}>Enter</button>
-//   </div>
-//
-// }
+const Player1_query = function(){
+console.log('runnin')
+  return <div className="connectFour_player1_query">
+      <input className="connectFour_name1_input" placeholder="Player1, enter name" onChange={this.connectFourSaveInput} onKeyPress={this.handleKeyPress} ref="player1_name_input"/>
+    <button className="connectFour_player1_name_btn" onClick={this.connectFourStorePlayerName}>Enter</button>
+    </div>
+
+}
+
+const Player2_query = function(){
+
+  return <div className="connectFour_player2_query">
+    <input className="connectFour_name2_input" placeholder="Player2, enter name" onChange={this.connectFourSaveInput} onKeyPress={this.handleKeyPress} ref="player2_name_input"/>
+    <button className="connectFour_player2_name_btn" onClick={this.connectFourStorePlayerName}>Enter</button>
+  </div>
+
+}
 
 const ConnectFourGameBoard = function(){
   return   <div className="connectFour_container">

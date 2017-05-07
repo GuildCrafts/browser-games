@@ -1,8 +1,8 @@
 .connectFour{
-  height:100vh;
-  min-height:675px;
+  height:485px;
   padding:0 6% 6% 6%;
   width:160px;
+  /*min-height:620px;*/
   margin:auto;
   margin-top:-42px;
 }
@@ -115,13 +115,23 @@
 }
 
 .connectFour_lakituBoard{
+  width: 303px;
+  text-align: center;
+  border: 2px solid skyblue;
+  background-size: 50px 50px;
+  padding: 2%;
+  margin: 120px 0 0 -87px;
+  border-radius:8px;
+}
+
+.connectFour_lakituBoard_border{
   width:300px;
   text-align:center;
-  border:2px solid rgb(120,69,19);
-  background-image: linear-gradient(rgb(160,82,45) 50%, rgb(170,82,45) 50%);
+  border:2px solid skyblue;
   background-size: 50px 50px;
-  padding:20%;
-  margin: 120px 0 0 -86px;
+  border-radius:5px;
+  /*padding:20%;
+  margin: 120px 0 0 -86px;*/
 }
 
 .connectFour_gameover_container{
@@ -140,11 +150,89 @@
   padding:5px;
 }
 
+.connectFour_landing_title_text{
+  margin-top:-20px;
+}
+
+.connectFour_mushroom_img{
+  width:66%;
+  margin-top:16%;
+}
+
+.connectFour_coin_img{
+  width:52%;
+  margin-top:16%;
+}
+
+.connectFour_lakitu_img{
+  position: absolute;
+  margin-top: -79px;
+  margin-left: 67px;
+  height: 35%;
+  width: 30%;
+  max-width: 142px;
+  max-height: 174px;
+  min-height: 180px;
+  min-width:90px;
+}
+
+.connectFour_player_select_div{
+  border: 2px solid skyblue;
+  margin-top:2%;
+  padding: 27% 5% 7vh 5%;
+}
+
+.connectFour_player_character_border{
+  border-radius: 50%;
+  border: 2px solid black;
+  height: 60px;
+  width: 60px;
+}
+
+.connectFour_player1_query, .connectFour_player2_query{
+  width:218px;
+  margin:auto;
+}
+
+.connectFour_player_select_container{
+  display:inline-block;
+  width:24%;
+}
+
+.connectFour_player1_query_container, .connectFour_player2_query_container{
+  display:inline-block;
+  width:76%;
+}
+
+.connectFour_name1_input, .connectFour_name2_input{
+  text-align: center;
+  font-size: 14px;
+  border: none;
+  border-bottom: 2px solid black;
+}
+
+.connectFour_name1_input:focus, .connectFour_name2_input:focus{
+  outline:none;
+}
+
+.connectFour_player1_name_btn, .connectFour_player2_name_btn{
+  border:2px solid black;
+  border-radius:5px;
+  margin-top:10px;
+  width:50%;
+  background-color:white;
+}
+
+.connectFour_player1_name_btn:hover, .connectFour_player2_name_btn:hover {
+  background-color:papayawhip;
+  cursor:pointer;
+}
+
 @media (max-width: 490px){
 
   .connectFour_lakituBoard{
-    padding:0 0 20px 0;
-    margin: 120px 0 0 -71px;
+    /*padding:0 0 20px 0;*/
+    margin: 120px 0 0 -76px;
   }
 
 }
