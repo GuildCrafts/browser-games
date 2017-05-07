@@ -48,6 +48,8 @@ export default class ConnectFour extends React.Component{
     this.connectFourFill = this.connectFourFill.bind(this);
     this.connectFourResetGame = this.connectFourResetGame.bind(this);
     this.connectFourQuitGame = this.connectFourQuitGame.bind(this);
+    this.checkLeftToRightAngledArrays = this.checkLeftToRightAngledArrays.bind(this);
+    this.checkRightToLeftAngledArrays = this.checkRightToLeftAngledArrays.bind(this);
   }
 
   componentWillMount() {
@@ -96,38 +98,60 @@ export default class ConnectFour extends React.Component{
       }
     }
 
-    // connectFour_angled_lr_board = [
-    //   ['','','',''],
-    //   ['','','','',''],
-    //   ['','','','','',''],
-    //   ['','','','','',''],
-    //   ['','','','',''],
-    //   ['','','','']
-    // ]
-    //
-    // let origStartingPlace = 21;
-    //
-    // for(let i = 0; i < 6; i++){
-    //   let startingPlace = origStartingPlace
-    //   for(let x = 0; x < connectFour_angled_lr_board[i].length; x++){
-    //     connectFour_angled_lr_board[i][x] = startingPlace;
-    //     startingPlace -= 6;
-    //   }
-    //     if(i <= 3){
-    //       startingPlace = origStartingPlace + 7;
-    //     } else {
-    //       startingPlace = origStartingPlace + 1;
-    //     }
-    // }
-    //
-    // connectFour_angled_rl_board = [
-    //   ['','','',''],
-    //   ['','','','',''],
-    //   ['','','','','',''],
-    //   ['','','','','',''],
-    //   ['','','','',''],
-    //   ['','','','']
-    // ]
+    connectFour_angled_lr_board = [
+      ['','','',''],
+      ['','','','',''],
+      ['','','','','',''],
+      ['','','','','',''],
+      ['','','','',''],
+      ['','','','']
+    ]
+
+    let origLeftToRightStartPos = 21;
+    let startingPos;
+
+    for(let i = 0; i < 6; i++){
+      startingPos = origLeftToRightStartPos
+      for(let x = 0; x < connectFour_angled_lr_board[i].length; x++){
+        connectFour_angled_lr_board[i][x] = startingPos;
+        startingPos -= 6;
+      }
+        if(i >= 2){
+          origLeftToRightStartPos += 1;
+          startingPos = origLeftToRightStartPos;
+        } else if (i < 2){
+          origLeftToRightStartPos += 7;
+          startingPos = origLeftToRightStartPos;
+        }
+    }
+
+    connectFour_angled_rl_board = [
+      ['','','',''],
+      ['','','','',''],
+      ['','','','','',''],
+      ['','','','','',''],
+      ['','','','',''],
+      ['','','','']
+    ]
+
+
+    let origRightToLeftStartPos = 27;
+    startingPos = null;
+
+    for(let i = 0; i < 6; i++){
+      startingPos = origRightToLeftStartPos
+      for(let x = 0; x < connectFour_angled_rl_board[i].length; x++){
+        connectFour_angled_rl_board[i][x] = startingPos;
+        startingPos -= 8;
+      }
+        if(i >= 2){
+          origRightToLeftStartPos -= 1;
+          startingPos = origRightToLeftStartPos;
+        } else if (i < 2){
+          origRightToLeftStartPos += 7;
+          startingPos = origRightToLeftStartPos;
+        }
+    }
 
 
     this.setState({
@@ -135,7 +159,8 @@ export default class ConnectFour extends React.Component{
       connectFour_vertical_board : connectFour_vertical_board,
       connectFour_insert_piece_at_position : connectFour_insert_piece_at_position,
       connectFour_insert_piece_at_vertical_position : connectFour_insert_piece_at_vertical_position,
-      connectFour_angled_lr_board : connectFour_angled_lr_board
+      connectFour_angled_lr_board : connectFour_angled_lr_board,
+      connectFour_angled_rl_board : connectFour_angled_rl_board
     })
 
   }
@@ -167,13 +192,9 @@ export default class ConnectFour extends React.Component{
 
     // CHECK HORIZONTAL ARRAYS
     if(connectFour_board[outerArr].indexOf(player) >= 0){
-      console.log('smokin')
-      // check the array!
+
       let arrayToCheck = outerArr
-      console.log('arrayToCheck: ',arrayToCheck)
       let firstOccurence = connectFour_board[arrayToCheck].indexOf(player); // this returns the first occurence of our x/y character
-      console.log('player: ',player)
-      console.log('firstOccurence: ',firstOccurence)
       let foundCount = 0;
 
       for(let i = 0; i < 5; i++){
@@ -186,7 +207,6 @@ export default class ConnectFour extends React.Component{
       if(foundCount === 4){
         let connectFour_player1_score = this.state.connectFour_player1_score;
         let connectFour_player2_score = this.state.connectFour_player2_score;
-        console.log('foundCount: ',foundCount)
         console.log('========> we have a winner: ',player,' <=========')
         if(player === 'player 1'){
           connectFour_player1_score += 1
@@ -208,13 +228,9 @@ export default class ConnectFour extends React.Component{
 
     // CHECK VERTICAL ARRAYS
     if(connectFour_vertical_board[innerPos].indexOf(player) >= 0){
-      console.log('fire')
-      // check the array!
+
       let arrayToCheck = innerPos
-      console.log('arrayToCheck: ',arrayToCheck)
       let firstOccurence = connectFour_vertical_board[arrayToCheck].indexOf(player); // this returns the first occurence of our x/y character
-      console.log('player: ',player)
-      console.log('firstOccurence: ',firstOccurence)
       let foundCount = 0;
 
       for(let i = 0; i < 5; i++){
@@ -226,7 +242,7 @@ export default class ConnectFour extends React.Component{
       if(foundCount === 4){
         let connectFour_player1_score = this.state.connectFour_player1_score;
         let connectFour_player2_score = this.state.connectFour_player2_score;
-        console.log('foundCount: ',foundCount)
+
         console.log('========> we have a winner: ',player,' <=========')
         if(player === 'player 1'){
           connectFour_player1_score += 1
@@ -242,14 +258,6 @@ export default class ConnectFour extends React.Component{
       }
     }
 
-
-    // CHECK ANGLED ARRAYS
-    // if(connectFour_angled_lr_board[innerPos].indexOf(player) >= 0){}
-
-
-
-
-
       this.setState({
         connectFour_board : connectFour_board,
         connectFour_vertical_board : connectFour_vertical_board
@@ -260,6 +268,103 @@ export default class ConnectFour extends React.Component{
       connectFour_player : player
     })
 
+
+  }
+
+  checkLeftToRightAngledArrays( outerArr, innerPos ){
+    let connectFour_angled_lr_board = this.state.connectFour_angled_lr_board;
+    let player = this.state.connectFour_player;
+    console.log(player,"'s lr below: ")
+
+    connectFour_angled_lr_board[outerArr][innerPos] = player;
+
+    let arrayToCheck = outerArr;
+    let firstOccurence = connectFour_angled_lr_board[arrayToCheck].indexOf(player);
+    let foundCount = 0;
+
+    for(let i = 0; i < 5; i++){
+      if(connectFour_angled_lr_board[arrayToCheck][firstOccurence+i] === player){
+        foundCount += 1;
+      }
+    }
+
+    if(foundCount === 4){
+      let connectFour_player1_score = this.state.connectFour_player1_score;
+      let connectFour_player2_score = this.state.connectFour_player2_score;
+      console.log('========> we have a winner: ',player,' <=========')
+      if(player === 'player 1'){
+        connectFour_player1_score += 1
+        this.setState({
+          connectFour_player1_score : connectFour_player1_score
+        })
+      } else {
+        connectFour_player2_score += 1
+        this.setState({
+          connectFour_player2_score : connectFour_player2_score
+        })
+      }
+    }
+
+    console.log(
+      'LEFT TO RIGHT','\n',
+      '[','\n',
+        '[',this.state.connectFour_angled_lr_board[0][0],',',this.state.connectFour_angled_lr_board[0][1],',',this.state.connectFour_angled_lr_board[0][2],',',this.state.connectFour_angled_lr_board[0][3],']','\n',
+        '[',this.state.connectFour_angled_lr_board[1][0],',',this.state.connectFour_angled_lr_board[1][1],',',this.state.connectFour_angled_lr_board[1][2],',',this.state.connectFour_angled_lr_board[1][3],',',this.state.connectFour_angled_lr_board[1][4],']','\n',
+        '[',this.state.connectFour_angled_lr_board[2][0],',',this.state.connectFour_angled_lr_board[2][1],',',this.state.connectFour_angled_lr_board[2][2],',',this.state.connectFour_angled_lr_board[2][3],',',this.state.connectFour_angled_lr_board[2][4],',',this.state.connectFour_angled_lr_board[2][5],']','\n',
+        '[',this.state.connectFour_angled_lr_board[3][0],',',this.state.connectFour_angled_lr_board[3][1],',',this.state.connectFour_angled_lr_board[3][2],',',this.state.connectFour_angled_lr_board[3][3],',',this.state.connectFour_angled_lr_board[3][4],',',this.state.connectFour_angled_lr_board[3][5],']','\n',
+        '[',this.state.connectFour_angled_lr_board[4][0],',',this.state.connectFour_angled_lr_board[4][1],',',this.state.connectFour_angled_lr_board[4][2],',',this.state.connectFour_angled_lr_board[4][3],',',this.state.connectFour_angled_lr_board[4][4],']','\n',
+        '[',this.state.connectFour_angled_lr_board[5][0],',',this.state.connectFour_angled_lr_board[5][1],',',this.state.connectFour_angled_lr_board[5][2],',',this.state.connectFour_angled_lr_board[5][3],']','\n',
+      ']'
+    )
+
+  }
+
+  checkRightToLeftAngledArrays( outerArr, innerPos ){
+    let connectFour_angled_rl_board = this.state.connectFour_angled_rl_board;
+    let player = this.state.connectFour_player;
+    console.log(player,"'s rl below: ")
+
+    connectFour_angled_rl_board[outerArr][innerPos] = player;
+
+    let arrayToCheck = outerArr;
+    let firstOccurence = connectFour_angled_rl_board[arrayToCheck].indexOf(player);
+    let foundCount = 0;
+
+    for(let i = 0; i < 5; i++){
+      if(connectFour_angled_rl_board[arrayToCheck][firstOccurence+i] === player){
+        foundCount += 1;
+      }
+    }
+
+    if(foundCount === 4){
+      let connectFour_player1_score = this.state.connectFour_player1_score;
+      let connectFour_player2_score = this.state.connectFour_player2_score;
+
+      console.log('========> we have a winner: ',player,' <=========')
+      if(player === 'player 1'){
+        connectFour_player1_score += 1
+        this.setState({
+          connectFour_player1_score : connectFour_player1_score
+        })
+      } else {
+        connectFour_player2_score += 1
+        this.setState({
+          connectFour_player2_score : connectFour_player2_score
+        })
+      }
+    }
+
+    console.log(
+      'RIGHT TO LEFT','\n',
+      '[','\n',
+        '[',this.state.connectFour_angled_rl_board[0][0],',',this.state.connectFour_angled_rl_board[0][1],',',this.state.connectFour_angled_rl_board[0][2],',',this.state.connectFour_angled_rl_board[0][3],']','\n',
+        '[',this.state.connectFour_angled_rl_board[1][0],',',this.state.connectFour_angled_rl_board[1][1],',',this.state.connectFour_angled_rl_board[1][2],',',this.state.connectFour_angled_rl_board[1][3],',',this.state.connectFour_angled_rl_board[1][4],']','\n',
+        '[',this.state.connectFour_angled_rl_board[2][0],',',this.state.connectFour_angled_rl_board[2][1],',',this.state.connectFour_angled_rl_board[2][2],',',this.state.connectFour_angled_rl_board[2][3],',',this.state.connectFour_angled_rl_board[2][4],',',this.state.connectFour_angled_rl_board[2][5],']','\n',
+        '[',this.state.connectFour_angled_rl_board[3][0],',',this.state.connectFour_angled_rl_board[3][1],',',this.state.connectFour_angled_rl_board[3][2],',',this.state.connectFour_angled_rl_board[3][3],',',this.state.connectFour_angled_rl_board[3][4],',',this.state.connectFour_angled_rl_board[3][5],']','\n',
+        '[',this.state.connectFour_angled_rl_board[4][0],',',this.state.connectFour_angled_rl_board[4][1],',',this.state.connectFour_angled_rl_board[4][2],',',this.state.connectFour_angled_rl_board[4][3],',',this.state.connectFour_angled_rl_board[4][4],']','\n',
+        '[',this.state.connectFour_angled_rl_board[5][0],',',this.state.connectFour_angled_rl_board[5][1],',',this.state.connectFour_angled_rl_board[5][2],',',this.state.connectFour_angled_rl_board[5][3],']','\n',
+      ']'
+    )
 
   }
 
@@ -292,7 +397,6 @@ export default class ConnectFour extends React.Component{
 
 
 
-
   render(){
     return(
       <div>
@@ -303,58 +407,58 @@ export default class ConnectFour extends React.Component{
 
             <div className="connectFour_interface">
               <div className="connectFour_nodes">
-                <div className="connectFour_single_node" onClick={() => this.connectFourAddNewPiece(0,0,0)} >{this.state.connectFour_insert_piece_at_position[0][0]}</div>
-                <div className="connectFour_single_node" onClick={() => this.connectFourAddNewPiece(0,1,1)} >{this.state.connectFour_insert_piece_at_position[0][1]}</div>
-                <div className="connectFour_single_node" onClick={() => this.connectFourAddNewPiece(0,2,2)} >{this.state.connectFour_insert_piece_at_position[0][2]}</div>
-                <div className="connectFour_single_node" onClick={() => this.connectFourAddNewPiece(0,3,3)} >{this.state.connectFour_insert_piece_at_position[0][3]}</div>
-                <div className="connectFour_single_node" onClick={() => this.connectFourAddNewPiece(0,4,4)} >{this.state.connectFour_insert_piece_at_position[0][4]}</div>
-                <div className="connectFour_single_node" onClick={() => this.connectFourAddNewPiece(0,5,5)} >{this.state.connectFour_insert_piece_at_position[0][5]}</div>
-                <div className="connectFour_single_node" onClick={() => this.connectFourAddNewPiece(0,6,6)} >{this.state.connectFour_insert_piece_at_position[0][6]}</div>
+                <div className="connectFour_single_node" onClick={() => {this.checkRightToLeftAngledArrays(3,5); this.connectFourAddNewPiece(0,0,0)}} >{this.state.connectFour_insert_piece_at_position[0][0]}</div>
+                <div className="connectFour_single_node" onClick={() => {this.checkRightToLeftAngledArrays(2,5); this.connectFourAddNewPiece(0,1,1)}} >{this.state.connectFour_insert_piece_at_position[0][1]}</div>
+                <div className="connectFour_single_node" onClick={() => {this.checkRightToLeftAngledArrays(1,4); this.connectFourAddNewPiece(0,2,2)}} >{this.state.connectFour_insert_piece_at_position[0][2]}</div>
+                <div className="connectFour_single_node" onClick={() => {this.checkRightToLeftAngledArrays(0,3); this.checkLeftToRightAngledArrays(0,3); this.connectFourAddNewPiece(0,3,3)}} >{this.state.connectFour_insert_piece_at_position[0][3]}</div>
+                <div className="connectFour_single_node" onClick={() => {this.checkLeftToRightAngledArrays(1,4); this.connectFourAddNewPiece(0,4,4)}} >{this.state.connectFour_insert_piece_at_position[0][4]}</div>
+                <div className="connectFour_single_node" onClick={() => {this.checkLeftToRightAngledArrays(2,5); this.connectFourAddNewPiece(0,5,5)}} >{this.state.connectFour_insert_piece_at_position[0][5]}</div>
+                <div className="connectFour_single_node" onClick={() => {this.checkLeftToRightAngledArrays(3,5); this.connectFourAddNewPiece(0,6,6)}} >{this.state.connectFour_insert_piece_at_position[0][6]}</div>
               </div>
               <div className="connectFour_nodes">
-                <div className="connectFour_single_node" onClick={() => this.connectFourAddNewPiece(1,0,7)} >{this.state.connectFour_insert_piece_at_position[1][0]}</div>
-                <div className="connectFour_single_node" onClick={() => this.connectFourAddNewPiece(1,1,8)} >{this.state.connectFour_insert_piece_at_position[1][1]}</div>
-                <div className="connectFour_single_node" onClick={() => this.connectFourAddNewPiece(1,2,9)} >{this.state.connectFour_insert_piece_at_position[1][2]}</div>
-                <div className="connectFour_single_node" onClick={() => this.connectFourAddNewPiece(1,3,10)} >{this.state.connectFour_insert_piece_at_position[1][3]}</div>
-                <div className="connectFour_single_node" onClick={() => this.connectFourAddNewPiece(1,4,11)} >{this.state.connectFour_insert_piece_at_position[1][4]}</div>
-                <div className="connectFour_single_node" onClick={() => this.connectFourAddNewPiece(1,5,12)} >{this.state.connectFour_insert_piece_at_position[1][5]}</div>
-                <div className="connectFour_single_node" onClick={() => this.connectFourAddNewPiece(1,6,13)} >{this.state.connectFour_insert_piece_at_position[1][6]}</div>
+                <div className="connectFour_single_node" onClick={() => {this.checkRightToLeftAngledArrays(4,4); this.connectFourAddNewPiece(1,0,7)}} >{this.state.connectFour_insert_piece_at_position[1][0]}</div>
+                <div className="connectFour_single_node" onClick={() => {this.checkRightToLeftAngledArrays(3,4); this.connectFourAddNewPiece(1,1,8)}} >{this.state.connectFour_insert_piece_at_position[1][1]}</div>
+                <div className="connectFour_single_node" onClick={() => {this.checkRightToLeftAngledArrays(2,4); this.checkLeftToRightAngledArrays(0,2); this.connectFourAddNewPiece(1,2,9)}} >{this.state.connectFour_insert_piece_at_position[1][2]}</div>
+                <div className="connectFour_single_node" onClick={() => {this.checkRightToLeftAngledArrays(1,3); this.checkLeftToRightAngledArrays(1,3); this.connectFourAddNewPiece(1,3,10)}} >{this.state.connectFour_insert_piece_at_position[1][3]}</div>
+                <div className="connectFour_single_node" onClick={() => {this.checkRightToLeftAngledArrays(0,2); this.checkLeftToRightAngledArrays(2,4); this.connectFourAddNewPiece(1,4,11)}} >{this.state.connectFour_insert_piece_at_position[1][4]}</div>
+                <div className="connectFour_single_node" onClick={() => {this.checkLeftToRightAngledArrays(3,4); this.connectFourAddNewPiece(1,5,12)}} >{this.state.connectFour_insert_piece_at_position[1][5]}</div>
+                <div className="connectFour_single_node" onClick={() => {this.checkLeftToRightAngledArrays(4,4); this.connectFourAddNewPiece(1,6,13)}} >{this.state.connectFour_insert_piece_at_position[1][6]}</div>
               </div>
               <div className="connectFour_nodes">
-                <div className="connectFour_single_node" onClick={() => this.connectFourAddNewPiece(2,0,14)} >{this.state.connectFour_insert_piece_at_position[2][0]}</div>
-                <div className="connectFour_single_node" onClick={() => this.connectFourAddNewPiece(2,1,15)} >{this.state.connectFour_insert_piece_at_position[2][1]}</div>
-                <div className="connectFour_single_node" onClick={() => this.connectFourAddNewPiece(2,2,16)} >{this.state.connectFour_insert_piece_at_position[2][2]}</div>
-                <div className="connectFour_single_node" onClick={() => this.connectFourAddNewPiece(2,3,17)} >{this.state.connectFour_insert_piece_at_position[2][3]}</div>
-                <div className="connectFour_single_node" onClick={() => this.connectFourAddNewPiece(2,4,18)} >{this.state.connectFour_insert_piece_at_position[2][4]}</div>
-                <div className="connectFour_single_node" onClick={() => this.connectFourAddNewPiece(2,5,19)} >{this.state.connectFour_insert_piece_at_position[2][5]}</div>
-                <div className="connectFour_single_node" onClick={() => this.connectFourAddNewPiece(2,6,20)} >{this.state.connectFour_insert_piece_at_position[2][6]}</div>
+                <div className="connectFour_single_node" onClick={() => {this.checkRightToLeftAngledArrays(5,3); this.connectFourAddNewPiece(2,0,14)}} >{this.state.connectFour_insert_piece_at_position[2][0]}</div>
+                <div className="connectFour_single_node" onClick={() => {this.checkRightToLeftAngledArrays(4,3); this.checkLeftToRightAngledArrays(0,1); this.connectFourAddNewPiece(2,1,15)}} >{this.state.connectFour_insert_piece_at_position[2][1]}</div>
+                <div className="connectFour_single_node" onClick={() => {this.checkRightToLeftAngledArrays(3,3); this.checkLeftToRightAngledArrays(1,2); this.connectFourAddNewPiece(2,2,16)}} >{this.state.connectFour_insert_piece_at_position[2][2]}</div>
+                <div className="connectFour_single_node" onClick={() => {this.checkRightToLeftAngledArrays(2,3); this.checkLeftToRightAngledArrays(2,3); this.connectFourAddNewPiece(2,3,17)}} >{this.state.connectFour_insert_piece_at_position[2][3]}</div>
+                <div className="connectFour_single_node" onClick={() => {this.checkRightToLeftAngledArrays(1,2); this.checkLeftToRightAngledArrays(3,3); this.connectFourAddNewPiece(2,4,18)}} >{this.state.connectFour_insert_piece_at_position[2][4]}</div>
+                <div className="connectFour_single_node" onClick={() => {this.checkRightToLeftAngledArrays(0,1); this.checkLeftToRightAngledArrays(4,3); this.connectFourAddNewPiece(2,5,19)}} >{this.state.connectFour_insert_piece_at_position[2][5]}</div>
+                <div className="connectFour_single_node" onClick={() => {this.checkLeftToRightAngledArrays(5,3); this.connectFourAddNewPiece(2,6,20)}} >{this.state.connectFour_insert_piece_at_position[2][6]}</div>
               </div>
               <div className="connectFour_nodes">
-                <div className="connectFour_single_node" onClick={() => this.connectFourAddNewPiece(3,0,21)} >{this.state.connectFour_insert_piece_at_position[3][0]}</div>
-                <div className="connectFour_single_node" onClick={() => this.connectFourAddNewPiece(3,1,22)} >{this.state.connectFour_insert_piece_at_position[3][1]}</div>
-                <div className="connectFour_single_node" onClick={() => this.connectFourAddNewPiece(3,2,23)} >{this.state.connectFour_insert_piece_at_position[3][2]}</div>
-                <div className="connectFour_single_node" onClick={() => this.connectFourAddNewPiece(3,3,24)} >{this.state.connectFour_insert_piece_at_position[3][3]}</div>
-                <div className="connectFour_single_node" onClick={() => this.connectFourAddNewPiece(3,4,25)} >{this.state.connectFour_insert_piece_at_position[3][4]}</div>
-                <div className="connectFour_single_node" onClick={() => this.connectFourAddNewPiece(3,5,26)} >{this.state.connectFour_insert_piece_at_position[3][5]}</div>
-                <div className="connectFour_single_node" onClick={() => this.connectFourAddNewPiece(3,6,27)} >{this.state.connectFour_insert_piece_at_position[3][6]}</div>
+                <div className="connectFour_single_node" onClick={() => {this.checkLeftToRightAngledArrays(0,0); this.connectFourAddNewPiece(3,0,21)}} >{this.state.connectFour_insert_piece_at_position[3][0]}</div>
+                <div className="connectFour_single_node" onClick={() => {this.checkRightToLeftAngledArrays(5,2); this.checkLeftToRightAngledArrays(1,1); this.connectFourAddNewPiece(3,1,22)}} >{this.state.connectFour_insert_piece_at_position[3][1]}</div>
+                <div className="connectFour_single_node" onClick={() => {this.checkRightToLeftAngledArrays(4,2); this.checkLeftToRightAngledArrays(2,2); this.connectFourAddNewPiece(3,2,23)}} >{this.state.connectFour_insert_piece_at_position[3][2]}</div>
+                <div className="connectFour_single_node" onClick={() => {this.checkRightToLeftAngledArrays(3,2); this.checkLeftToRightAngledArrays(3,2); this.connectFourAddNewPiece(3,3,24)}} >{this.state.connectFour_insert_piece_at_position[3][3]}</div>
+                <div className="connectFour_single_node" onClick={() => {this.checkRightToLeftAngledArrays(2,2); this.checkLeftToRightAngledArrays(4,2); this.connectFourAddNewPiece(3,4,25)}} >{this.state.connectFour_insert_piece_at_position[3][4]}</div>
+                <div className="connectFour_single_node" onClick={() => {this.checkRightToLeftAngledArrays(1,1); this.checkLeftToRightAngledArrays(5,2); this.connectFourAddNewPiece(3,5,26)}} >{this.state.connectFour_insert_piece_at_position[3][5]}</div>
+                <div className="connectFour_single_node" onClick={() => {this.checkRightToLeftAngledArrays(0,0); this.connectFourAddNewPiece(3,6,27)}} >{this.state.connectFour_insert_piece_at_position[3][6]}</div>
               </div>
               <div className="connectFour_nodes">
-                <div className="connectFour_single_node" onClick={() => this.connectFourAddNewPiece(4,0,28)} >{this.state.connectFour_insert_piece_at_position[4][0]}</div>
-                <div className="connectFour_single_node" onClick={() => this.connectFourAddNewPiece(4,1,29)} >{this.state.connectFour_insert_piece_at_position[4][1]}</div>
-                <div className="connectFour_single_node" onClick={() => this.connectFourAddNewPiece(4,2,30)} >{this.state.connectFour_insert_piece_at_position[4][2]}</div>
-                <div className="connectFour_single_node" onClick={() => this.connectFourAddNewPiece(4,3,31)} >{this.state.connectFour_insert_piece_at_position[4][3]}</div>
-                <div className="connectFour_single_node" onClick={() => this.connectFourAddNewPiece(4,4,32)} >{this.state.connectFour_insert_piece_at_position[4][4]}</div>
-                <div className="connectFour_single_node" onClick={() => this.connectFourAddNewPiece(4,5,33)} >{this.state.connectFour_insert_piece_at_position[4][5]}</div>
-                <div className="connectFour_single_node" onClick={() => this.connectFourAddNewPiece(4,6,34)} >{this.state.connectFour_insert_piece_at_position[4][6]}</div>
+                <div className="connectFour_single_node" onClick={() => {this.checkLeftToRightAngledArrays(1,0); this.connectFourAddNewPiece(4,0,28)}} >{this.state.connectFour_insert_piece_at_position[4][0]}</div>
+                <div className="connectFour_single_node" onClick={() => {this.checkLeftToRightAngledArrays(2,1); this.connectFourAddNewPiece(4,1,29)}} >{this.state.connectFour_insert_piece_at_position[4][1]}</div>
+                <div className="connectFour_single_node" onClick={() => {this.checkRightToLeftAngledArrays(5,1); this.checkLeftToRightAngledArrays(3,1); this.connectFourAddNewPiece(4,2,30)}} >{this.state.connectFour_insert_piece_at_position[4][2]}</div>
+                <div className="connectFour_single_node" onClick={() => {this.checkRightToLeftAngledArrays(4,1); this.checkLeftToRightAngledArrays(4,1); this.connectFourAddNewPiece(4,3,31)}} >{this.state.connectFour_insert_piece_at_position[4][3]}</div>
+                <div className="connectFour_single_node" onClick={() => {this.checkRightToLeftAngledArrays(3,1); this.checkLeftToRightAngledArrays(5,1); this.connectFourAddNewPiece(4,4,32)}} >{this.state.connectFour_insert_piece_at_position[4][4]}</div>
+                <div className="connectFour_single_node" onClick={() => {this.checkRightToLeftAngledArrays(2,1); this.connectFourAddNewPiece(4,5,33)}} >{this.state.connectFour_insert_piece_at_position[4][5]}</div>
+                <div className="connectFour_single_node" onClick={() => {this.checkRightToLeftAngledArrays(1,0); this.connectFourAddNewPiece(4,6,34)}} >{this.state.connectFour_insert_piece_at_position[4][6]}</div>
               </div>
               <div className="connectFour_nodes">
-                <div className="connectFour_single_node" onClick={() => this.connectFourAddNewPiece(5,0,35)} >{this.state.connectFour_insert_piece_at_position[5][0]}</div>
-                <div className="connectFour_single_node" onClick={() => this.connectFourAddNewPiece(5,1,36)} >{this.state.connectFour_insert_piece_at_position[5][1]}</div>
-                <div className="connectFour_single_node" onClick={() => this.connectFourAddNewPiece(5,2,37)} >{this.state.connectFour_insert_piece_at_position[5][2]}</div>
-                <div className="connectFour_single_node" onClick={() => this.connectFourAddNewPiece(5,3,38)} >{this.state.connectFour_insert_piece_at_position[5][3]}</div>
-                <div className="connectFour_single_node" onClick={() => this.connectFourAddNewPiece(5,4,39)} >{this.state.connectFour_insert_piece_at_position[5][4]}</div>
-                <div className="connectFour_single_node" onClick={() => this.connectFourAddNewPiece(5,5,40)} >{this.state.connectFour_insert_piece_at_position[5][5]}</div>
-                <div className="connectFour_single_node" onClick={() => this.connectFourAddNewPiece(5,6,41)} >{this.state.connectFour_insert_piece_at_position[5][6]}</div>
+                <div className="connectFour_single_node" onClick={() => {this.checkLeftToRightAngledArrays(2,0); this.connectFourAddNewPiece(5,0,35)}} >{this.state.connectFour_insert_piece_at_position[5][0]}</div>
+                <div className="connectFour_single_node" onClick={() => {this.checkRightToLeftAngledArrays(3,0); this.checkLeftToRightAngledArrays(2,5); this.connectFourAddNewPiece(5,1,36)}} >{this.state.connectFour_insert_piece_at_position[5][1]}</div>
+                <div className="connectFour_single_node" onClick={() => {this.checkRightToLeftAngledArrays(4,0); this.checkLeftToRightAngledArrays(1,4); this.connectFourAddNewPiece(5,2,37)}} >{this.state.connectFour_insert_piece_at_position[5][2]}</div>
+                <div className="connectFour_single_node" onClick={() => {this.checkRightToLeftAngledArrays(5,0); this.checkLeftToRightAngledArrays(5,0); this.connectFourAddNewPiece(5,3,38)}} >{this.state.connectFour_insert_piece_at_position[5][3]}</div>
+                <div className="connectFour_single_node" onClick={() => {this.checkRightToLeftAngledArrays(4,0); this.connectFourAddNewPiece(5,4,39)}} >{this.state.connectFour_insert_piece_at_position[5][4]}</div>
+                <div className="connectFour_single_node" onClick={() => {this.checkRightToLeftAngledArrays(3,0); this.connectFourAddNewPiece(5,5,40)}} >{this.state.connectFour_insert_piece_at_position[5][5]}</div>
+                <div className="connectFour_single_node" onClick={() => {this.checkRightToLeftAngledArrays(2,0); this.connectFourAddNewPiece(5,6,41)}} >{this.state.connectFour_insert_piece_at_position[5][6]}</div>
               </div>
             </div>
 

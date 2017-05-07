@@ -15,6 +15,7 @@ export default class App extends React.Component{
       <div className="app_container">
         <HashRouter>
           <Switch>
+            <Route exact path="/" component={Home}/>
             <Route exact path="/Home" component={Home}/>
             <Route exact path="/TicTacToe" component={TicTacToe}/>
             <Route exact path="/Simon" component={Simon}/>
