@@ -16,7 +16,7 @@ export default class ConnectFour extends React.Component{
       connectFour_gameover_display : 'none',
       connectFour_winner : '',
       // connectFour_display_none : 'none',
-      // connectFour_input_val : '',
+      connectFour_input_val : '',
       connectFour_player : 'player 1',
       connectFour_board : [],
       connectFour_vertical_board : [],
@@ -28,6 +28,7 @@ export default class ConnectFour extends React.Component{
       connectFour_coin_img : '',
       connectFour_angled_lr_board : [],
       connectFour_insert_piece_angled_lr : [],
+      connectFour_angled_rl_board : [],
       connectFour_remaining_combinations : ''
     }
 
@@ -36,7 +37,6 @@ export default class ConnectFour extends React.Component{
     this.ConnectFourPlayer2SelectScreen = ConnectFourPlayer2SelectScreen.bind(this);
     this.ConnectFourGameOver = ConnectFourGameOver.bind(this);
     // this.connectFourResetGame = this.connectFourResetGame.bind(this);
-    // this.connectFourQuitGame = this.connectFourQuitGame.bind(this);
     // this.connectFourWinnerWasFound = this.connectFourWinnerWasFound.bind(this);
     this.handleKeyPress = this.handleKeyPress.bind(this);
     this.connectFourStorePlayerName = this.connectFourStorePlayerName.bind(this);
@@ -55,7 +55,6 @@ export default class ConnectFour extends React.Component{
   }
 
   componentWillMount() {
-    console.log('mounted!')
     this.connectFourConstructBoard();
     this.connectFour_CheckForRemainingConnections();
   }
@@ -103,6 +102,7 @@ export default class ConnectFour extends React.Component{
       connectFour_insert_piece_angled_lr : [],
       connectFour_remaining_combinations : ''
     })
+    this.connectFourConstructBoard();
   }
 
   connectFourConstructBoard(){
@@ -114,9 +114,6 @@ export default class ConnectFour extends React.Component{
     let connectFour_insert_piece_angled_lr = this.state.connectFour_insert_piece_angled_lr;
     let connectFour_angled_lr_board = this.state.connectFour_angled_lr_board;
     let connectFour_angled_rl_board = this.state.connectFour_angled_rl_board;
-
-    console.log('=> connectFour_board: ',this.state.connectFour_board)
-    console.log('=> connectFour_vertical_board: ',this.state.connectFour_vertical_board)
 
     for(let i = 0; i < 6; i++){
       connectFour_board[i] = [];
@@ -205,7 +202,46 @@ export default class ConnectFour extends React.Component{
   connectFour_CheckForRemainingConnections(){
     // this will have to be called on componentDidMount so we generate a number and set the state.
     // end this function by settign the state of connectFour_remaining_combinations, 0 means no more combinations!
-    let remaining_combinations = 0; // not rly 0.
+
+    var check = function(arr){
+    	let totz = 0;
+      let currentCombo;
+      let combinations = 0;
+    	for(let i = 0; i < arr.length; i++){
+      	for(let x = 0; x < arr[i].length; x++){
+          if(combinations > 2){
+          	totz += 1;
+            x = arr[i].length + 1;
+          } else if(arr[i][x] === ''){
+          	combinations += 1
+          } else if(arr[i][x] !== '' && currentCombo === undefined){
+          	currentCombo = arr[i][x];
+          } else if(arr[i][x] !== '' && arr[i][x] !== currentCombo){
+          	currentCombo = arr[i][x];
+            if(combinations > 0){ combinations = 0; }
+          } else if(currentCombo === arr[i][x]){
+          	combinations += 1;
+          }
+        }
+      }
+      return totz;
+    }
+
+    let connectFour_board = this.state.connectFour_board;
+    let connectFour_vertical_board = this.state.connectFour_vertical_board;
+    let connectFour_angled_lr_board = this.state.connectFour_angled_lr_board;
+    let connectFour_angled_rl_board = this.state.connectFour_angled_rl_board;
+    let remaining_combinations = 0;
+
+    console.log('board => ',connectFour_board)
+    console.log('vertical => ',connectFour_vertical_board)
+    console.log('RightL => ',connectFour_angled_rl_board)
+    console.log('LeftR => ',connectFour_angled_lr_board)
+    remaining_combinations += check(connectFour_board);
+    remaining_combinations += check(connectFour_vertical_board);
+    remaining_combinations += check(connectFour_angled_rl_board);
+    remaining_combinations += check(connectFour_angled_lr_board);
+    console.log('remaining_combinations =========================> ',remaining_combinations)
 
     this.setState({
       connectFour_remaining_combinations : remaining_combinations
@@ -227,7 +263,7 @@ export default class ConnectFour extends React.Component{
       let winner;
       let player1_score = this.state.player1_score;
       let player2_score = this.state.player2_score;
-      player1_score > player2_score  ? winner = 'player 1' : winner = 'testing'
+      player1_score > player2_score  ? winner = 'player 1' : winner = 'player 2'
       this.setState({
         connectFour_landing_display : 'none',
         connectFour_player2Select_display : 'none',
@@ -475,6 +511,23 @@ export default class ConnectFour extends React.Component{
   connectFourStorePlayerName(e){
     e.preventDefault();
 
+    console.log('this.refs.player2_name_input.value --> ',this.refs.player2_name_input.value)
+
+    // if(this.state.connectFour_player1_name === ''){
+    //   console.log('enter name')
+    //   return;
+    // }
+
+    // if(this.state.connectFour_input_val === undefined){
+    //   console.log('enter name')
+    //   return;
+    // }
+    // if(this.refs.player1_name_input_value === undefined){
+    //   console.log('please enter a name')
+    //   return
+    // }
+
+    console.log('$ => ',this.refs.player1_name_input_value)
     if(this.state.connectFour_player1_name === ''){
       this.refs.player1_name_input.value = '';
       let player1_name_input = this.state.connectFour_input_val;
@@ -484,6 +537,7 @@ export default class ConnectFour extends React.Component{
         connectFour_landing_display : 'none',
         connectFour_player2Select_display : 'block'
       })
+      console.log("this.state.connectFour_player1_name === ''")
     } else if(this.state.connectFour_player1_name !== ''){
       this.refs.player2_name_input.value = '';
       let player2_name_input = this.state.connectFour_input_val;
@@ -493,7 +547,10 @@ export default class ConnectFour extends React.Component{
         connectFour_player2Select_display : 'none',
         connectFour_gameBoard_display : 'block',
       })
+      console.log("this.state.connectFour_player1_name !== ''")
     }
+
+
   }
 
   connectFourSaveInput(e){
@@ -574,7 +631,6 @@ const ConnectFourPlayer2SelectScreen = function(){
 }
 
 const Player1_query = function(){
-console.log('runnin')
   return <div className="connectFour_player1_query">
       <input className="connectFour_name1_input" placeholder="Player1, enter name" onChange={this.connectFourSaveInput} onKeyPress={this.handleKeyPress} ref="player1_name_input"/>
     <button className="connectFour_player1_name_btn" onClick={this.connectFourStorePlayerName}>Enter</button>
@@ -678,7 +734,7 @@ const ConnectFourGameBoard = function(){
       <div className="connectFour_controls">
         <div className="connectFour_buttons_container">
           <button className="connectFour_controls_btns connectFour_reset_game_btn" onClick={() => this.connectFourResetGame()}>reset</button>
-          <button className="connectFour_controls_btns connectFour_quit_game_btn">quit</button>
+        <button className="connectFour_controls_btns connectFour_quit_game_btn" onClick={this.connectFourQuitGame}>quit</button>
         </div>
       </div>
     </div>
