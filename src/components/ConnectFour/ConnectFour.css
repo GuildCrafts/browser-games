@@ -59,14 +59,20 @@
 }
 
 .connectFour_player1_scores{
-  display:inline-block;
-  width:49.5%;
   border-right:1px solid gainsboro;
 }
 
-.connectFour_player2_scores{
+.connectFour_player1_scores, .connectFour_player2_scores{
   display:inline-block;
   width:49.5%;
+}
+
+.connectFour_player1_score{
+  color:red;
+}
+
+.connectFour_player2_score{
+  color:orange;
 }
 
 .connectFour_single_node{
@@ -86,43 +92,8 @@
   background-color:gainsboro;
 }
 
-/*.connectFour_outer_red_piece, .connectFour_outer_yellow_piece{
-  border-radius: 50%;
-  height: 88%;
-  width: 88%;
-  margin-top: 3%;
-  display: inline-block;
-  position: absolute;
-  margin-left: -46%;
-}
-
-.connectFour_red_piece, .connectFour_yellow_piece{
-  border-radius: 50%;
-  height: 75%;
-  width: 75%;
-  margin-top: 3%;
-  display: inline-block;
-  position: absolute;
-  margin-left: -40%;
-  margin-top: 8%;
-}
-
-.connectFour_outer_red_piece, .connectFour_red_piece{
-  background-color: red;
-  border: 1px solid firebrick;
-}
-
-.connectFour_outer_yellow_piece, .connectFour_yellow_piece{
-  background-color: yellow;
-  border: 1px solid orange;
-}
-
-.connectFour_emblem{
-  margin-top:-2px;
-}*/
-
 .connectFour_message{
-  color:orange;
+  color:steelblue;
   border-bottom:1px solid gainsboro;
   padding: 5px 0 5px 0;
 }

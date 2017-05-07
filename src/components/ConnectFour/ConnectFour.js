@@ -24,7 +24,7 @@ export default class ConnectFour extends React.Component{
       connectFour_insert_piece_at_vertical_position : [],
       connectFour_player1_score : 0,
       connectFour_player2_score : 0,
-      connectFour_ingame_msg : "player 1's turn",
+      connectFour_ingame_msg : "NEW GAME! player 1's turn",
       connectFour_coin_img : '',
       connectFour_angled_lr_board : [],
       connectFour_insert_piece_angled_lr : []
@@ -59,7 +59,19 @@ export default class ConnectFour extends React.Component{
 
   connectFourResetGame(){
     this.setState({
+      connectFour_player : 'player 1',
+      connectFour_board : [],
+      connectFour_vertical_board : [],
+      connectFour_insert_piece_at_position : [],
+      connectFour_insert_piece_at_vertical_position : [],
+      connectFour_player1_score : 0,
+      connectFour_player2_score : 0,
+      connectFour_ingame_msg : "NEW GAME! player 1's turn",
+      connectFour_coin_img : '',
+      connectFour_angled_lr_board : [],
+      connectFour_insert_piece_angled_lr : []
     })
+    this.connectFourConstructBoard();
   }
 
   connectFourQuitGame(){
@@ -93,7 +105,6 @@ export default class ConnectFour extends React.Component{
       connectFour_vertical_board[i] = [];
       connectFour_insert_piece_at_vertical_position[i] = [];
       for(let x = 0; x < 6; x++){
-        // console.log('connectFour_vertical_board: ',connectFour_vertical_board)
         connectFour_insert_piece_at_vertical_position[i][x] = '';
       }
     }
@@ -173,9 +184,20 @@ export default class ConnectFour extends React.Component{
     let connectFour_insert_piece_at_position = this.state.connectFour_insert_piece_at_position;
     let connectFour_insert_piece_at_vertical_position = this.state.connectFour_insert_piece_at_vertical_position;
 
-    // console.log('#1 connectFour_board[outerArr][innerPos]: ',connectFour_board[outerArr][innerPos])
-    if(connectFour_board[outerArr][innerPos] === 'player 1' || connectFour_board[outerArr][innerPos] === 'player 2' ){
-      console.log('pick another square')
+
+    if(outerArr <= 4 && connectFour_vertical_board[innerPos][outerArr+1] === undefined){
+      let message = 'illegal move... try again '+player
+      this.setState({
+        connectFour_ingame_msg : message
+      })
+      return
+    }
+
+    if(connectFour_board[outerArr][innerPos] === 'player 1' || connectFour_board[outerArr][innerPos] === 'player 2'){
+      let message = 'Occupied! try again '+player
+      this.setState({
+        connectFour_ingame_msg : message
+      })
       return
     }
 
@@ -183,10 +205,6 @@ export default class ConnectFour extends React.Component{
     connectFour_vertical_board[innerPos][outerArr] = player;
 
     this.connectFourFill( outerArr, innerPos );
-
-    // below we check for winning combinations
-    let numsInEveryWinningCombination = [17,3,10,14,15,16,18,19,20,24,31,38];
-      // check across each array for combinations at exactly than 4
 
 
 
@@ -487,7 +505,7 @@ export default class ConnectFour extends React.Component{
 
               <div className="connectFour_controls">
                 <div className="connectFour_buttons_container">
-                  <button className="connectFour_controls_btns connectFour_reset_game_btn">reset</button>
+                  <button className="connectFour_controls_btns connectFour_reset_game_btn" onClick={() => this.connectFourResetGame()}>reset</button>
                   <button className="connectFour_controls_btns connectFour_quit_game_btn">quit</button>
                 </div>
               </div>
