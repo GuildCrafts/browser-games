@@ -51,6 +51,13 @@ class ChessBoard {
     }
   }
 
+  rookIsValidMove(startCoordinate, endCoordinate){
+    var rooksMoveHorizontallyandVertically = startCoordinate.x === endCoordinate.x || startCoordinate.y === endCoordinate.y
+    if(rooksMoveHorizontallyandVertically && this.isEmpty(endCoordinate)){
+      return true
+    }
+  }
+
   pawnIsValidMove(startCoordinate, endCoordinate){
     var pawnsCanOnlyMoveTwoSteps = startCoordinate.x === endCoordinate.x && startCoordinate.y + 1 || startCoordinate.y + 2 === endCoordinate.y
     if(pawnsCanOnlyMoveTwoSteps && this.isEmpty(endCoordinate) ){
@@ -61,7 +68,9 @@ class ChessBoard {
   checkIfMoveIsValid(startCoordinate, pieceType, endCoordinate){
     var rules = {
       pawn: {isValidMove: this.pawnIsValidMove(startCoordinate, endCoordinate)},
-      knight: {isValidMove: this.knightIsValidMove(startCoordinate, endCoordinate)}
+      knight: {isValidMove: this.knightIsValidMove(startCoordinate, endCoordinate)},
+      rook: {isValidMove: this.rookIsValidMove(startCoordinate, endCoordinate)}
+
     }
     if(rules[pieceType].isValidMove){
       this.move(startCoordinate, endCoordinate)
@@ -85,7 +94,7 @@ function resetGame(){
 
 $(document).ready(function(){
   var chess = new ChessBoard()
-console.log(  chess.checkIfMoveIsValid({x: 0,y: 2}, "knight", {x:2, y: 3}))
+console.log(  chess.checkIfMoveIsValid({x: 2,y: 2}, "rook", {x:2, y: 3}))
   var container = $('#chess-board')
   var row = $('<div>').addClass('chess-board-row')
 
