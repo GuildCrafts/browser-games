@@ -1,0 +1,18 @@
+#chess-board {
+  display: inline-block;
+}
+.chess-board-row {
+  background-color: tan;
+  display: flex;
+  flex-direction: row;
+}
+
+.chess-board-cell {
+  height: 100px;
+  width: 100px;
+}
+
+.chess-board-row:nth-child(odd) .chess-board-cell:nth-child(even),
+.chess-board-row:nth-child(even) .chess-board-cell:nth-child(odd)  {
+  background-color: black;
+}
