@@ -22,6 +22,49 @@ class ChessBoard {
       }
       this.board.push(row)
     }
+    this.renderBoard()
+  }
+  renderBoard() {
+    this.getCell(0,0).classList.add('WR-Q')
+    this.getCell(1,0).classList.add('WB-Q')
+    this.getCell(2,0).classList.add('WK-Q')
+    this.getCell(3,0).classList.add('WQ')
+    this.getCell(4,0).classList.add('WK')
+    this.getCell(5,0).classList.add('WK-K')
+    this.getCell(6,0).classList.add('WB-K')
+    this.getCell(7,0).classList.add('WR-K')
+
+    this.getCell(0,1).classList.add('WP')
+    this.getCell(1,1).classList.add('WP')
+    this.getCell(2,1).classList.add('WP')
+    this.getCell(3,1).classList.add('WP')
+    this.getCell(4,1).classList.add('WP')
+    this.getCell(5,1).classList.add('WP')
+    this.getCell(6,1).classList.add('WP')
+    this.getCell(7,1).classList.add('WP')
+
+    this.getCell(0,7).classList.add('BR-K')
+    this.getCell(1,7).classList.add('BB-K')
+    this.getCell(2,7).classList.add('BK-K')
+    this.getCell(3,7).classList.add('BK')
+    this.getCell(4,7).classList.add('BQ')
+    this.getCell(5,7).classList.add('BK-Q')
+    this.getCell(6,7).classList.add('BB-Q')
+    this.getCell(7,7).classList.add('BR-Q')
+
+    this.getCell(0,6).classList.add('BP')
+    this.getCell(1,6).classList.add('BP')
+    this.getCell(2,6).classList.add('BP')
+    this.getCell(3,6).classList.add('BP')
+    this.getCell(4,6).classList.add('BP')
+    this.getCell(5,6).classList.add('BP')
+    this.getCell(6,6).classList.add('BP')
+    this.getCell(7,6).classList.add('BP')
+
+  }
+  getCell(x, y) {
+    return document.querySelector('.chess-board-row:nth-child(' + (y + 1) + ') .chess-board-cell:nth-child(' + (x + 1) + ')')
+
   }
   getPieceByCoordinates(row, cell){
     return this.board.filter(function(element){
@@ -40,7 +83,7 @@ class ChessBoard {
     })
     return returnValue
   }
-  isEmpty(endCoordinate){
+  isEmpty(endCoordinate){ //debug
     return this.board[endCoordinate.y][endCoordinate.x] == 0
   }
 
@@ -98,8 +141,6 @@ function resetGame(){
 }
 
 $(document).ready(function(){
-  var chess = new ChessBoard()
-console.log(  chess.checkIfMoveIsValid({x: 0,y: 4}, "king", {x:1, y: 4}))
   var container = $('#chess-board')
   var row = $('<div>').addClass('chess-board-row')
 
@@ -110,4 +151,5 @@ console.log(  chess.checkIfMoveIsValid({x: 0,y: 4}, "king", {x:1, y: 4}))
   Array(8).fill().forEach(function(){
     row.clone().appendTo(container)
   })
+  var chess = new ChessBoard()
 })

@@ -10,9 +10,77 @@
 .chess-board-cell {
   height: 100px;
   width: 100px;
+  position: relative;
+}
+.chess-board-cell:after {
+  position: absolute;
+  height: 100px;
+  width: 100px;
+  line-height: 100px;
+  font-size: 50px;
+  text-align: center;
 }
 
 .chess-board-row:nth-child(odd) .chess-board-cell:nth-child(even),
 .chess-board-row:nth-child(even) .chess-board-cell:nth-child(odd)  {
   background-color: black;
+}
+
+.WR-Q:after, .WR-K:after {
+  content: "\2656";
+  text-shadow: 0 0 5px white;
+}
+
+.WB-Q:after, .WB-K:after {
+  content: "\2657";
+  text-shadow: 0 0 5px white;
+}
+
+.WK-Q:after, .WK-K:after {
+  content: "\2658";
+  text-shadow: 0 0 5px white;
+}
+
+.WQ:after {
+  content: "\2655";
+  text-shadow: 0 0 5px white;
+}
+
+.WK:after {
+  content: "\2654";
+  text-shadow: 0 0 5px white;
+}
+
+.WP:after {
+  content: "\2659";
+  text-shadow: 0 0 5px white;
+}
+.BR-Q:after, .BR-K:after {
+  content: "\265C";
+  text-shadow: 0 0 5px white;
+}
+
+.BB-Q:after, .BB-K:after {
+  content: "\265D";
+  text-shadow: 0 0 5px white;
+}
+
+.BK-Q:after, .BK-K:after {
+  content: "\265E";
+  text-shadow: 0 0 5px white;
+}
+
+.BQ:after {
+  content: "\265B";
+  text-shadow: 0 0 5px white;
+}
+
+.BK:after {
+  content: "\265A";
+  text-shadow: 0 0 5px white;
+}
+
+.BP:after {
+  content: "\265F";
+  text-shadow: 0 0 5px white;
 }
