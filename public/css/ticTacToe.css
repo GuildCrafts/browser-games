@@ -1,0 +1,30 @@
+body {
+  width: 400px;
+  margin: auto;
+  background-color: #FFE900;
+}
+
+h1 {
+  border-bottom: 1px solid black;
+  font-family: 'Inknut Antiqua', serif;
+}
+
+#message {
+  font-family: 'Titillium Web', sans-serif;
+  font-size: 18pt;
+}
+
+#restart {
+  font-family: 'Titillium Web', sans-serif;
+  font-size: 18pt;
+}
+
+.Square {
+  height: 80px;
+  width: 80px;
+  font-size: 60pt;
+  text-align: center;
+  font-weight: bold;
+  font-family: 'Indie Flower', cursive;
+  background-color: #EA2B1F;
+}
