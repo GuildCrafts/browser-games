@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Tic Tac Toe</title>
+    <script src="/Users/johnware/Desktop/learners-guild/browser-games/public/js/ticTacToe.js"></script>
+    <style rel="stylesheet" type="text/css" href="/Users/johnware/Desktop/learners-guild/browser-games/public/css/ticTacToe.css"></style>
+  </head>
+
+  <body onload="startGame()">
+    <h1>Tic Tac Toe</h1>
+    <div id="message">Message here</div>
+    <table border="1">
+      <tr>
+        <td class="square" id="s1" onClick="nextMove(this)"></td>
+        <td class="square" id="s2" onClick="nextMove(this)"></td>
+        <td class="square" id="s3" onClick="nextMove(this)"></td>
+      </tr>
+      <tr>
+        <td class="square" id="s4" onClick="nextMove(this)"></td>
+        <td class="square" id="s5" onClick="nextMove(this)"></td>
+        <td class="square" id="s6" onClick="nextMove(this)"></td>
+      </tr>
+      <tr>
+        <td class="square" id="s7" onClick="nextMove(this)"></td>
+        <td class="square" id="s8" onClick="nextMove(this)"></td>
+        <td class="square" id="s9" onClick="nextMove(this)"></td>
+      </tr>
+
+    </table>
+
+    <h3 href="javascript: startGame();" id="restart">PLAY AGAIN</h3>
+
+  </body>
+</html>
