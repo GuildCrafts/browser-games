@@ -1,0 +1,10 @@
+.app_LoveYa_font{
+  font-family: 'Love Ya Like A Sister', cursive;
+}
+.app_WendyOne_font{
+  font-family: 'Wendy One', sans-serif;
+}
+
+button:focus {
+  outline:0;
+}
