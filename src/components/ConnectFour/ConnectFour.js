@@ -9,13 +9,11 @@ export default class ConnectFour extends React.Component{
     this.state = {
       connectFour_player1_name : '',
       connectFour_player2_name : '',
-      // connectFour_player_query : <Player1_query />,
       connectFour_landing_display : 'block',
       connectFour_player2Select_display : 'none',
       connectFour_gameBoard_display : 'none',
       connectFour_gameover_display : 'none',
       connectFour_winner : '',
-      // connectFour_display_none : 'none',
       connectFour_input_val : '',
       connectFour_player : 'player 1',
       connectFour_board : [],
@@ -27,23 +25,22 @@ export default class ConnectFour extends React.Component{
       connectFour_ingame_msg : "NEW GAME! player 1's turn",
       connectFour_coin_img : '',
       connectFour_angled_lr_board : [],
-      connectFour_insert_piece_angled_lr : [],
       connectFour_angled_rl_board : [],
       connectFour_remaining_combinations : ''
+      // connectFour_player_query : <Player1_query />,
+      // connectFour_display_none : 'none',
+      // connectFour_insert_piece_angled_lr : [],
     }
 
     this.ConnectFourGameBoard = ConnectFourGameBoard.bind(this);
     this.ConnectFourLandingScreen = ConnectFourLandingScreen.bind(this);
     this.ConnectFourPlayer2SelectScreen = ConnectFourPlayer2SelectScreen.bind(this);
     this.ConnectFourGameOver = ConnectFourGameOver.bind(this);
-    // this.connectFourResetGame = this.connectFourResetGame.bind(this);
-    // this.connectFourWinnerWasFound = this.connectFourWinnerWasFound.bind(this);
     this.handleKeyPress = this.handleKeyPress.bind(this);
     this.connectFourStorePlayerName = this.connectFourStorePlayerName.bind(this);
     this.Player1_query = Player1_query.bind(this);
     this.Player2_query = Player2_query.bind(this);
     this.connectFourSaveInput = this.connectFourSaveInput.bind(this);
-    // this.connectFourUpdateBoard = this.connectFourUpdateBoard.bind(this);
     this.connectFourAddNewPiece = this.connectFourAddNewPiece.bind(this);
     this.connectFourConstructBoard.bind(this);
     this.connectFourFill = this.connectFourFill.bind(this);
@@ -52,6 +49,11 @@ export default class ConnectFour extends React.Component{
     this.checkLeftToRightAngledArrays = this.checkLeftToRightAngledArrays.bind(this);
     this.checkRightToLeftAngledArrays = this.checkRightToLeftAngledArrays.bind(this);
     this.connectFour_CheckForRemainingConnections = this.connectFour_CheckForRemainingConnections.bind(this);
+    this.connectFourSkipPlayer1NameEntry = this.connectFourSkipPlayer1NameEntry.bind(this);
+    this.connectFourSkipPlayer2NameEntry = this.connectFourSkipPlayer2NameEntry.bind(this);
+    // this.connectFourResetGame = this.connectFourResetGame.bind(this);
+    // this.connectFourWinnerWasFound = this.connectFourWinnerWasFound.bind(this);
+    // this.connectFourUpdateBoard = this.connectFourUpdateBoard.bind(this);
   }
 
   componentWillMount() {
@@ -75,10 +77,30 @@ export default class ConnectFour extends React.Component{
       connectFour_ingame_msg : "NEW GAME! player 1's turn",
       connectFour_coin_img : '',
       connectFour_angled_lr_board : [],
-      connectFour_insert_piece_angled_lr : [],
       connectFour_remaining_combinations : ''
+      // connectFour_insert_piece_angled_lr : [],
     })
     this.connectFourConstructBoard();
+  }
+
+  connectFourSkipPlayer1NameEntry(){
+    this.setState({
+      connectFour_landing_display : 'none',
+      connectFour_player2Select_display : 'block',
+      connectFour_gameBoard_display : 'none',
+      connectFour_gameover_display : 'none',
+      connectFour_player1_name : 'player 1'
+    })
+  }
+
+  connectFourSkipPlayer2NameEntry(){
+    this.setState({
+      connectFour_landing_display : 'none',
+      connectFour_player2Select_display : 'none',
+      connectFour_gameBoard_display : 'block',
+      connectFour_gameover_display : 'none',
+      connectFour_player2_name : 'player 2',
+    })
   }
 
   connectFourQuitGame(){
@@ -99,8 +121,8 @@ export default class ConnectFour extends React.Component{
       connectFour_ingame_msg : "NEW GAME! player 1's turn",
       connectFour_coin_img : '',
       connectFour_angled_lr_board : [],
-      connectFour_insert_piece_angled_lr : [],
       connectFour_remaining_combinations : ''
+      // connectFour_insert_piece_angled_lr : [],
     })
     this.connectFourConstructBoard();
   }
@@ -111,9 +133,9 @@ export default class ConnectFour extends React.Component{
     let connectFour_vertical_board = this.state.connectFour_vertical_board;
     let connectFour_insert_piece_at_position = this.state.connectFour_insert_piece_at_position;
     let connectFour_insert_piece_at_vertical_position = this.state.connectFour_insert_piece_at_vertical_position;
-    let connectFour_insert_piece_angled_lr = this.state.connectFour_insert_piece_angled_lr;
     let connectFour_angled_lr_board = this.state.connectFour_angled_lr_board;
     let connectFour_angled_rl_board = this.state.connectFour_angled_rl_board;
+    // let connectFour_insert_piece_angled_lr = this.state.connectFour_insert_piece_angled_lr;
 
     for(let i = 0; i < 6; i++){
       connectFour_board[i] = [];
@@ -128,6 +150,7 @@ export default class ConnectFour extends React.Component{
       connectFour_vertical_board[i] = [];
       connectFour_insert_piece_at_vertical_position[i] = [];
       for(let x = 0; x < 6; x++){
+        connectFour_vertical_board[i][x] = '';
         connectFour_insert_piece_at_vertical_position[i][x] = '';
       }
     }
@@ -141,24 +164,6 @@ export default class ConnectFour extends React.Component{
       ['','','','']
     ]
 
-    let origLeftToRightStartPos = 21;
-    let startingPos;
-
-    for(let i = 0; i < 6; i++){
-      startingPos = origLeftToRightStartPos
-      for(let x = 0; x < connectFour_angled_lr_board[i].length; x++){
-        connectFour_angled_lr_board[i][x] = startingPos;
-        startingPos -= 6;
-      }
-        if(i >= 2){
-          origLeftToRightStartPos += 1;
-          startingPos = origLeftToRightStartPos;
-        } else if (i < 2){
-          origLeftToRightStartPos += 7;
-          startingPos = origLeftToRightStartPos;
-        }
-    }
-
     connectFour_angled_rl_board = [
       ['','','',''],
       ['','','','',''],
@@ -169,23 +174,6 @@ export default class ConnectFour extends React.Component{
     ]
 
 
-    let origRightToLeftStartPos = 27;
-    startingPos = null;
-
-    for(let i = 0; i < 6; i++){
-      startingPos = origRightToLeftStartPos
-      for(let x = 0; x < connectFour_angled_rl_board[i].length; x++){
-        connectFour_angled_rl_board[i][x] = startingPos;
-        startingPos -= 8;
-      }
-        if(i >= 2){
-          origRightToLeftStartPos -= 1;
-          startingPos = origRightToLeftStartPos;
-        } else if (i < 2){
-          origRightToLeftStartPos += 7;
-          startingPos = origRightToLeftStartPos;
-        }
-    }
 
 
     this.setState({
@@ -200,29 +188,27 @@ export default class ConnectFour extends React.Component{
   }
 
   connectFour_CheckForRemainingConnections(){
-    // this will have to be called on componentDidMount so we generate a number and set the state.
-    // end this function by settign the state of connectFour_remaining_combinations, 0 means no more combinations!
 
-    var check = function(arr){
+    let check = function(arr){
     	let totz = 0;
       let currentCombo;
-      let combinations = 0;
-    	for(let i = 0; i < arr.length; i++){
-      	for(let x = 0; x < arr[i].length; x++){
+      let combinations = 0; //let solArr;
+    	loop1:for(let i = 0; i < arr.length; i++){ //solArr = []; //console.log('i: '+i+' is ['+arr[i]+']')
+      	loop2:for(let x = 0; x < arr[i].length; x++){
           if(combinations > 2){
-          	totz += 1;
-            x = arr[i].length + 1;
+          	totz += 1; //console.log('totz ',i,': ',solArr)
+            break loop2;
           } else if(arr[i][x] === ''){
-          	combinations += 1
+          	combinations += 1; //solArr.push(arr[i][x]);
           } else if(arr[i][x] !== '' && currentCombo === undefined){
-          	currentCombo = arr[i][x];
+          	currentCombo = arr[i][x]; //console.log(i+' has '+combinations+' combinations!')
           } else if(arr[i][x] !== '' && arr[i][x] !== currentCombo){
-          	currentCombo = arr[i][x];
+          	currentCombo = arr[i][x]; //console.log(i+' has '+combinations+' combinations!')
             if(combinations > 0){ combinations = 0; }
-          } else if(currentCombo === arr[i][x]){
-          	combinations += 1;
+          } else if(currentCombo === arr[i][x]){ //console.log('i: ',i); console.log(i+' has '+combinations+' combinations!')
+          	combinations += 1; //solArr.push(arr[i][x]);
           }
-        }
+        } combinations = 0; currentCombo = undefined;
       }
       return totz;
     }
@@ -238,9 +224,13 @@ export default class ConnectFour extends React.Component{
     console.log('RightL => ',connectFour_angled_rl_board)
     console.log('LeftR => ',connectFour_angled_lr_board)
     remaining_combinations += check(connectFour_board);
+    console.log('check(connectFour_board): ',check(connectFour_board))
     remaining_combinations += check(connectFour_vertical_board);
+    console.log('check(connectFour_vertical_board): ',check(connectFour_vertical_board))
     remaining_combinations += check(connectFour_angled_rl_board);
+    console.log('check(connectFour_angled_rl_board): ',check(connectFour_angled_rl_board))
     remaining_combinations += check(connectFour_angled_lr_board);
+    console.log('check(connectFour_angled_lr_board): ',check(connectFour_angled_lr_board))
     console.log('remaining_combinations =========================> ',remaining_combinations)
 
     this.setState({
@@ -256,25 +246,8 @@ export default class ConnectFour extends React.Component{
     let connectFour_insert_piece_at_position = this.state.connectFour_insert_piece_at_position;
     let connectFour_insert_piece_at_vertical_position = this.state.connectFour_insert_piece_at_vertical_position;
 
-    this.connectFour_CheckForRemainingConnections()
-    let connectFour_remaining_combinations = this.state.connectFour_remaining_combinations;
 
-    if(connectFour_remaining_combinations === 0){
-      let winner;
-      let player1_score = this.state.player1_score;
-      let player2_score = this.state.player2_score;
-      player1_score > player2_score  ? winner = 'player 1' : winner = 'player 2'
-      this.setState({
-        connectFour_landing_display : 'none',
-        connectFour_player2Select_display : 'none',
-        connectFour_gameBoard_display : 'none',
-        connectFour_gameover_display : 'block',
-        connectFour_winner : winner
-      })
-      return
-    }
-
-    if(outerArr <= 4 && connectFour_vertical_board[innerPos][outerArr+1] === undefined){
+    if(outerArr <= 4 && connectFour_vertical_board[innerPos][outerArr+1] === ''){
       let message = 'illegal move... try again '+player
       this.setState({
         connectFour_ingame_msg : message
@@ -375,6 +348,24 @@ export default class ConnectFour extends React.Component{
       connectFour_player : player
     })
 
+    this.connectFour_CheckForRemainingConnections()
+    let connectFour_remaining_combinations = this.state.connectFour_remaining_combinations;
+
+    if(connectFour_remaining_combinations === 0){
+      let winner;
+      let player1_score = this.state.player1_score;
+      let player2_score = this.state.player2_score;
+      player1_score > player2_score  ? winner = 'player 1' : winner = 'player 2'
+      this.setState({
+        connectFour_landing_display : 'none',
+        connectFour_player2Select_display : 'none',
+        connectFour_gameBoard_display : 'none',
+        connectFour_gameover_display : 'block',
+        connectFour_winner : winner
+      })
+      return
+    }
+
 
   }
 
@@ -412,15 +403,17 @@ export default class ConnectFour extends React.Component{
       }
     }
 
+    let lr = this.state.connectFour_angled_lr_board;
+    console.log('$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$')
     console.log(
       'LEFT TO RIGHT','\n',
       '[','\n',
-        '[',this.state.connectFour_angled_lr_board[0][0],',',this.state.connectFour_angled_lr_board[0][1],',',this.state.connectFour_angled_lr_board[0][2],',',this.state.connectFour_angled_lr_board[0][3],']','\n',
-        '[',this.state.connectFour_angled_lr_board[1][0],',',this.state.connectFour_angled_lr_board[1][1],',',this.state.connectFour_angled_lr_board[1][2],',',this.state.connectFour_angled_lr_board[1][3],',',this.state.connectFour_angled_lr_board[1][4],']','\n',
-        '[',this.state.connectFour_angled_lr_board[2][0],',',this.state.connectFour_angled_lr_board[2][1],',',this.state.connectFour_angled_lr_board[2][2],',',this.state.connectFour_angled_lr_board[2][3],',',this.state.connectFour_angled_lr_board[2][4],',',this.state.connectFour_angled_lr_board[2][5],']','\n',
-        '[',this.state.connectFour_angled_lr_board[3][0],',',this.state.connectFour_angled_lr_board[3][1],',',this.state.connectFour_angled_lr_board[3][2],',',this.state.connectFour_angled_lr_board[3][3],',',this.state.connectFour_angled_lr_board[3][4],',',this.state.connectFour_angled_lr_board[3][5],']','\n',
-        '[',this.state.connectFour_angled_lr_board[4][0],',',this.state.connectFour_angled_lr_board[4][1],',',this.state.connectFour_angled_lr_board[4][2],',',this.state.connectFour_angled_lr_board[4][3],',',this.state.connectFour_angled_lr_board[4][4],']','\n',
-        '[',this.state.connectFour_angled_lr_board[5][0],',',this.state.connectFour_angled_lr_board[5][1],',',this.state.connectFour_angled_lr_board[5][2],',',this.state.connectFour_angled_lr_board[5][3],']','\n',
+        '[',lr[0][0],',',lr[0][1],',',lr[0][2],',',lr[0][3],']','\n',
+        '[',lr[1][0],',',lr[1][1],',',lr[1][2],',',lr[1][3],',',lr[1][4],']','\n',
+        '[',lr[2][0],',',lr[2][1],',',lr[2][2],',',lr[2][3],',',lr[2][4],',',lr[2][5],']','\n',
+        '[',lr[3][0],',',lr[3][1],',',lr[3][2],',',lr[3][3],',',lr[3][4],',',lr[3][5],']','\n',
+        '[',lr[4][0],',',lr[4][1],',',lr[4][2],',',lr[4][3],',',lr[4][4],']','\n',
+        '[',lr[5][0],',',lr[5][1],',',lr[5][2],',',lr[5][3],']','\n',
       ']'
     )
 
@@ -461,15 +454,43 @@ export default class ConnectFour extends React.Component{
       }
     }
 
+    let rl = this.state.connectFour_angled_rl_board;
     console.log(
       'RIGHT TO LEFT','\n',
       '[','\n',
-        '[',this.state.connectFour_angled_rl_board[0][0],',',this.state.connectFour_angled_rl_board[0][1],',',this.state.connectFour_angled_rl_board[0][2],',',this.state.connectFour_angled_rl_board[0][3],']','\n',
-        '[',this.state.connectFour_angled_rl_board[1][0],',',this.state.connectFour_angled_rl_board[1][1],',',this.state.connectFour_angled_rl_board[1][2],',',this.state.connectFour_angled_rl_board[1][3],',',this.state.connectFour_angled_rl_board[1][4],']','\n',
-        '[',this.state.connectFour_angled_rl_board[2][0],',',this.state.connectFour_angled_rl_board[2][1],',',this.state.connectFour_angled_rl_board[2][2],',',this.state.connectFour_angled_rl_board[2][3],',',this.state.connectFour_angled_rl_board[2][4],',',this.state.connectFour_angled_rl_board[2][5],']','\n',
-        '[',this.state.connectFour_angled_rl_board[3][0],',',this.state.connectFour_angled_rl_board[3][1],',',this.state.connectFour_angled_rl_board[3][2],',',this.state.connectFour_angled_rl_board[3][3],',',this.state.connectFour_angled_rl_board[3][4],',',this.state.connectFour_angled_rl_board[3][5],']','\n',
-        '[',this.state.connectFour_angled_rl_board[4][0],',',this.state.connectFour_angled_rl_board[4][1],',',this.state.connectFour_angled_rl_board[4][2],',',this.state.connectFour_angled_rl_board[4][3],',',this.state.connectFour_angled_rl_board[4][4],']','\n',
-        '[',this.state.connectFour_angled_rl_board[5][0],',',this.state.connectFour_angled_rl_board[5][1],',',this.state.connectFour_angled_rl_board[5][2],',',this.state.connectFour_angled_rl_board[5][3],']','\n',
+        '[',rl[0][0],',',rl[0][1],',',rl[0][2],',',rl[0][3],']','\n',
+        '[',rl[1][0],',',rl[1][1],',',rl[1][2],',',rl[1][3],',',rl[1][4],']','\n',
+        '[',rl[2][0],',',rl[2][1],',',rl[2][2],',',rl[2][3],',',rl[2][4],',',rl[2][5],']','\n',
+        '[',rl[3][0],',',rl[3][1],',',rl[3][2],',',rl[3][3],',',rl[3][4],',',rl[3][5],']','\n',
+        '[',rl[4][0],',',rl[4][1],',',rl[4][2],',',rl[4][3],',',rl[4][4],']','\n',
+        '[',rl[5][0],',',rl[5][1],',',rl[5][2],',',rl[5][3],']','\n',
+      ']'
+    )
+
+    let board = this.state.connectFour_board;
+    console.log(
+      'BOARD','\n',
+      '[','\n',
+        '[',board[0][0],',',board[0][1],',',board[0][2],',',board[0][3],',',board[0][4],',',board[0][5],',',board[0][6],']','\n',
+        '[',board[1][0],',',board[1][1],',',board[1][2],',',board[1][3],',',board[1][4],',',board[1][5],',',board[1][6],']','\n',
+        '[',board[2][0],',',board[2][1],',',board[2][2],',',board[2][3],',',board[2][4],',',board[2][5],',',board[2][6],']','\n',
+        '[',board[3][0],',',board[3][1],',',board[3][2],',',board[3][3],',',board[3][4],',',board[3][5],',',board[3][6],']','\n',
+        '[',board[4][0],',',board[4][1],',',board[4][2],',',board[4][3],',',board[4][4],',',board[4][5],',',board[4][6],']','\n',
+        '[',board[5][0],',',board[5][1],',',board[5][2],',',board[5][3],',',board[5][4],',',board[5][5],',',board[5][6],']','\n',
+      ']'
+    )
+
+    let vb = this.state.connectFour_vertical_board;
+    console.log(
+      'VERTICAL BOARD','\n',
+      '[','\n',
+        '[',vb[0][0],',',vb[0][1],',',vb[0][2],',',vb[0][3],',',vb[0][4],',',vb[0][5],']','\n',
+        '[',vb[1][0],',',vb[1][1],',',vb[1][2],',',vb[1][3],',',vb[1][4],',',vb[1][5],']','\n',
+        '[',vb[2][0],',',vb[2][1],',',vb[2][2],',',vb[2][3],',',vb[2][4],',',vb[2][5],']','\n',
+        '[',vb[3][0],',',vb[3][1],',',vb[3][2],',',vb[3][3],',',vb[3][4],',',vb[3][5],']','\n',
+        '[',vb[4][0],',',vb[4][1],',',vb[4][2],',',vb[4][3],',',vb[4][4],',',vb[4][5],']','\n',
+        '[',vb[5][0],',',vb[5][1],',',vb[5][2],',',vb[5][3],',',vb[5][4],',',vb[5][5],']','\n',
+        '[',vb[6][0],',',vb[6][1],',',vb[6][2],',',vb[6][3],',',vb[6][4],',',vb[6][5],']','\n',
       ']'
     )
 
@@ -483,7 +504,7 @@ export default class ConnectFour extends React.Component{
     let connectFour_insert_piece_at_vertical_position = this.state.connectFour_insert_piece_at_vertical_position;
     let connectFour_vertical_board = this.state.connectFour_vertical_board;
 
-    player === 'player 1' ? piece = <img className="connectFour_red_mushroom" src={require('url-loader?limit=10000!./mushroom.png')} /> : piece = <img className="connectFour_yellow_coin" src={require('url-loader?limit=10000!./coin.ico')} />
+    player === 'player 1' ? piece = <img className="connectFour_red_mushroom" src={require('url-loader?limit=10000!./images/mushroom.png')} /> : piece = <img className="connectFour_yellow_coin" src={require('url-loader?limit=10000!./images/coin.ico')} />
     // console.log('piece: ',piece)
    connectFour_insert_piece_at_position[outerArr][innerPos] = piece;
 
@@ -600,11 +621,11 @@ const ConnectFourLandingScreen = function(){
       <h3 className="app_LoveYa_font connectFour_Landing_welcome_text">shock and awe for</h3>
     <h1 className="app_LoveYa_font connectFour_landing_title_text">Lakitu's Connect Four</h1>
     </div>
-    <img className="connectFour_lakitu_img" src={require('url-loader?limit=10000!./connectFour_Lakitu.png')} />
+    <img className="connectFour_lakitu_img" src={require('url-loader?limit=10000!./images/connectFour_Lakitu.png')} />
     <div className="connectFour_player_select_div">
       <div className="connectFour_player_select_container">
         <div className="connectFour_player_character_border">
-          <img className="connectFour_mushroom_img" src={require('url-loader?limit=10000!./connectFour_mushroom_select.png')} />
+          <img className="connectFour_mushroom_img" src={require('url-loader?limit=10000!./images/connectFour_mushroom_select.png')} />
         </div>
       </div>
       <div className="connectFour_player1_query_container">{this.Player1_query()}</div>
@@ -618,11 +639,11 @@ const ConnectFourPlayer2SelectScreen = function(){
         <h3 className="app_LoveYa_font connectFour_Landing_welcome_text">shock and awe for</h3>
       <h1 className="app_LoveYa_font connectFour_landing_title_text">Lakitu's Connect Four</h1>
       </div>
-      <img className="connectFour_lakitu_img" src={require('url-loader?limit=10000!./connectFour_Lakitu.png')} />
+      <img className="connectFour_lakitu_img" src={require('url-loader?limit=10000!./images/connectFour_Lakitu.png')} />
       <div className="connectFour_player_select_div">
         <div className="connectFour_player_select_container">
           <div className="connectFour_player_character_border">
-            <img className="connectFour_coin_img" src={require('url-loader?limit=10000!./connectFour_coin_select.png')} />
+            <img className="connectFour_coin_img" src={require('url-loader?limit=10000!./images/connectFour_coin_select.png')} />
           </div>
         </div>
         <div className="connectFour_player2_query_container">{this.Player2_query()}</div>
@@ -634,6 +655,7 @@ const Player1_query = function(){
   return <div className="connectFour_player1_query">
       <input className="connectFour_name1_input" placeholder="Player1, enter name" onChange={this.connectFourSaveInput} onKeyPress={this.handleKeyPress} ref="player1_name_input"/>
     <button className="connectFour_player1_name_btn" onClick={this.connectFourStorePlayerName}>Enter</button>
+  <button className="connectFour_player_quit_btn" onClick={this.connectFourSkipPlayer1NameEntry}>Skip</button>
     </div>
 
 }
@@ -643,6 +665,7 @@ const Player2_query = function(){
   return <div className="connectFour_player2_query">
     <input className="connectFour_name2_input" placeholder="Player2, enter name" onChange={this.connectFourSaveInput} onKeyPress={this.handleKeyPress} ref="player2_name_input"/>
     <button className="connectFour_player2_name_btn" onClick={this.connectFourStorePlayerName}>Enter</button>
+  <button className="connectFour_player_quit_btn" onClick={this.connectFourSkipPlayer2NameEntry}>Skip</button>
   </div>
 
 }
@@ -699,8 +722,8 @@ const ConnectFourGameBoard = function(){
       </div>
       <div className="connectFour_nodes">
         <div className="connectFour_single_node" onClick={() => {this.checkLeftToRightAngledArrays(2,0); this.connectFourAddNewPiece(5,0,35)}} >{this.state.connectFour_insert_piece_at_position[5][0]}</div>
-        <div className="connectFour_single_node" onClick={() => {this.checkRightToLeftAngledArrays(3,0); this.checkLeftToRightAngledArrays(2,5); this.connectFourAddNewPiece(5,1,36)}} >{this.state.connectFour_insert_piece_at_position[5][1]}</div>
-        <div className="connectFour_single_node" onClick={() => {this.checkRightToLeftAngledArrays(4,0); this.checkLeftToRightAngledArrays(1,4); this.connectFourAddNewPiece(5,2,37)}} >{this.state.connectFour_insert_piece_at_position[5][2]}</div>
+      <div className="connectFour_single_node" onClick={() => {this.checkRightToLeftAngledArrays(3,0); this.checkLeftToRightAngledArrays(3,0); this.connectFourAddNewPiece(5,1,36)}} >{this.state.connectFour_insert_piece_at_position[5][1]}</div>
+    <div className="connectFour_single_node" onClick={() => {this.checkLeftToRightAngledArrays(4,0); this.connectFourAddNewPiece(5,2,37)}} >{this.state.connectFour_insert_piece_at_position[5][2]}</div>
         <div className="connectFour_single_node" onClick={() => {this.checkRightToLeftAngledArrays(5,0); this.checkLeftToRightAngledArrays(5,0); this.connectFourAddNewPiece(5,3,38)}} >{this.state.connectFour_insert_piece_at_position[5][3]}</div>
         <div className="connectFour_single_node" onClick={() => {this.checkRightToLeftAngledArrays(4,0); this.connectFourAddNewPiece(5,4,39)}} >{this.state.connectFour_insert_piece_at_position[5][4]}</div>
         <div className="connectFour_single_node" onClick={() => {this.checkRightToLeftAngledArrays(3,0); this.connectFourAddNewPiece(5,5,40)}} >{this.state.connectFour_insert_piece_at_position[5][5]}</div>

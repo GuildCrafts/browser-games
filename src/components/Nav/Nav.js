@@ -9,7 +9,7 @@ export default class Nav extends React.Component{
       <div className="nav">
         <div className="nav_container">
           <div className="nav_title">
-            <img className="nav_title_logo" src={require('url-loader?limit=10000!./nav_bowser_logo.png')} />
+            <img className="nav_title_logo" src={require('url-loader?limit=10000!./images/nav_bowser_logo.png')} />
           <p className="nav_title_text">Bowser Games</p>
           <div className="nav_links_container">
             <Link to="/Home" className="nav_home_link">home</Link>

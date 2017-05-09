@@ -50,7 +50,7 @@ export default class TicTacToe extends React.Component{
     let player = this.state.ttt_player_turn;
     let winningColors = this.state.ttt_winningColors;
     let ttt_insert_shell_at_position = this.state.ttt_insert_shell_at_position;
-    player === 'player 1' ? piece = <img src={require('url-loader?limit=10000!./x_green_koopa_shell.png')} /> : piece = <img src={require('url-loader?limit=10000!./y_red_koopa_shell.png')} />
+    player === 'player 1' ? piece = <img src={require('url-loader?limit=10000!./images/x_green_koopa_shell.png')} /> : piece = <img src={require('url-loader?limit=10000!./images/y_red_koopa_shell.png')} />
 
    ttt_insert_shell_at_position[boardPos] = piece;
 
@@ -70,11 +70,11 @@ export default class TicTacToe extends React.Component{
     pos2 = parseInt(pos2)
     pos3 = parseInt(pos3)
 
-    ttt_insert_shell_at_position[pos1] = <img src={require('url-loader?limit=10000!./x_green_koopa_shell.png')} /> ? ttt_insert_shell_at_position[pos1] = <img src={require('url-loader?limit=10000!./x_green_koopa_shell.png')} className="ttt_winning_colors" /> : ttt_insert_shell_at_position[pos1] = <img src={require('url-loader?limit=10000!./y_red_koopa_shell.png')} className="ttt_winning_colors" />
+    ttt_insert_shell_at_position[pos1] = <img src={require('url-loader?limit=10000!./images/x_green_koopa_shell.png')} /> ? ttt_insert_shell_at_position[pos1] = <img src={require('url-loader?limit=10000!./images/x_green_koopa_shell.png')} className="ttt_winning_colors" /> : ttt_insert_shell_at_position[pos1] = <img src={require('url-loader?limit=10000!./images/y_red_koopa_shell.png')} className="ttt_winning_colors" />
 
-    ttt_insert_shell_at_position[pos2] === <img src={require('url-loader?limit=10000!./x_green_koopa_shell.png')} /> ? ttt_insert_shell_at_position[pos2] = <img src={require('url-loader?limit=10000!./x_green_koopa_shell.png')} className="ttt_winning_colors" /> : ttt_insert_shell_at_position[pos2] = <img src={require('url-loader?limit=10000!./y_red_koopa_shell.png')} className="ttt_winning_colors" />
+    ttt_insert_shell_at_position[pos2] === <img src={require('url-loader?limit=10000!./images/x_green_koopa_shell.png')} /> ? ttt_insert_shell_at_position[pos2] = <img src={require('url-loader?limit=10000!./images/x_green_koopa_shell.png')} className="ttt_winning_colors" /> : ttt_insert_shell_at_position[pos2] = <img src={require('url-loader?limit=10000!./images/y_red_koopa_shell.png')} className="ttt_winning_colors" />
 
-    ttt_insert_shell_at_position[pos3] === <img src={require('url-loader?limit=10000!./x_green_koopa_shell.png')} /> ? ttt_insert_shell_at_position[pos3] = <img src={require('url-loader?limit=10000!./x_green_koopa_shell.png')} className="ttt_winning_colors" /> : ttt_insert_shell_at_position[pos3] = <img src={require('url-loader?limit=10000!./y_red_koopa_shell.png')} className="ttt_winning_colors" />
+    ttt_insert_shell_at_position[pos3] === <img src={require('url-loader?limit=10000!./images/x_green_koopa_shell.png')} /> ? ttt_insert_shell_at_position[pos3] = <img src={require('url-loader?limit=10000!./images/x_green_koopa_shell.png')} className="ttt_winning_colors" /> : ttt_insert_shell_at_position[pos3] = <img src={require('url-loader?limit=10000!./images/y_red_koopa_shell.png')} className="ttt_winning_colors" />
 
     this.setState({
       ttt_insert_shell_at_position : ttt_insert_shell_at_position
@@ -355,7 +355,7 @@ const KoopaLandingScreen = function(){
     <h3 className="app_LoveYa_font ttt_Landing_welcome_text">Welcome to</h3>
   <h1 className="app_LoveYa_font ttt_landing_title_text">Koopa Tic Tac Toe</h1>
   <div className="ttt_player_select_div">
-    <img src={require('url-loader?limit=10000!./ttt_player1_green_koopa.png')} />
+    <img src={require('url-loader?limit=10000!./images/ttt_player1_green_koopa.png')} />
   </div>
     {this.Player1_query()}
   </div>
@@ -367,7 +367,7 @@ const KoopaPlayer2SelectScreen = function(){
     <h3 className="app_LoveYa_font ttt_Landing_welcome_text">Welcome to</h3>
   <h1 className="app_LoveYa_font ttt_landing_title_text">Koopa Tic Tac Toe</h1>
   <div className="ttt_player_select_div">
-    <img src={require('url-loader?limit=10000!./ttt_player2_red_koopa.png')} />
+    <img src={require('url-loader?limit=10000!./images/ttt_player2_red_koopa.png')} />
   </div>
     {this.Player2_query()}
   </div>

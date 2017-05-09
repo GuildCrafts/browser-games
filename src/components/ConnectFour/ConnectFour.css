@@ -215,18 +215,21 @@
   outline:none;
 }
 
-.connectFour_player1_name_btn, .connectFour_player2_name_btn{
+.connectFour_player1_name_btn, .connectFour_player2_name_btn, .connectFour_player_quit_btn{
   border:2px solid black;
   border-radius:5px;
   margin-top:10px;
   width:50%;
   background-color:white;
+  margin-right:2px;
 }
 
-.connectFour_player1_name_btn:hover, .connectFour_player2_name_btn:hover {
+.connectFour_player1_name_btn:hover, .connectFour_player2_name_btn:hover, .connectFour_player_quit_btn:hover{
   background-color:papayawhip;
   cursor:pointer;
 }
+
+
 
 @media (max-width: 490px){
 
