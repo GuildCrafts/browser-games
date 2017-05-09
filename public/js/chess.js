@@ -6,7 +6,7 @@ var state = [
   ['0', '0', '0', '0', '0', '0', '0', '0'],
   ['0', '0', '0', '0', '0', '0', '0', '0'],
   ['WP-0', 'WP-1', 'WP-2', 'WP-3', 'WP-4', 'WP-5', 'WP-6', 'WP-7'],
-  ['WR-K', 'WB-K', 'WK-K', 'WK', 'WQ', 'WQ-Q', 'WB-Q', 'WR-Q']
+  ['WR-K', 'WB-K', 'WK-K', 'WK', 'WQ', 'WK-Q', 'WB-Q', 'WR-Q']
 ]
 
 class ChessBoard {
@@ -46,24 +46,38 @@ class ChessBoard {
 
   knightIsValidMove(startCoordinate, endCoordinate){
     var knightsMoveLShape = startCoordinate.x + 2 === endCoordinate.x && startCoordinate.y + 1 === endCoordinate.y
-    if(knightsMoveLShape && this.isEmpty(endCoordinate)){
-      return true
-    }
+    return knightsMoveLShape && this.isEmpty(endCoordinate)
+  }
+
+  rookIsValidMove(startCoordinate, endCoordinate){
+    var rooksMoveHorizontallyandVertically = startCoordinate.x === endCoordinate.x || startCoordinate.y === endCoordinate.y
+    return rooksMoveHorizontallyandVertically && this.isEmpty(endCoordinate)
+  }
+
+  bishopIsValidMove(startCoordinate, endCoordinate){
+    var differenceX = Math.abs(startCoordinate.x - endCoordinate.x)
+    var differenceY = Math.abs(startCoordinate.y - endCoordinate.y)
+    return differenceX === differenceY && this.isEmpty(endCoordinate)
+
+  }
+
+  queenIsValidMove(startCoordinate, endCoordinate){
+    return this.rookIsValidMove(startCoordinate, endCoordinate) || this.bishopIsValidMove(startCoordinate, endCoordinate) && this.isEmpty(endCoordinate)
+  }
+
+  kingIsValidMove(startCoordinate, endCoordinate){
+    var kingMovePositive = startCoordinate.x === endCoordinate.x + 1 || endCoordinate.y === endCoordinate.y + 1
+    var kingMoveNegative = startCoordinate.x === endCoordinate.x - 1 || endCoordinate.y === endCoordinate.y - 1
+    return kingMoveNegative && this.isEmpty(endCoordinate)|| kingMovePositive && this.isEmpty(endCoordinate)
   }
 
   pawnIsValidMove(startCoordinate, endCoordinate){
     var pawnsCanOnlyMoveTwoSteps = startCoordinate.x === endCoordinate.x && startCoordinate.y + 1 || startCoordinate.y + 2 === endCoordinate.y
-    if(pawnsCanOnlyMoveTwoSteps && this.isEmpty(endCoordinate) ){
-    return true
-    }
+    return pawnsCanOnlyMoveTwoSteps && this.isEmpty(endCoordinate)
    }
 
   checkIfMoveIsValid(startCoordinate, pieceType, endCoordinate){
-    var rules = {
-      pawn: {isValidMove: this.pawnIsValidMove(startCoordinate, endCoordinate)},
-      knight: {isValidMove: this.knightIsValidMove(startCoordinate, endCoordinate)}
-    }
-    if(rules[pieceType].isValidMove){
+    if(this[pieceType + 'IsValidMove'](startCoordinate, endCoordinate)){
       this.move(startCoordinate, endCoordinate)
     }
     else {
@@ -85,7 +99,7 @@ function resetGame(){
 
 $(document).ready(function(){
   var chess = new ChessBoard()
-console.log(  chess.checkIfMoveIsValid({x: 0,y: 2}, "knight", {x:2, y: 3}))
+console.log(  chess.checkIfMoveIsValid({x: 0,y: 4}, "king", {x:1, y: 4}))
   var container = $('#chess-board')
   var row = $('<div>').addClass('chess-board-row')
 
