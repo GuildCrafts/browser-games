@@ -1,0 +1,58 @@
+<html>
+    <head>
+        <meta charset='utf-8'>
+        <title>Tic Tac Toe</title>
+
+        <style>
+
+        @import url('https://fonts.googleapis.com/css?family=Josefin+Sans|Raleway|Roboto+Mono');
+
+            body {
+                width: 550px;
+                margin: auto;
+                background: #CFD1D0
+            }
+
+            h1 {
+                border-bottom: 1px solid black;
+                width: 325px;
+                font-family: 'Roboto Mono', monospace;
+            }
+
+            #message {
+                font-size: 20px;
+                font-family: 'Josefin Sans', sans-serif;
+            }
+
+            .Square {
+                height: 100px;
+                width: 100px;
+                font-size: 60px;
+                text-align: center;
+                font-family: 'Roboto Mono', monospace;
+            }
+        </style>
+    </head>
+    <body onload='startGame()'>
+        <h1>Tic Tac Toe</h1>
+        <div id='message'>Message here.</div>
+        <table border='1'>
+            <tr>
+				<td class='Square' onclick='nextMove(this)'></td>
+				<td class='Square' onclick='nextMove(this)'></td>
+				<td class='Square' onclick='nextMove(this)'></td>
+		    </tr>
+            <tr>
+                <td class='Square' onclick='nextMove(this)'></td>
+                <td class='Square' onclick='nextMove(this)'></td>
+                <td class='Square' onclick='nextMove(this)'></td>
+            </tr>
+            <tr>
+                <td class='Square' onclick='nextMove(this)'></td>
+                <td class='Square' onclick='nextMove(this)'></td>
+                <td class='Square' onclick='nextMove(this)'></td>
+            </tr>
+        </table>
+        <script src='./js/ticTacToe.js'></script>
+    </body>
+</html>
