@@ -1,0 +1,42 @@
+#gameboard {
+  width: 360px;
+  margin: 40px auto 0 auto;
+}
+
+.row {
+  clear: both;
+}
+
+.square {
+  float: left;
+  width: 119px;
+  height: 84px;
+  cursor: pointer;
+  text-align: center;
+  font-size: 50px;
+  padding-top: 35px
+}
+
+.bottom {
+  border-bottom: 1px solid black;
+}
+
+.right {
+  border-right: 1px solid black;
+}
+
+#scoreboard {
+  width: 239px;
+  margin: 0 auto 0 auto;
+  clear: both;
+  cursor: pointer;
+}
+
+.player1, .player2 {
+  float: left;
+  width: 119px;
+  height: 120px;
+  text-align: center;
+  font-size: 50px;
+  padding-top: 35px;
+}
