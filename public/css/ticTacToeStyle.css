@@ -42,7 +42,7 @@ html {
 .cell:hover:not(.purple, .yellow) {
   background-color: #31404F;
 
-}
+} 
 
 .container {
   width: 400px;

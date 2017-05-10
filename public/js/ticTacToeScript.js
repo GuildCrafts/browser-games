@@ -12,7 +12,7 @@ var main = function(){
 
     resetBtn.addEventListener('click', resetGame);
 
-
+ 
 
 
   var player1turn = true;
