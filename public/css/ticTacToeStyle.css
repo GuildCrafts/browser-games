@@ -2,12 +2,12 @@ html {
   background-color: #619630;
 }
 
-.red {
+.purple {
   background-color: #b45bf4;
   color: #17212B;
 }
 
-.blue {
+.yellow {
   background-color: #dae026;
   color: #17212B;
 }
@@ -39,7 +39,7 @@ html {
   transition: background-color 0.2s ease;
 }
 
-.cell:hover:not(.red, .blue) {
+.cell:hover:not(.purple, .yellow) {
   background-color: #31404F;
 
 }
@@ -50,12 +50,19 @@ html {
 
 }
 
-.red {
+.purple {
   background-color: #b45bf4;
   color: #17212B;
 }
 
-.blue {
+.yellow {
   background-color: #dae026;
   color: #17212B;
+}
+
+.resetBtn {
+  padding : 15px 30px 14px 30px;
+    margin  : 5px auto;
+    display : block;
+    width   : 150px;
 }
