@@ -1,4 +1,4 @@
-#chess-board {
+.chess-board {
   display: inline-block;
 }
 .chess-board-row {
@@ -12,6 +12,7 @@
   width: 100px;
   position: relative;
 }
+
 .chess-board-cell:after {
   position: absolute;
   height: 100px;
