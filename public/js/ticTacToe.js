@@ -26,10 +26,6 @@ function switchTurn() {
   if(checkForWinner(document.turn)) {
     setMessage("Congrats " + document.turn + ", you won!")
     document.winner = document.turn;
-    //new stuff
-    if (document.winner == "X"){
-      
-    }
   } else if(document.turn == "X") {
     document.turn = "O";
     setMessage("It's " + document.turn + "'s turn.")

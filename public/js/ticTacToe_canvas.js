@@ -33,8 +33,7 @@ window.onclick = function(e) {
   if(e.pageX < 400 && e.pageY < 400) {
     let cX = Math.floor(e.pageX/(400/3));
     let cY = Math.floor(e.pageY/(400/3));
-    console.log(cX, cY);
-    let alreadyClicked = false;
+    alreadyClicked = false;
 
     for(i in moves) {
       if(moves[i][0] == cX && moves[i][1] == cY) {
@@ -43,19 +42,23 @@ window.onclick = function(e) {
     }
     if(alreadyClicked == false) {
       moves[(moves.length)] = [cX, cY, turn]
-      turn = turn*-1
+      turn = turn*-1//this switches between x and o turns 1 is X, -1 is O
       draw();
     }
   }
 }
 
+let xmoves = [];
+let omoves = [];
+
 function draw() {
+
   for(i in moves){
     if(moves[i][2] == 1){
       ctx.drawImage(x, Math.floor(moves[i][0]*(400/3)), Math.floor(moves[i][1]*(400/3)));
+      //xmoves.push([moves[i][0], moves[i][1]]);
     } else {
       ctx.drawImage(o, Math.floor(moves[i][0]*(400/3)), Math.floor(moves[i][1]*(400/3)));
     }
-
   }
 }
