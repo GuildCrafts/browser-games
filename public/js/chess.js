@@ -27,8 +27,8 @@ class ChessBoard {
   }
 
   renderBoard() {
-    this.board.forEach((row, y) => {
-      row.forEach((cellValue, x) => {
+    this.board.forEach((row, x) => {
+      row.forEach((cellValue, y) => {
         if (cellValue){
           this.getCell(x, y).setAttribute('data-piece', cellValue)
         }else{
@@ -38,10 +38,19 @@ class ChessBoard {
     })
   }
 
-  getCell(x, y) {
+  getCell(y, x) {
+    x = parseInt(x)
+    y = parseInt(y)
     return document.querySelector('.chess-board-row:nth-child(' + (x + 1) + ') .chess-board-cell:nth-child(' + (y + 1) + ')')
   }
 
+  getCellNodeByPieceName(pieceName) {
+    return document.querySelector(`[data-piece='${pieceName}']`)
+  }
+
+  getDestinationCell(coordinates) {
+    return document.querySelector(`.chess-board-row:nth-child(${coordinates.x}) .chess-board-cell:nth-child(${coordinates.y})`)
+  }
 
   getCoordinatesByPiece(piece) {
     for(let row of this.board) {
@@ -98,43 +107,45 @@ class ChessBoard {
       return {
         'K': 'king',
         'Q': 'queen'
-      }[code.substring(1,1)]
+      }[code.substring(1)]
     } else if(code.length > 1) {
       return {
         'K': 'knight',
         'R': 'rook',
         'B': 'bishop',
         'P': 'pawn',
-      }[code.substring(1,1)]
+      }[code.substring(1,2)]
     }
     return null
   }
 
   moveIfMoveIsValid(startCoordinate, endCoordinate) {
-    // debugger
-    var coordinates = getCoordinatesByPiece(target.classList[1])
-    var pieceType = this.getNameFromCode(this.board[startCoordinate.x][startCoordinate.y])
-
+    var pieceName = this.board[startCoordinate.x][startCoordinate.y]
+    var pieceType = this.getNameFromCode(pieceName)
+    console.log( "isValid???:", this[pieceType + 'IsValidMove'](startCoordinate, endCoordinate) )
     if(this[pieceType + 'IsValidMove'](startCoordinate, endCoordinate)) {
-      this.move(startCoordinate, endCoordinate)
+      this.move(startCoordinate, endCoordinate, pieceName)
     }
     else {
       alert('Invalid move')
+      $('.highlight').removeClass('highlight')
     }
   }
 
   move(pieceCoordinate, destinationCoordinate) {
     var currentPiece = this.board[pieceCoordinate.x][pieceCoordinate.y]
+    // console.log( "currentPiece:", this.board[] )
     this.board[destinationCoordinate.x][destinationCoordinate.y] = currentPiece
-    this.board[pieceCoordinate.x][pieceCoordinate.y] = "0"
-    var originalDiv = this.getCell(pieceCoordinate.x, pieceCoordinate.y)
+    var originalDiv = this.getCellNodeByPieceName(currentPiece)
     var destinationDiv = this.getCell(destinationCoordinate.x, destinationCoordinate.y)
+    var pieceName = originalDiv.dataset.piece
+    this.board[pieceCoordinate.x][pieceCoordinate.y] = null
 
-    var pieceName = originalDiv.classList[1]
 
     originalDiv.className = "chess-board-cell"
     destinationDiv.classList.add('chess-board-cell')
-    destinationDiv.classList.add(pieceName)
+    destinationDiv.dataset.piece = currentPiece
+    delete originalDiv.dataset.piece
   }
 }
 
@@ -147,21 +158,41 @@ $(document).ready(function() {
   var container = $('.chess-board')
   var row = $('<div>').addClass('chess-board-row')
 
-  Array(8).fill().forEach(function() {
-    $('<div>').addClass('chess-board-cell').appendTo(row)
+  Array(8).fill().forEach(function(_, x) {
+    $('<div>')
+      .addClass('chess-board-cell')
+      .attr('data-x', x)
+      .appendTo(row)
   })
-  Array(8).fill().forEach(function() {
-    row.clone().appendTo(container)
+
+  Array(8).fill().forEach(function(_, y) {
+    const thisRow = row.clone()
+    thisRow.find('> *').attr('data-y', y)
+    thisRow.appendTo(container)
   })
-  var chess = new ChessBoard()
+
+  var chessBoard = new ChessBoard()
+  var startingPositionX, startingPositionY, startingCoordinates,
+    endingPositionX, endingPositionY, endingCoordinates
+
   $('.chess-board-cell').click(function(event){
-    var startCoordinate
-    if(chess.alreadyClicked === true) {
-      var endCoordinate = event.target.classList.length < 2
-      chess.moveIfMoveIsValid(startCoordinate, endCoordinate)
-    } else {
-      startCoordinate = chess.getCoordinatesByPiece(target.classList[1])
+    var highlights = document.querySelector('.highlight')
+    if ( highlights !== null ) {
+      if(chessBoard.alreadyClicked === true){
+        endingPositionX= event.target.dataset.x
+        endingPositionY= event.target.dataset.y
+        endingCoordinates = { x: endingPositionX, y: endingPositionY }
+        chessBoard.moveIfMoveIsValid(startingCoordinates, endingCoordinates)
+        $(highlights).removeClass('.highlight')
+        chessBoard.alreadyClicked = false
+      }
     }
-    chess.alreadyClicked = !(chess.alreadyClicked)
+    else {
+      startingPositionX= event.target.dataset.x
+      startingPositionY= event.target.dataset.y
+      startingCoordinates= {x: startingPositionX, y: startingPositionY}
+      chessBoard.alreadyClicked = true
+      $(event.target).addClass('highlight')
+    }
   })
 })
