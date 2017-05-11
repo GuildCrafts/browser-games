@@ -2,7 +2,7 @@
 the grid are used as class names for the table cell (<td>) elements.*/
 
 .background {
-  background: rgb(52, 166, 251);
+  background: #33a6fb;
   table-layout: fixed;
   border-spacing: 0;
 }
@@ -12,11 +12,11 @@ the grid are used as class names for the table cell (<td>) elements.*/
 }
 
 .lava {
-  background: rgb(255, 100, 100);
+  background: #ff6363;
 }
 
 .wall {
-  background: white;
+  background: #ffffff;
 }
 
 .actor {
@@ -24,15 +24,15 @@ the grid are used as class names for the table cell (<td>) elements.*/
 }
 
 .coin {
-  background: rgb(241, 229, 89);
+  background: #f1e559;
 }
 
 .player {
-  background: rgb(64, 64, 64);
+  background: #404040;
 }
 
 .lost .player {
-  background: rgb(160, 64, 64);
+  background: #9f4141;
 }
 
 .won .player {
