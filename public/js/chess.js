@@ -1,10 +1,10 @@
 var state = [
-  ['WR-Q', 'WB-Q', 'WK-Q', 'WQ', 'WK', 'WK-K', 'WB-K', 'WR-K'],
+  ['WR-Q', 'WB-Q', 'WK-Q', 'WK', 'WQ', 'WK-K', 'WB-K', 'WR-K'],
   ['WP-0', 'WP-1', 'WP-2', 'WP-3', 'WP-4', 'WP-5', 'WP-6', 'WP-7'],
-  ['0', '0', '0', '0', '0', '0', '0', '0'],
-  ['0', '0', '0', '0', '0', '0', '0', '0'],
-  ['0', '0', '0', '0', '0', '0', '0', '0'],
-  ['0', '0', '0', '0', '0', '0', '0', '0'],
+  [null, null, null, null, null, null, null, null],
+  [null, null, null, null, null, null, null, null],
+  [null, null, null, null, null, null, null, null],
+  [null, null, null, null, null, null, null, null],
   ['BP-0', 'BP-1', 'BP-2', 'BP-3', 'BP-4', 'BP-5', 'BP-6', 'BP-7'],
   ['BR-K', 'BB-K', 'BK-K', 'BK', 'BQ', 'BK-Q', 'BB-Q', 'BR-Q']
 ]
@@ -14,6 +14,7 @@ class ChessBoard {
     this.board = []
     this.rows = 8
     this.cells = 8
+    this.alreadyClicked = false
 
     for (var i = 0; i < state.length; i++) {
       var row = []
@@ -26,68 +27,37 @@ class ChessBoard {
   }
 
   renderBoard() {
-    this.getCell(0,0).classList.add('WR-Q')
-    this.getCell(1,0).classList.add('WB-Q')
-    this.getCell(2,0).classList.add('WK-Q')
-    this.getCell(3,0).classList.add('WQ')
-    this.getCell(4,0).classList.add('WK')
-    this.getCell(5,0).classList.add('WK-K')
-    this.getCell(6,0).classList.add('WB-K')
-    this.getCell(7,0).classList.add('WR-K')
-
-    this.getCell(0,1).classList.add('WP')
-    this.getCell(1,1).classList.add('WP')
-    this.getCell(2,1).classList.add('WP')
-    this.getCell(3,1).classList.add('WP')
-    this.getCell(4,1).classList.add('WP')
-    this.getCell(5,1).classList.add('WP')
-    this.getCell(6,1).classList.add('WP')
-    this.getCell(7,1).classList.add('WP')
-
-    this.getCell(0,7).classList.add('BR-K')
-    this.getCell(1,7).classList.add('BB-K')
-    this.getCell(2,7).classList.add('BK-K')
-    this.getCell(3,7).classList.add('BK')
-    this.getCell(4,7).classList.add('BQ')
-    this.getCell(5,7).classList.add('BK-Q')
-    this.getCell(6,7).classList.add('BB-Q')
-    this.getCell(7,7).classList.add('BR-Q')
-
-    this.getCell(0,6).classList.add('BP')
-    this.getCell(1,6).classList.add('BP')
-    this.getCell(2,6).classList.add('BP')
-    this.getCell(3,6).classList.add('BP')
-    this.getCell(4,6).classList.add('BP')
-    this.getCell(5,6).classList.add('BP')
-    this.getCell(6,6).classList.add('BP')
-    this.getCell(7,6).classList.add('BP')
+    this.board.forEach((row, y) => {
+      row.forEach((cellValue, x) => {
+        if (cellValue){
+          this.getCell(x, y).setAttribute('data-piece', cellValue)
+        }else{
+          this.getCell(x, y).removeAttribute('data-piece')
+        }
+      })
+    })
   }
 
   getCell(x, y) {
-    return document.querySelector('.chess-board-row:nth-child(' + (y + 1) + ') .chess-board-cell:nth-child(' + (x + 1) + ')')
+    return document.querySelector('.chess-board-row:nth-child(' + (x + 1) + ') .chess-board-cell:nth-child(' + (y + 1) + ')')
   }
 
-  getPieceByCoordinates(row, cell) {
-    return this.board.filter(function(element) {
-      return element.row === row && element.cell === cell ? element.piece : null
-    })
-  }
 
   getCoordinatesByPiece(piece) {
-    var returnValue = null
-    var sample = this.board.forEach(function(element) {
-      if(element.piece === piece) {
-        returnValue = {
-          row: element.row,
-          cell: element.cell
+    for(let row of this.board) {
+      for(let element of row) {
+        if(element.piece === piece){
+          return {
+            row: element.x,
+            cell: element.y
+          }
         }
       }
-    })
-    return returnValue
+    }
   }
 
   isEmpty(endCoordinate) {
-    return this.board[endCoordinate.x][endCoordinate.y] == "0"
+    return this.board[endCoordinate.x][endCoordinate.y] == null
   }
 
   knightIsValidMove(startCoordinate, endCoordinate) {
@@ -123,7 +93,28 @@ class ChessBoard {
     return (pawnsCanOnlyMoveTwoSteps && this.isEmpty(endCoordinate))
    }
 
-  checkIfMoveIsValid(startCoordinate, pieceType, endCoordinate) {
+  getNameFromCode(code) {
+    if(code.length === 2) {
+      return {
+        'K': 'king',
+        'Q': 'queen'
+      }[code.substring(1,1)]
+    } else if(code.length > 1) {
+      return {
+        'K': 'knight',
+        'R': 'rook',
+        'B': 'bishop',
+        'P': 'pawn',
+      }[code.substring(1,1)]
+    }
+    return null
+  }
+
+  moveIfMoveIsValid(startCoordinate, endCoordinate) {
+    // debugger
+    var coordinates = getCoordinatesByPiece(target.classList[1])
+    var pieceType = this.getNameFromCode(this.board[startCoordinate.x][startCoordinate.y])
+
     if(this[pieceType + 'IsValidMove'](startCoordinate, endCoordinate)) {
       this.move(startCoordinate, endCoordinate)
     }
@@ -136,23 +127,21 @@ class ChessBoard {
     var currentPiece = this.board[pieceCoordinate.x][pieceCoordinate.y]
     this.board[destinationCoordinate.x][destinationCoordinate.y] = currentPiece
     this.board[pieceCoordinate.x][pieceCoordinate.y] = "0"
-
-    // Re-render currentPiece OR? rerender entire board?
-    // Access the "particular" div of that location.
-    // Problem? X and Y coordinates don't match to any given div name.
     var originalDiv = this.getCell(pieceCoordinate.x, pieceCoordinate.y)
     var destinationDiv = this.getCell(destinationCoordinate.x, destinationCoordinate.y)
 
     var pieceName = originalDiv.classList[1]
 
     originalDiv.className = "chess-board-cell"
-    destinationDiv.className = "chess-board-cell " + pieceName
+    destinationDiv.classList.add('chess-board-cell')
+    destinationDiv.classList.add(pieceName)
   }
 }
 
 function resetGame() {
   return new ChessBoard()
 }
+
 
 $(document).ready(function() {
   var container = $('.chess-board')
@@ -165,6 +154,14 @@ $(document).ready(function() {
     row.clone().appendTo(container)
   })
   var chess = new ChessBoard()
-  console.log(chess.checkIfMoveIsValid({x: 0,y: 1}, "pawn", {x:0, y: 2}))
-  console.log(chess.board)
+  $('.chess-board-cell').click(function(event){
+    var startCoordinate
+    if(chess.alreadyClicked === true) {
+      var endCoordinate = event.target.classList.length < 2
+      chess.moveIfMoveIsValid(startCoordinate, endCoordinate)
+    } else {
+      startCoordinate = chess.getCoordinatesByPiece(target.classList[1])
+    }
+    chess.alreadyClicked = !(chess.alreadyClicked)
+  })
 })
