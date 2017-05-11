@@ -12,7 +12,7 @@ var main = function(){
 
     resetBtn.addEventListener('click', resetGame);
 
- 
+
 
 
   var player1turn = true;
@@ -38,7 +38,7 @@ var main = function(){
       $("html").css("background-color", "#b45bf4");
       $(".cell.purple").css("border-color", "white");
       document.getElementById("playerone").innerHTML = "Purple Wins!";
-
+setTimeout(function() { resetGame(); }, 1700)
     }
     //Check diagonals
     if ($("#A1").hasClass("purple") && $("#B2").hasClass("purple") && $("#C3").hasClass("purple")){
@@ -56,6 +56,7 @@ var main = function(){
       $("html").css("background-color", "#dae026");
       $(".cell.yellow").css("border-color", "white");
       document.getElementById("playertwo").innerHTML = "Yellow Wins!";
+setTimeout(function() { resetGame(); }, 1700)
 
     }
     //Check diagonals
