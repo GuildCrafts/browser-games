@@ -60,9 +60,9 @@ Your work will be mainly in deciding how to replicate that formal logic and user
 
 ### Simon
 
- - [ ] Simon game can be found at public/simon.html
+ - [X] Simon game can be found at public/simon.html
  - [ ] Simon game is playable
- - [ ] Simon game page is linked from public/index.html
+ - [X] Simon game page is linked from public/index.html
 
 ### Stretch
 

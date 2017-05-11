@@ -1,0 +1,101 @@
+<html>
+    <head>
+        <meta charset='utf-8'>
+        <title>Simon</title>
+
+        <style>
+
+        @import url('https://fonts.googleapis.com/css?family=Josefin+Sans|Raleway|Roboto+Mono');
+
+            body {
+                width: 550px;
+                margin: auto;
+                background: #transparent
+            }
+
+            h1 {
+                color: black;
+                width: 470px;
+                text-align: center;
+                font-family: 'Roboto Mono', monospace;
+            }
+
+            #gameVoice {
+                color: black;
+                font-size: 20px;
+                font-family: 'Josefin Sans', sans-serif;
+            }
+
+            #restart {
+                font-size: 20px;
+                position: inherit;
+                font-weight: bold;
+                text-decoration: none;
+                color: black;
+                font-family: 'Josefin Sans', sans-serif;
+            }
+
+            .Zone {
+                height: 265px;
+                width: 280px;
+                font-size: 80px;
+                border-radius: 15px 50px 30px;
+                text-align: center;
+                font-family: 'Roboto Mono', monospace;
+            }
+
+            #button1 {
+                background-color: green;
+                position: relative;
+                overflow: hidden;
+                border-radius: 250px 5px 5px 5px;
+                border: 30px solid #111;
+                box-shadow: 10px 10px 35px #111111;
+            }
+
+            #button2 {
+                background-color: red;
+                position: relative;
+                overflow: hidden;
+                border-radius: 5px 250px 5px 5px;
+                border: 30px solid #111;
+                box-shadow: 10px 10px 35px #111111;
+            }
+
+            #button3 {
+                background-color: yellow;
+                position:relative;
+                overflow:hidden;
+                border-radius: 5px 5px 5px 250px;
+                border: 30px solid #111;
+                box-shadow: 10px 10px 35px #111111;
+            }
+
+            #button4 {
+                background-color: blue;
+                position:relative;
+                overflow:hidden;
+                border-radius: 5px 5px 250px 5px;
+                border: 30px solid #111;
+                box-shadow: 10px 10px 35px #111111;
+                hover:
+            }
+        </style>
+    </head>
+    <body onload='startGame()'>
+        <h1>Simon</h1>
+            <div id='gameVoice'>Welcome message</div>
+                <table border='0'>
+                    <tr>
+        				<td class='Zone' id='button1' onclick='pickColor(this)'></td>
+        				<td class='Zone' id='button2' onclick='pickColor(this)'></td>
+        			</tr>
+                    <tr>
+                        <td class='Zone' id='button3' onclick='pickColor(this)'></td>
+                        <td class='Zone' id='button4' onclick='pickColor(this)'></td>
+                    </tr>
+                </table>
+                <a href='Javascript: startGame()' id='restart'>Play Again!</a>
+        <script src='./js/simon.js'></script>
+    </body>
+</html>
