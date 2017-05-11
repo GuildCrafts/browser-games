@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
-import gameLogic from './js/Logic.js'
-import {Pawn, Bishop, Rook, Queen, King, Knight} from './components/pieces'
+import {Pawn, Bishop, Rook, Queen, King, Knight} from './classes/pieces'
 import './css/board.css'
 
 
@@ -18,6 +17,7 @@ class Game extends Component {
     this.state = {
       board: this.initializeBoard(),
       selected: null,
+      legalMoves: null,
       nextPlayer: 'White'
     }
     this.initializePieces()
@@ -57,21 +57,24 @@ class Game extends Component {
   }
 
   click(x,y){
+    let board = this.state.board
+    let square = board[y][x]
     if( this.state.selected && x === this.state.selected.x && y === this.state.selected.y){
       this.setState({selected: null})
       return
     }
-    let piece = this.state.board[y][x].piece
+    let piece = board[y][x].piece
     if( piece.color === this.state.nextPlayer){
-      this.setState({selected: {x:x,y:y}})
+      this.setState({selected: {x:x,y:y}, legalMoves: board[y][x].piece.legalMoves(x,y,board)})
+      console.log('state.legalMoves',this.state.legalMoves)
       return
     }
-    if(this.selectedSquare() && this.isLegal(x,y)){
-      console.log(this.state.selected,' clicked')
+    if(this.selectedSquare() && this.state.legalMoves.includes(square)){
       this.movePiece(x,y)
     }
-    else if(piece != 'Blank' && piece.color === this.state.nextPlayer){
-      this.setState({selected: {x:x,y:y}})
+    else if(piece !== 'Blank' && piece.color === this.state.nextPlayer){
+      this.setState({selected: {x:x,y:y}, legalMoves: board[y][x].piece.legalMoves(x,y,board)})
+      console.log('state.legalMoves',this.state.legalMoves)
     }
   }
 
@@ -85,9 +88,9 @@ class Game extends Component {
     this.setState({selected: null})
   }
 
-  isLegal(x,y){
+  getLegalMoves(){
     let selected = this.state.selected
-    return this.selectedSquare().piece.legalMove(selected.x,selected.y,x,y)
+    return this.selectedSquare().piece.legalMoves(selected.x,selected.y,this.state.board)
   }
 
   selectedSquare(){
@@ -107,7 +110,7 @@ class Game extends Component {
         classesArray.push(square.piece.name)
         ;(square.x + square.y) % 2 === 1 ? classesArray.push('WhiteSquare') : classesArray.push('BlackSquare')
         if( this.selectedSquare() === square){ classesArray.push('Highlight')}
-        if( this.state.selected && this.isLegal(square.x,square.y)){ classesArray.push('Highlight')}
+        if( this.state.selected && this.state.legalMoves.includes(square)){ classesArray.push('Highlight')}
         if( square.piece ){ classesArray.push( square.piece.color )}
         let classes = classesArray.join(' ')
 
