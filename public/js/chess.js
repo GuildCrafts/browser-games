@@ -70,8 +70,11 @@ class ChessBoard {
   }
 
   knightIsValidMove(startCoordinate, endCoordinate) {
-    var knightsMoveLShape = startCoordinate.x + 2 === endCoordinate.x && startCoordinate.y + 1 === endCoordinate.y
-    return knightsMoveLShape && this.isEmpty(endCoordinate)
+    if(Math.abs(endCoordinate.x - startCoordinate.x) === 2 || Math.abs(endCoordinate.y - startCoordinate.y) === 2){
+      if( Math.abs(endCoordinate.x - startCoordinate.x) + Math.abs( endCoordinate.y - startCoordinate.y) === 3) {
+        return true
+      }
+    }
   }
 
   rookIsValidMove(startCoordinate, endCoordinate) {
