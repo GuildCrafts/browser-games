@@ -1,5 +1,5 @@
 
-#Got error messages at npm install, so server thing doesn't work. Games can be opened with open public/index.html
+# Got error messages at npm install, so server thing doesn't work. Games can be opened with open public/index.html
 
 ## Specifications
 
