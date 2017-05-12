@@ -1,0 +1,39 @@
+body {
+  margin: auto;
+}
+
+.square {
+  border: 2px solid black;
+  border-color: black;
+  height: 90px;
+  width: 90px;
+  text-align: center;
+  font-size: 45pt;
+  font-family: 'Arial', sans-serif;
+  align: center;
+}
+
+h1 {
+  font-family: 'Arial' sans-serif;
+  text-align: center;
+}
+
+h3 {
+  font-family: 'Arial' sans-serif;
+  text-align: center;
+}
+
+#message {
+  font-size: 18pt;
+  text-align: center;
+}
+
+#restart {
+  font-size: 18pt;
+  text-align: center;
+}
+
+table {
+  align: center;
+  margin-left: 700px;
+}
