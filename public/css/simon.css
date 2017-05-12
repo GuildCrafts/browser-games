@@ -40,26 +40,6 @@ h1 {
   border-radius: 5px 5px 250px 5px;
 }
 
-.greenClicked {
-  background-color: #54442B;
-  border-radius: 250px 5px 5px 5px;
-}
-
-.redClicked {
-  background-color: white;
-  border-radius: 5px 250px 5px 5px;
-}
-
-.blueClicked {
-  background-color: orange;
-  border-radius: 5px 5px 5px 250px;
-}
-
-.yellowClicked {
-  background-color: #533A71;
-  border-radius: 5px 5px 250px 5px;
-}
-
 #loser-message {
   color: red;
 }

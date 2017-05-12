@@ -5,27 +5,25 @@
     <link rel="stylesheet" type="text/css" href="./css/simon.css">
     <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Inknut+Antiqua|Titillium+Web" rel="stylesheet">
   </head>
-  <!-- onload="startGame()" -->
   <body>
     <h1>Simon</h1>
     <div id="game-start" align="center">
       <button type="button" id="start-button" onClick ="startGame();">Start Game</button>
     </div>
-    <h1 hidden id="loser-message">YOU LOSE</h1>
+    <h1 hidden id="loser-message"></h1>
       <table align="center" border="0" bordercolor="transparent">
         <tr>
-          <td class ="Circle green" id ="upper-left"></td>
-          <td class ="Circle red" id ="upper-right"></td>
+          <td class ="Circle green" id ="upper-left" onClick="greenClicked()"></td>
+          <td class ="Circle red" id ="upper-right" onClick="redClicked()"></td>
         </tr>
         <tr>
-          <td class ="Circle blue" id ="bottom-left"></td>
-          <td class ="Circle yellow" id = "bottom-right"></td>
+          <td class ="Circle blue" id ="bottom-left" onClick="blueClicked()"></td>
+          <td class ="Circle yellow" id = "bottom-right" onClick="yellowClicked()"></td>
         </tr>
       </table>
       <div id="game-reset" align="center">
         <button type="button" id="restart-button" onClick ="location.reload();">Reset</button>
       </div>
-    <!-- <a href="javascript: startGame();" id=restart>Start Over</a> -->
     <script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
     <script src="./js/simon.js"></script>
   </body>
