@@ -3,6 +3,11 @@ $(document).ready(function() {
   var ex = 'fa fa-times'
   var oh = 'fa fa-circle-o'
 
+  var resetBoard = function() {
+    $('.square').removeClass(oh)
+    $('.square').removeClass(ex)
+  };
+
   let player1 = {
     wins: 0
   };
@@ -16,19 +21,21 @@ $(document).ready(function() {
     return player
   };
 
-  $('.square').on('click', function(event){
+  $('.square').click(function(event){
 
       var squareSelected = $(this);
 
       if (squareSelected.hasClass(ex) || squareSelected.hasClass(oh)) {
-        alert('This square is taken');ex
+        alert('This square is taken');
       } else {
 
         if ( player === 1 ) {
           squareSelected.addClass(ex);
           if (checkIfPlayerWon(ex)) {
             alert('Player ' + player + ' wins!');
-             winner(player1);
+             let score1 = winner(player1);
+             resetBoard();
+             player = 1;
 
           } else {
             player = 2;
@@ -37,7 +44,10 @@ $(document).ready(function() {
           squareSelected.addClass(oh);
           if (checkIfPlayerWon(oh)) {
             alert('Player ' + player + ' wins!');
-             console.log(winner(player2));
+             let score2 = winner(player2);
+             resetBoard();
+             player = 1;
+             console.log(score2);
 
           } else {
           player = 1;
