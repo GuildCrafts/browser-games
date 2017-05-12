@@ -1,0 +1,67 @@
+<html>
+    <head>
+        <meta charset='utf-8'>
+        <title>Tic Tac Toe</title>
+
+        <style>
+
+        @import url('https://fonts.googleapis.com/css?family=Josefin+Sans|Raleway|Roboto+Mono');
+
+            body {
+                width: 550px;
+                margin: auto;
+                background: #CFD1D0
+            }
+
+            h1 {
+                border-bottom: 1px solid black;
+                width: 470px;
+                font-family: 'Roboto Mono', monospace;
+            }
+
+            #message {
+                font-size: 20px;
+                font-family: 'Josefin Sans', sans-serif;
+            }
+
+            #restart {
+                font-size: 20px;
+                font-weight: bold;
+                text-decoration: none;
+                color: black;
+                font-family: 'Josefin Sans', sans-serif;
+            }
+
+            .Square {
+                height: 150px;
+                width: 150px;
+                font-size: 80px;
+                text-align: center;
+                font-family: 'Roboto Mono', monospace;
+            }
+        </style>
+    </head>
+    <body onload='startGame()'>
+        <h1>Tic Tac Toe</h1>
+        <div id='message'>Message here.</div>
+        <table border='1'>
+            <tr>
+				<td class='Square' id='s1' onclick='nextMove(this)'></td>
+				<td class='Square' id='s2' onclick='nextMove(this)'></td>
+				<td class='Square' id='s3' onclick='nextMove(this)'></td>
+		    </tr>
+            <tr>
+                <td class='Square' id='s4' onclick='nextMove(this)'></td>
+                <td class='Square' id='s5' onclick='nextMove(this)'></td>
+                <td class='Square' id='s6' onclick='nextMove(this)'></td>
+            </tr>
+            <tr>
+                <td class='Square' id='s7' onclick='nextMove(this)'></td>
+                <td class='Square' id='s8' onclick='nextMove(this)'></td>
+                <td class='Square' id='s9' onclick='nextMove(this)'></td>
+            </tr>
+        </table>
+        <a href='Javascript: startGame()' id='restart'>Play Again!</a>
+        <script src='./js/ticTacToe.js'></script>
+    </body>
+</html>

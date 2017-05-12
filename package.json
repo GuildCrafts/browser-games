@@ -3,7 +3,9 @@
   "version": "0.0.0",
   "description": "A collection of games to play in a web browser.",
   "scripts": {
-    "start": "http-server ./public -p 4321"
+      "build": "babel --copy-files src --out-dir dist",
+      "build:watch": "npm run build -- --watch",
+      "start": "http-server ./public -p 4321"
   },
   "repository": {
     "type": "git",
@@ -20,6 +22,10 @@
   },
   "homepage": "https://github.com/GuildCrafts/browser-games#readme",
   "dependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-core": "^6.24.1",
+    "babel-env": "^2.4.1",
+    "babel-preset-es2015": "^6.24.1",
     "http-server": "^0.9.0"
   }
 }
