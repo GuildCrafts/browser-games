@@ -1,0 +1,89 @@
+.highlight {
+  text-shadow: 2px 2px 5px yellow;
+  color: yellow;
+}
+
+.chess-board {
+  display: inline-block;
+}
+.chess-board-row {
+  background-color: tan;
+  display: flex;
+  flex-direction: row;
+}
+
+.chess-board-cell {
+  height: 100px;
+  width: 100px;
+  position: relative;
+  height: 15vh;
+  width: 15vh;
+}
+
+.chess-board-cell:after {
+  position: absolute;
+  height: 100px;
+  width: 100px;
+  line-height: 100px;
+  font-size: 50px;
+  text-align: center;
+  text-shadow: 0 0 5px white;
+}
+
+.chess-board-row:nth-child(odd) .chess-board-cell:nth-child(even),
+.chess-board-row:nth-child(even) .chess-board-cell:nth-child(odd)  {
+  background-color: lightgrey;
+}
+
+.chess-board-cell[data-piece="WR-Q"]:after, .chess-board-cell[data-piece="WR-K"]:after {
+  content: "\2656";
+}
+
+.chess-board-cell[data-piece="WB-Q"]:after, .chess-board-cell[data-piece="WB-K"]:after {
+  content: "\2657";
+}
+
+.chess-board-cell[data-piece="WK-Q"]:after, .chess-board-cell[data-piece="WK-K"]:after {
+  content: "\2658";
+}
+
+.chess-board-cell[data-piece="WQ"]:after {
+  content: "\2655";
+}
+
+.chess-board-cell[data-piece="WK"]:after {
+  content: "\2654";
+}
+
+.chess-board-cell[data-piece="WP-0"]:after, .chess-board-cell[data-piece="WP-1"]:after, .chess-board-cell[data-piece="WP-2"]:after,
+.chess-board-cell[data-piece="WP-3"]:after, .chess-board-cell[data-piece="WP-4"]:after, .chess-board-cell[data-piece="WP-5"]:after,
+.chess-board-cell[data-piece="WP-6"]:after, .chess-board-cell[data-piece="WP-7"]:after {
+  content: "\2659";
+}
+.chess-board-cell[data-piece="BR-Q"]:after, .chess-board-cell[data-piece="BR-K"]:after {
+  content: "\265C";
+}
+
+.chess-board-cell[data-piece="BB-Q"]:after, .chess-board-cell[data-piece="BB-K"]:after {
+  content: "\265D";
+}
+
+.chess-board-cell[data-piece="BK-Q"]:after, .chess-board-cell[data-piece="BK-K"]:after {
+  content: "\265E";
+}
+
+.chess-board-cell[data-piece="BQ"]:after {
+  content: "\265B";
+}
+
+.chess-board-cell[data-piece="BK"]:after {
+  content: "\265A";
+}
+
+.chess-board-cell[data-piece="BP-0"]:after,
+.chess-board-cell[data-piece="BP-1"]:after,
+.chess-board-cell[data-piece="BP-2"]:after,
+.chess-board-cell[data-piece="BP-3"]:after, .chess-board-cell[data-piece="BP-4"]:after, .chess-board-cell[data-piece="BP-5"]:after,
+.chess-board-cell[data-piece="BP-6"]:after, .chess-board-cell[data-piece="BP-7"]:after  {
+  content: "\265F";
+}
