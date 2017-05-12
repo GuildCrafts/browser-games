@@ -1,0 +1,65 @@
+Body {
+  background-color: black;
+}
+
+h1 {
+  text-align: center;
+  color: white;
+}
+
+#game-start {
+  margin-bottom: 50px;
+}
+
+#game-reset {
+  margin-top: 50px;
+}
+
+.Circle {
+  height: 160px;
+  width: 160px;
+}
+
+.green {
+  background-color: green;
+  border-radius: 250px 5px 5px 5px;
+}
+
+.red {
+  background-color: red;
+  border-radius: 5px 250px 5px 5px;
+}
+
+.blue {
+  background-color: blue;
+  border-radius: 5px 5px 5px 250px;
+}
+
+.yellow {
+  background-color: yellow;
+  border-radius: 5px 5px 250px 5px;
+}
+
+.greenClicked {
+  background-color: #54442B;
+  border-radius: 250px 5px 5px 5px;
+}
+
+.redClicked {
+  background-color: white;
+  border-radius: 5px 250px 5px 5px;
+}
+
+.blueClicked {
+  background-color: orange;
+  border-radius: 5px 5px 5px 250px;
+}
+
+.yellowClicked {
+  background-color: #533A71;
+  border-radius: 5px 5px 250px 5px;
+}
+
+#loser-message {
+  color: red;
+}

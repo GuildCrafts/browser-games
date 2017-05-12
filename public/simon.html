@@ -1,28 +1,32 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Tic Tac Toe</title>
-    <link rel="stylesheet" type="text/css" href="./css/ticTacToe.css">
+    <title>Simon</title>
+    <link rel="stylesheet" type="text/css" href="./css/simon.css">
     <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Inknut+Antiqua|Titillium+Web" rel="stylesheet">
   </head>
-  <body onload="startGame();">
-    <h1>Tic Tac Toe</h1>
-    <div id="message">
-      Messages here.
+  <!-- onload="startGame()" -->
+  <body>
+    <h1>Simon</h1>
+    <div id="game-start" align="center">
+      <button type="button" id="start-button" onClick ="startGame();">Start Game</button>
     </div>
-    <table border="1">
-      <tr>
-        <td class ="Square" id="s1" onClick="nextMove(this)"></td>
-        <td class ="Square" id="s2" onClick="nextMove(this)"></td>
-        <td class ="Square" id="s3" onClick="nextMove(this)"></td>
-      </tr>
-      <tr>
-        <td class ="Square" id="s4" onClick="nextMove(this)"></td>
-        <td class ="Square" id="s5" onClick="nextMove(this)"></td>
-        <td class ="Square" id="s6" onClick="nextMove(this)"></td>
-      </tr>
-    </table>
-    <a href="javascript: startGame();" id=restart>Start Over</a>
-    <script src="./js/ticTacToe.js"></script>
+    <h1 hidden id="loser-message">YOU LOSE</h1>
+      <table align="center" border="0" bordercolor="transparent">
+        <tr>
+          <td class ="Circle green" id ="upper-left"></td>
+          <td class ="Circle red" id ="upper-right"></td>
+        </tr>
+        <tr>
+          <td class ="Circle blue" id ="bottom-left"></td>
+          <td class ="Circle yellow" id = "bottom-right"></td>
+        </tr>
+      </table>
+      <div id="game-reset" align="center">
+        <button type="button" id="restart-button" onClick ="location.reload();">Reset</button>
+      </div>
+    <!-- <a href="javascript: startGame();" id=restart>Start Over</a> -->
+    <script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
+    <script src="./js/simon.js"></script>
   </body>
 </html>
