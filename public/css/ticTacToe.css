@@ -1,22 +1,32 @@
 body {
-  width: 400px;
   margin: auto;
   background-color: #FFE900;
 }
 
 h1 {
+  text-align: center;
   border-bottom: 1px solid black;
   font-family: 'Inknut Antiqua', serif;
 }
 
+li {
+  display: inline-block;
+  list-style: none;
+  padding-right: 10px;
+}
+
+nav {
+  background-color: green;
+}
+
 #message {
+  text-align: center;
   font-family: 'Titillium Web', sans-serif;
   font-size: 18pt;
 }
 
-#restart {
-  font-family: 'Titillium Web', sans-serif;
-  font-size: 18pt;
+#game-reset {
+  margin-top: 30px;
 }
 
 .Square {

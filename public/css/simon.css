@@ -5,6 +5,17 @@ Body {
 h1 {
   text-align: center;
   color: white;
+  font-family: 'Inknut Antiqua', serif;
+}
+
+li {
+  display: inline-block;
+  list-style: none;
+  padding-right: 10px;
+}
+
+nav {
+  background-color: purple;
 }
 
 #game-start {

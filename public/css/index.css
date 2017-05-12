@@ -1,0 +1,26 @@
+Body {
+  text-align: center;
+  background-color: purple;
+}
+
+h1 {
+  font-family: 'Inknut Antiqua', serif;
+  color: pink;
+}
+
+li {
+  list-style: none;
+  display: inline-block;
+}
+
+
+
+#tic-tac-toe-screenshot {
+  width: 300px;
+  height: 300px;
+}
+
+#simon-screenshot {
+  width: 300px;
+  height: 300px;
+}
