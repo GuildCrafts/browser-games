@@ -1,3 +1,8 @@
+.highlight {
+  text-shadow: 2px 2px 5px yellow;
+  color: yellow;
+}
+
 .chess-board {
   display: inline-block;
 }
@@ -20,6 +25,7 @@
   line-height: 100px;
   font-size: 50px;
   text-align: center;
+  text-shadow: 0 0 5px white;
 }
 
 .chess-board-row:nth-child(odd) .chess-board-cell:nth-child(even),
@@ -27,61 +33,55 @@
   background-color: black;
 }
 
-.WR-Q:after, .WR-K:after {
+.chess-board-cell[data-piece="WR-Q"]:after, .chess-board-cell[data-piece="WR-K"]:after {
   content: "\2656";
-  text-shadow: 0 0 5px white;
 }
 
-.WB-Q:after, .WB-K:after {
+.chess-board-cell[data-piece="WB-Q"]:after, .chess-board-cell[data-piece="WB-K"]:after {
   content: "\2657";
-  text-shadow: 0 0 5px white;
 }
 
-.WK-Q:after, .WK-K:after {
+.chess-board-cell[data-piece="WK-Q"]:after, .chess-board-cell[data-piece="WK-K"]:after {
   content: "\2658";
-  text-shadow: 0 0 5px white;
 }
 
-.WQ:after {
+.chess-board-cell[data-piece="WQ"]:after {
   content: "\2655";
-  text-shadow: 0 0 5px white;
 }
 
-.WK:after {
+.chess-board-cell[data-piece="WK"]:after {
   content: "\2654";
-  text-shadow: 0 0 5px white;
 }
 
-.WP:after {
+.chess-board-cell[data-piece="WP-0"]:after, .chess-board-cell[data-piece="WP-1"]:after, .chess-board-cell[data-piece="WP-2"]:after,
+.chess-board-cell[data-piece="WP-3"]:after, .chess-board-cell[data-piece="WP-4"]:after, .chess-board-cell[data-piece="WP-5"]:after,
+.chess-board-cell[data-piece="WP-6"]:after, .chess-board-cell[data-piece="WP-7"]:after {
   content: "\2659";
-  text-shadow: 0 0 5px white;
 }
-.BR-Q:after, .BR-K:after {
+.chess-board-cell[data-piece="BR-Q"]:after, .chess-board-cell[data-piece="BR-K"]:after {
   content: "\265C";
-  text-shadow: 0 0 5px white;
 }
 
-.BB-Q:after, .BB-K:after {
+.chess-board-cell[data-piece="BB-Q"]:after, .chess-board-cell[data-piece="BB-K"]:after {
   content: "\265D";
-  text-shadow: 0 0 5px white;
 }
 
-.BK-Q:after, .BK-K:after {
+.chess-board-cell[data-piece="BK-Q"]:after, .chess-board-cell[data-piece="BK-K"]:after {
   content: "\265E";
-  text-shadow: 0 0 5px white;
 }
 
-.BQ:after {
+.chess-board-cell[data-piece="BQ"]:after {
   content: "\265B";
-  text-shadow: 0 0 5px white;
 }
 
-.BK:after {
+.chess-board-cell[data-piece="BK"]:after {
   content: "\265A";
-  text-shadow: 0 0 5px white;
 }
 
-.BP:after {
+.chess-board-cell[data-piece="BP-0"]:after,
+.chess-board-cell[data-piece="BP-1"]:after,
+.chess-board-cell[data-piece="BP-2"]:after,
+.chess-board-cell[data-piece="BP-3"]:after, .chess-board-cell[data-piece="BP-4"]:after, .chess-board-cell[data-piece="BP-5"]:after,
+.chess-board-cell[data-piece="BP-6"]:after, .chess-board-cell[data-piece="BP-7"]:after  {
   content: "\265F";
-  text-shadow: 0 0 5px white;
 }
