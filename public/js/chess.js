@@ -16,12 +16,16 @@ class ChessBoard {
     this.cells = 8
     this.alreadyClicked = false
 
-    for (var i = 0; i < state.length; i++) {
-      var row = []
-      for (var j = 0; j < state[i].length; j++) {
-        row.push(state[j][i])
+    if(sessionStorage.getItem('gameboard')){
+      this.board = JSON.parse(sessionStorage.getItem('gameboard'))
+    } else {
+      for (var i = 0; i < state.length; i++) {
+        var row = []
+        for (var j = 0; j < state[i].length; j++) {
+          row.push(state[j][i])
+        }
+        this.board.push(row)
       }
-      this.board.push(row)
     }
     this.renderBoard()
   }
@@ -36,6 +40,10 @@ class ChessBoard {
         }
       })
     })
+  }
+
+  saveGameBoard() {
+    sessionStorage.setItem('gameboard', JSON.stringify(this.board))
   }
 
   getCell(y, x) {
@@ -149,6 +157,7 @@ class ChessBoard {
     destinationDiv.classList.add('chess-board-cell')
     destinationDiv.dataset.piece = currentPiece
     delete originalDiv.dataset.piece
+    this.saveGameBoard()
   }
 }
 

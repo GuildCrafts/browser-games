@@ -1,6 +1,6 @@
-# Browser Games
+# Chess
 
-A collection of games to play in a web browser. See the full list of games in the [games.md](games.md) file.
+A chess game for the browser!
 
 ## Installation and Setup
 

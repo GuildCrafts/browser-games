@@ -16,6 +16,8 @@
   height: 100px;
   width: 100px;
   position: relative;
+  height: 15vh;
+  width: 15vh;
 }
 
 .chess-board-cell:after {
@@ -30,7 +32,7 @@
 
 .chess-board-row:nth-child(odd) .chess-board-cell:nth-child(even),
 .chess-board-row:nth-child(even) .chess-board-cell:nth-child(odd)  {
-  background-color: black;
+  background-color: lightgrey;
 }
 
 .chess-board-cell[data-piece="WR-Q"]:after, .chess-board-cell[data-piece="WR-K"]:after {
