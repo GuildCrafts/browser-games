@@ -1,0 +1,75 @@
+body {
+  font-family: 'Open Sans', sans-serif;
+  background-color: #241147;
+}
+
+.game {
+  width: 350px;
+  height: 350px;
+  margin: 20px auto;
+  padding: 20px;
+}
+
+.piece {
+  width: 140px;
+  height: 140px;
+  margin: 5px;
+  margin-bottom: 10px;
+  opacity: 0.5;
+  filter: alpha(opacity=40);
+}
+
+.counter {
+  background-color: #e2f5c4;
+  width: 400px;
+  margin: 10px auto;
+  padding: 5px;
+  border: 2px solid #000;
+  border-radius: 3%;
+}
+
+.count {
+  font-size: 28px;
+  font-family: monospace;
+}
+
+.control-panel {
+  margin-top: 10px;
+}
+
+.control-panel .btn {
+  width: 100px;
+  height: 40px;
+}
+
+.btn-green {
+  background-color: #5cb85c;
+  border-radius: 100% 0% 0% 0%;
+}
+
+.btn-red {
+  background-color: #d9534f;
+  border-radius: 0% 100% 0% 0%;
+}
+
+.btn-yellow {
+  background-color: #f0ad4e;
+  border-radius: 0% 0% 0% 100%;
+}
+
+.btn-blue {
+  background-color: #28a1c5;
+  border-radius: 0% 0% 100% 0%;
+}
+
+.blue-lightup,
+.btn-blue:hover,
+.yellow-lightup,
+.btn-yellow:hover,
+.green-lightup,
+.btn-green:hover,
+.red-lightup,
+.btn-red:hover {
+  opacity: 1.0;
+  filter: alpha(opacity=100);
+}
