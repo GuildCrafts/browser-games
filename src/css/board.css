@@ -1,19 +1,22 @@
-.Board{
-}
-
 .Row{
   display: flex;
   flex-direction: row;
 }
 
+.NewGameButton{
+  width: 80vh;
+  height: 3vh;
+}
+
 .Square{
   display: flex;
   flex-direction: column;
-  height: 75px;
-  width: 75px;
+  height: 10vh;
+  width: 10vh;
   margin: 0px;
   border: none;
-  padding: 18px;
+  text-align: center;
+  padding: 1vh
 }
 
 .BlackSquare{
@@ -32,60 +35,60 @@
 
 .White.King:after{
   content:"\2654";
-  font-size:40px
+  font-size:7vh
 }
 
 .White.Queen:after{
   content:"\2655";
-  font-size:40px
+  font-size:7vh
 }
 
 .White.Rook:after{
   content:"\2656";
-  font-size:40px
+  font-size:7vh
 }
 
 .White.Bishop:after{
   content:"\2657";
-  font-size:40px
+  font-size:7vh
 }
 
 .White.Knight:after{
   content:"\2658";
-  font-size:40px
+  font-size:7vh
 }
 
 .White.Pawn:after{
   content:"\2659";
-  font-size:40px
+  font-size:7vh
 }
 
 .Black.King:after{
   content:"\265A";
-  font-size:40px
+  font-size:7vh
 }
 
 .Black.Queen:after{
   content:"\265B";
-  font-size:40px
+  font-size:7vh
 }
 
 .Black.Rook:after{
   content:"\265C";
-  font-size:40px
+  font-size:7vh
 }
 
 .Black.Bishop:after{
   content:"\265D";
-  font-size:40px
+  font-size:7vh
 }
 
 .Black.Knight:after{
   content:"\265E";
-  font-size:40px
+  font-size:7vh
 }
 
 .Black.Pawn:after{
   content:"\265F";
-  font-size:40px
+  font-size:7vh
 }
