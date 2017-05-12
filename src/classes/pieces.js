@@ -26,10 +26,10 @@ class Pawn{
 
 
     if( this.color === 'Black'){
-      if( this.moves === 0 ){
-        legal.push(board[y + 1][x])
+      if( this.moves === 0 && board[y + 2][x].piece === "Blank"){
         legal.push(board[y + 2][x])
-      }else{
+      }
+      if( board[y + 1][x].piece === "Blank" ){
         legal.push(board[y + 1][x])
       }
       if( board[y + 1][x - 1].piece !=="Blank" && board[y + 1][x - 1].piece.color !==this.color){
