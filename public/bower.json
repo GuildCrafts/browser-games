@@ -1,0 +1,18 @@
+{
+  "name": "tictac",
+  "description": "tic_tac_toe",
+  "main": "",
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^3.2.1",
+    "font-awesome": "fontawesome#^4.7.0"
+  }
+}

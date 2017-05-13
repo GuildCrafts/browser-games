@@ -1,0 +1,4 @@
+sceneSetups:
+- path: Assets/Assets/Scenes/Simon .unity
+  isLoaded: 1
+  isActive: 1
