@@ -1,6 +1,7 @@
-#diminutive-rat
-Somaya Bounouar
-http://jsdev.learnersguild.org/goals/83-Browser_Games-Basic.html
+#bitter-steenbok
+## Somaya Bounouar
+#363 Browser Games: Generic Platform Game
+http://jsdev.learnersguild.org/goals/363-Browser_Games-Platform.html
 
 # Browser Games
 

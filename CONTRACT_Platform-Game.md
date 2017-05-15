@@ -2,6 +2,7 @@
 ## Somaya Bounouar
 #363 Browser Games: Generic Platform Game
 http://jsdev.learnersguild.org/goals/363-Browser_Games-Platform.html
+Specs are in the CONTRACT file.
 
 # Browser Games: Generic Platform Game
 
