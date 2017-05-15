@@ -43,14 +43,14 @@ Your work will be mainly in deciding how to replicate that formal logic and user
 - [ ] HTML, CSS, and JS files are well formatted with proper spacing and indentation.
 - [ ] There is a clear separation of game logic code from view/rendering code.
 - [ ] All major features are added via pull requests with a clear description and concise commit messages.
-- [ ] The artifact produced is properly licensed, preferably with the [MIT license][mit-license].
+- [x] The artifact produced is properly licensed, preferably with the [MIT license][mit-license].
 
 #### Generic Platform Game
 
-- [ ] Game can be found at `public/platform.html`
+- [x] Game can be found at `public/platform.html`
 - [ ] Game is playable by one player
 - [ ] Game follows rules established in [tutorial](http://eloquentjavascript.net/15_game.html)
-- [ ] Game page is linked from `public/index.html`
+- [x] Game page is linked from `public/index.html`
 
 ### Stretch
 
