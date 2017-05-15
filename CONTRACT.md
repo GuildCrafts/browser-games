@@ -45,30 +45,30 @@ Your work will be mainly in deciding how to replicate that formal logic and user
 
 #### General
 
-- [ ] Artifact produced is a fork of the [browser-games][browser-games] repo.
-- [ ] Variables, functions, files, etc. have appropriate and meaningful names.
-- [ ] HTML, CSS, and JS files are well formatted with proper spacing and indentation.
+- [x] Artifact produced is a fork of the [browser-games][browser-games] repo.
+- [x] Variables, functions, files, etc. have appropriate and meaningful names.
+- [x] HTML, CSS, and JS files are well formatted with proper spacing and indentation.
 - [ ] All major features are added via pull requests with a clear description and concise commit messages.
-- [ ] Every pull request has been reviewed by at least one other person.
-- [ ] The artifact produced is properly licensed, preferably with the [MIT license][mit-license].
+- [x] Every pull request has been reviewed by at least one other person.
+- [x] The artifact produced is properly licensed, preferably with the [MIT license][mit-license].
 
 #### Tic-Tac-Toe
 
-- [ ] Tic-Tac-Toe game can be found at `public/ticTacToe.html`
+- [x] Tic-Tac-Toe game can be found at `public/ticTacToe.html`
 - [ ] Tic-Tac-Toe game is playable by two people
-- [ ] Tic-Tac-Toe game page is linked from `public/index.html`
+- [x] Tic-Tac-Toe game page is linked from `public/index.html`
 
 #### Simon
 
-- [ ] Simon game can be found at `public/ticTacToe.html`
+- [x] Simon game can be found at `public/ticTacToe.html`
 - [ ] Simon game is playable
-- [ ] Simon game page is linked from `public/index.html`
+- [x] Simon game page is linked from `public/index.html`
 
 ### Stretch
 
-- [ ] Tic-Tac-Toe has a player-vs-computer version
+- [x] Tic-Tac-Toe has a player-vs-computer version
 - [ ] Tic-Tac-Toe AI will always win or tie
-- [ ] Simon plays sounds
+- [x] Simon plays sounds
 - Implement Connect Four game
   - [ ] Connect Four game can be found at `public/connectFour.html`
   - [ ] Connect Four game is playable by two people (human v human)
