@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Simon</title>
+	<link rel="stylesheet" href="css/simon.css"/>
+  <script
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
+  <script src="js/simon.js"></script>
+</head>
+<body>
+
+	<div class="wrapper">
+
+		<div class="game-board">
+
+			<div class="simon">
+				<ul>
+          <li class="tile red" data-tile="1"></li>
+					<li class="tile blue" data-tile="2"></li>
+					<li class="tile yellow" data-tile="3"></li>
+					<li class="tile green" data-tile="4"></li>
+				</ul>
+			</div>
+
+		</div>
+
+    <div class="game-info">
+			<h2>Round: <span data-round="0">0</span></h2>
+			<button data-action="start" >Start</button>
+			<p data-action="lose">Sorry, you lost. Try again!</p>
+		</div>
+
+    <div data-action="sound"></div>
+
+	</div>
+
+</body>
+</html>
