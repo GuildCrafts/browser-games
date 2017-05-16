@@ -27,14 +27,12 @@ function Level(plan) {
   })[0];
   this.status = this.finishDelay = null;
 }
-
 Level.prototype.isFinished = function() {
   return this.status != null && this.finishDelay < 0;
 }
 
-
 function Vector(x, y) {
-  this.x = x
+  this.x = x;
   this.y = y;
 }
 Vector.prototype.plus = function(other) {
@@ -50,15 +48,12 @@ var actorChars = {
   "=": Lava, "|": Lava, "v": Lava
 }
 
-
 function Player(pos) {
   this.pos = pos.plus(new Vector(0, -0.5));
   this.size = new Vector(0.8, 1.5);
   this.speed = new Vector(0, 0);
 }
 Player.prototype.type = "player";
-
-
 
 function Lava(pos, ch) {
   this.pos = pos;
@@ -74,14 +69,12 @@ function Lava(pos, ch) {
 }
 Lava.prototype.type = "lava";
 
-
 function Coin(pos) {
   this.basePos = this.pos = pos.plus(new Vector(0.2, 0.1));
   this.size = new Vector(0.6, 0.6);
   this.wobble = Math.random() * Math.PI * 2;
 }
 Coin.prototype.type = "coin";
-
 
 function elt(name, className) {
   var elt = document.createElement(name);
@@ -90,7 +83,6 @@ function elt(name, className) {
   }
   return elt;
 }
-
 
 function DOMDisplay(parent, level) {
   this.wrap = parent.appendChild(elt("div", "game"));
@@ -129,19 +121,18 @@ DOMDisplay.prototype.drawActors = function() {
 }
 
 DOMDisplay.prototype.drawFrame = function() {
-  if (this.actorLayer)
+  if (this.actorLayer) {
     this.wrap.removeChild(this.actorLayer);
+  }
   this.actorLayer = this.wrap.appendChild(this.drawActors());
   this.wrap.className = "game " + (this.level.status || "");
   this.scrollPlayerIntoView();
 }
 
-
 DOMDisplay.prototype.scrollPlayerIntoView = function() {
   var width = this.wrap.clientWidth;
   var height = this.wrap.clientHeight;
   var margin = width / 3;
-
 
   var left = this.wrap.scrollLeft, right = left + width;
   var top = this.wrap.scrollTop, bottom = top + height;
@@ -158,11 +149,9 @@ DOMDisplay.prototype.scrollPlayerIntoView = function() {
     this.wrap.scrollTop = center.y + margin - height;
 }
 
-
 DOMDisplay.prototype.clear = function() {
   this.wrap.parentNode.removeChild(this.wrap);
 }
-
 
 Level.prototype.obstacleAt = function(pos, size) {
   var xStart = Math.floor(pos.x);
@@ -193,8 +182,6 @@ Level.prototype.actorAt = function(actor) {
       return other;
   }
 }
-
-
 
 var maxStep = 0.05;
 
@@ -295,8 +282,6 @@ Level.prototype.playerTouched = function(type, actor) {
   }
 }
 
-
-
 var arrowCodes = {37: "left", 38: "up", 39: "right"};
 
 function trackKeys(codes) {
@@ -313,7 +298,6 @@ function trackKeys(codes) {
   return pressed;
 }
 
-
 function runAnimation(frameFunc) {
   var lastTime = null;
   function frame(time) {
@@ -328,7 +312,6 @@ function runAnimation(frameFunc) {
   }
   requestAnimationFrame(frame);
 }
-
 
 var arrows = trackKeys(arrowCodes);
 
@@ -374,8 +357,6 @@ function runLevel(level, Display, andThen) {
   runAnimation(animation);
 }
 
-
-
 function runGame(plans, Display) {
   var lives = 3;
   var livesSpan = document.getElementById('lives');
@@ -397,8 +378,8 @@ function runGame(plans, Display) {
         startLevel(n + 1);
       } else {
           console.log("You win!");
-        }
-    });
+      }
+    })
   }
   startLevel(0);
 }
