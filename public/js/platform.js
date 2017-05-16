@@ -483,15 +483,30 @@ function runLevel(level, Display, andThen) {
 }
 
 function runGame(plans, Display) {
+  var lives = 3;
+  var livesSpan = document.getElementById('lives');
+  var gameStatus = document.getElementById('status');
+
   function startLevel(n) {
+    livesSpan.textContent = lives;
     runLevel(new Level(plans[n]), Display, function(status) {
-      if (status == "lost")
-        startLevel(n);
-      else if (n < plans.length - 1)
+      if (status == 'lost') {
+        lives--;
+        if (lives == 0) {
+          gameStatus.textContent = 'Game Over';
+          console.log('Game over');
+        } else {
+          startLevel(n);
+        }
+      }
+      else if (n < plans.length - 1) {
         startLevel(n + 1);
-      else
-        console.log("You win!");
+      } else {
+          console.log("You win!");
+        }
     });
   }
   startLevel(0);
 }
+
+runGame(GAME_LEVELS, DOMDisplay)

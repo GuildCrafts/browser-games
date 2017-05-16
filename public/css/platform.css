@@ -30,3 +30,9 @@
   max-height: 450px;
   position: relative;
 }
+
+#status {
+  font-family: futura, arial;
+  font-weight: bold;
+  color: #152055;
+}
