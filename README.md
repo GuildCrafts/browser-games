@@ -61,7 +61,6 @@ General
  - [ ] There is a clear separation of game logic code from view/rendering code.
  - [ ] All major features are added via pull requests with a clear description and concise commit messages.
  - [ ] The artifact produced is properly licensed, preferably with the MIT license.
-
 Generic Platform Game
 
  - [ ] Game can be found at public/platform.html
