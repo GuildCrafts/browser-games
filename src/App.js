@@ -89,10 +89,12 @@ class Game extends Component {
     let collision = false
     this.state.tetrominoe.shape[this.state.rotation].forEach( (row, rowIndex) => {
       row.forEach( (square, squareIndex) => {
-        let squareToLeft = this.state.squares[this.state.location[0]+rowIndex][this.state.location[1]+squareIndex-1]
-        if( square && squareToLeft !== 'Shape' ){
-          if( !squareToLeft || squareToLeft !== 'Black' ){
-            collision = true
+        if( square ){
+          let squareToLeft = this.state.squares[this.state.location[0]+rowIndex][this.state.location[1]+squareIndex-1]
+          if( squareToLeft !== 'Shape' ){
+            if( !squareToLeft || squareToLeft !== 'Black' ){
+              collision = true
+            }
           }
         }
       })
@@ -104,10 +106,12 @@ class Game extends Component {
     let collision = false
     this.state.tetrominoe.shape[this.state.rotation].forEach( (row, rowIndex) => {
       row.forEach( (square, squareIndex) => {
-        let squareToRight = this.state.squares[this.state.location[0]+rowIndex][this.state.location[1]+squareIndex+1]
-        if( square && squareToRight !== 'Shape' ){
-          if( !squareToRight || squareToRight !== 'Black' ){
-            collision = true
+        if( square ){
+          let squareToRight = this.state.squares[this.state.location[0]+rowIndex][this.state.location[1]+squareIndex+1]
+          if( squareToRight !== 'Shape' ){
+            if( !squareToRight || squareToRight !== 'Black' ){
+              collision = true
+            }
           }
         }
       })
@@ -133,12 +137,50 @@ class Game extends Component {
         }
       })
     })
-    console.log('collision',collision)
+    if( collision ){
+      this.setTetrominoe()
+    }
     return collision
   }
 
+  collisionRotate(){
+    let collision = false
+    this.state.tetrominoe.shape[(this.state.rotation + 1)%4].forEach( (row, rowIndex) => {
+      row.forEach( (square, squareIndex) => {
+        if( square ){
+          if( !this.state.squares[this.state.location[0]+rowIndex] ){
+            collision = true
+          }else if( !this.state.squares[this.state.location[0]+rowIndex][this.state.location[1]+squareIndex] ){
+            collision = true
+          }else if( this.state.squares[this.state.location[0]+rowIndex][this.state.location[1]+squareIndex] !== 'Black' ){
+            if( this.state.squares[this.state.location[0]+rowIndex][this.state.location[1]+squareIndex] !== 'Shape'){
+              collision = true
+            }
+          }
+        }
+      })
+    })
+    return collision
+  }
+
+  setTetrominoe(){
+    let currentState = this.state
+    currentState.tetrominoe.shape[currentState.rotation].forEach( (row, rowIndex) => {
+      row.forEach( (square, squareIndex) => {
+        if( square ){
+          currentState.squares[currentState.location[0]+rowIndex][currentState.location[1]+squareIndex] = currentState.tetrominoe.color
+        }
+      })
+    })
+    currentState.rotation = 0
+    currentState.location = null
+    currentState.tetrominoe = null
+    this.setState( currentState )
+    this.newShape()
+  }
+
   handleKeyPress(event){
-    if(event.key === 'w'){
+    if(event.key === 'w' && !this.collisionRotate()){
       this.rotate()
     }
     if(event.key === 'a' && !this.collisionLeft()){
