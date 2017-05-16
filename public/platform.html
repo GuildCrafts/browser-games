@@ -1,0 +1,49 @@
+/* DRAWING */
+
+<link rel="stylesheet" href="css/game.css">
+
+<script>
+  var simpleLevel = new Level(simpleLevelPlan);
+  var display = new DOMDisplay(document.body, simpleLevel);
+</script>
+
+/* RUNNING THE GAME */
+
+<body>
+  <script>
+    runGame(GAME_LEVELS, DOMDisplay);
+
+    // The old runGame function. Modify it...
+  function runGame(plans, Display) {
+    function startLevel(n) {
+      runLevel(new Level(plans[n]), Display, function(status) {
+        if (status == "lost")
+          startLevel(n);
+        else if (n < plans.length - 1)
+          startLevel(n + 1);
+        else
+          console.log("You win!");
+      });
+    }
+    startLevel(0);
+  }
+  runGame(GAME_LEVELS, DOMDisplay);
+
+  // The old runLevel function. Modify this...
+  function runLevel(level, Display, andThen) {
+    var display = new Display(document.body, level);
+    runAnimation(function(step) {
+      level.animate(step, arrows);
+      display.drawFrame(step);
+      if (level.isFinished()) {
+        display.clear();
+        if (andThen)
+          andThen(level.status);
+        return false;
+      }
+    });
+  }
+  runGame(GAME_LEVELS, DOMDisplay);
+
+  </script>
+</body>
