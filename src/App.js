@@ -1,132 +1,180 @@
 import React, { Component } from 'react'
-import {Pawn, Bishop, Rook, Queen, King, Knight} from './classes/pieces'
-import './css/board.css'
-
-
-class Square{
-  constructor(x,y){
-    this.x = x
-    this.y = y
-    this.piece = 'Blank'
-  }
-}
+import './css/tetris.css'
+import {T} from './classes'
 
 class Game extends Component {
   constructor(){
     super()
     this.state = {
-      board: this.initializeBoard(),
-      selected: null,
-      legalMoves: null,
-      nextPlayer: 'White'
+      squares: this.initializeSquares(),
+      tetrominoe: null,
+      location: null,
+      rotation: 0,
+      number: 0
     }
-    this.initializePieces()
   }
 
-  initializeBoard(){
-    let board = {}
-    for( let y = 1; y <= 8; y++ ){
-      board[y] = {}
-      for( let x = 1; x <= 8; x++ ){
-        board[y][x] = new Square(x,y)
+  initializeSquares(){
+    let squares = []
+    for( let y = 1; y <= 20; y++ ){
+      let row = []
+      for( let x = 1; x <= 10; x++ ){
+        row.push('Black')
       }
+      squares.push(row)
     }
-    return board
+    return squares
   }
 
-  initializePieces(){
-    let board = this.state.board
-    Object.values(board[7]).forEach( square => square.piece = new Pawn('White'))
-    Object.values(board[2]).forEach( square => square.piece = new Pawn('Black'))
-    board[1][3].piece = new Bishop('Black')
-    board[1][6].piece = new Bishop('Black')
-    board[8][3].piece = new Bishop('White')
-    board[8][6].piece = new Bishop('White')
-    board[1][2].piece = new Knight('Black')
-    board[1][7].piece = new Knight('Black')
-    board[8][2].piece = new Knight('White')
-    board[8][7].piece = new Knight('White')
-    board[1][1].piece = new Rook('Black')
-    board[1][8].piece = new Rook('Black')
-    board[8][1].piece = new Rook('White')
-    board[8][8].piece = new Rook('White')
-    board[1][5].piece = new Queen('Black')
-    board[8][5].piece = new Queen('White')
-    board[1][4].piece = new King('Black')
-    board[8][4].piece = new King('White')
+  newShape(){
+    this.setState(
+      {
+        tetrominoe: new T,
+        location:[0,4],
+        rotation:0
+      }
+    )
   }
 
-  click(x,y){
-    let board = this.state.board
-    let square = board[y][x]
-    if( this.state.selected && x === this.state.selected.x && y === this.state.selected.y){
-      this.setState({selected: null})
-      return
-    }
-    let piece = board[y][x].piece
-    if( piece.color === this.state.nextPlayer){
-      this.setState({selected: {x:x,y:y}, legalMoves: board[y][x].piece.legalMoves(x,y,board)})
-      console.log('state.legalMoves',this.state.legalMoves)
-      return
-    }
-    if(this.selectedSquare() && this.state.legalMoves.includes(square)){
-      this.movePiece(x,y)
-    }
-    else if(piece !== 'Blank' && piece.color === this.state.nextPlayer){
-      this.setState({selected: {x:x,y:y}, legalMoves: board[y][x].piece.legalMoves(x,y,board)})
-      console.log('state.legalMoves',this.state.legalMoves)
-    }
+  displayTetrominoe( squares ){
+    this.state.tetrominoe.shape[this.state.rotation].forEach( (row, rowIndex) => {
+      row.forEach( (square, squareIndex) => {
+        if( square ){
+          squares[this.state.location[0]+rowIndex][this.state.location[1]+squareIndex] = 'Shape'
+        }
+      })
+    })
+    return squares
   }
 
-  movePiece(x,y){
-    this.selectedSquare().piece.moves++
-    let currentState = this.state
-    currentState.nextPlayer === "White" ? currentState.nextPlayer = "Black" : currentState.nextPlayer = "White"
-    currentState.board[y][x].piece = this.selectedSquare().piece
-    this.setState(currentState)
-    this.selectedSquare().piece = 'Blank'
-    this.setState({selected: null})
+  undisplayTetrominoe( squares ){
+    this.state.tetrominoe.shape[this.state.rotation].forEach( (row, rowIndex) => {
+      row.forEach( (square, squareIndex) => {
+        if( square ){
+          squares[this.state.location[0]+rowIndex][this.state.location[1]+squareIndex] = 'Black'
+        }
+      })
+    })
+    return squares
   }
 
-  getLegalMoves(){
-    let selected = this.state.selected
-    return this.selectedSquare().piece.legalMoves(selected.x,selected.y,this.state.board)
+  rotate(){
+    this.setState(
+      {
+        rotation: (this.state.rotation + 1) % 4,
+        squares: this.undisplayTetrominoe( this.state.squares )
+      }
+    )
   }
 
-  selectedSquare(){
-    if(this.state.selected){
-      let board = this.state.board
-      let selected = this.state.selected
-      return board[selected.y][selected.x]
+  move( direction ){
+    this.setState(
+      {
+        location: [(this.state.location[0]),this.state.location[1] + direction],
+        squares: this.undisplayTetrominoe( this.state.squares )
+      }
+    )
+  }
+
+  down(){
+    this.setState(
+      {
+        location: [(this.state.location[0] + 1),this.state.location[1]],
+        squares: this.undisplayTetrominoe( this.state.squares )
+      }
+    )
+  }
+
+  collisionLeft(){
+    let collision = false
+    this.state.tetrominoe.shape[this.state.rotation].forEach( (row, rowIndex) => {
+      row.forEach( (square, squareIndex) => {
+        let squareToLeft = this.state.squares[this.state.location[0]+rowIndex][this.state.location[1]+squareIndex-1]
+        if( square && squareToLeft !== 'Shape' ){
+          if( !squareToLeft || squareToLeft !== 'Black' ){
+            collision = true
+          }
+        }
+      })
+    })
+    return collision
+  }
+
+  collisionRight(){
+    let collision = false
+    this.state.tetrominoe.shape[this.state.rotation].forEach( (row, rowIndex) => {
+      row.forEach( (square, squareIndex) => {
+        let squareToRight = this.state.squares[this.state.location[0]+rowIndex][this.state.location[1]+squareIndex+1]
+        if( square && squareToRight !== 'Shape' ){
+          if( !squareToRight || squareToRight !== 'Black' ){
+            collision = true
+          }
+        }
+      })
+    })
+    return collision
+  }
+
+  collisionDown(){
+    let collision = false
+    this.state.tetrominoe.shape[this.state.rotation].forEach( (row, rowIndex) => {
+      row.forEach( (square, squareIndex) => {
+        if( square ){
+          if( !this.state.squares[this.state.location[0]+rowIndex+1] ){
+            collision = true
+          }else{
+            let squareBellow = this.state.squares[this.state.location[0]+rowIndex+1][this.state.location[1]+squareIndex]
+            if( squareBellow !== 'Shape' ){
+              if( !squareBellow || squareBellow !== 'Black' ){
+                collision = true
+              }
+            }
+          }
+        }
+      })
+    })
+    console.log('collision',collision)
+    return collision
+  }
+
+  handleKeyPress(event){
+    if(event.key === 'w'){
+      this.rotate()
     }
-    return null
+    if(event.key === 'a' && !this.collisionLeft()){
+      this.move( -1 )
+    }
+    if(event.key === 'd' && !this.collisionRight()){
+      this.move( 1 )
+    }
+    if(event.key === 's' && !this.collisionDown()){
+      this.down()
+    }
   }
-
 
   render(){
-    let boardRender = Object.values(this.state.board).reverse().map( (row, index) => {
-      let rowJSX = Object.values(row).map( square => {
-        let classesArray = []
-        classesArray.push(square.piece.name)
-        ;(square.x + square.y) % 2 === 1 ? classesArray.push('WhiteSquare') : classesArray.push('BlackSquare')
-        if( this.selectedSquare() === square){ classesArray.push('Highlight')}
-        if( this.state.selected && this.state.legalMoves.includes(square)){ classesArray.push('Highlight')}
-        if( square.piece ){ classesArray.push( square.piece.color )}
-        let classes = classesArray.join(' ')
-
-        return (<div key={square.x+square.y}>
-                  <button onClick={() => this.click(square.x,square.y)} className={`Square + ${classes}`}>
-                  </button>
-                </div>
-                )
+    let squares = this.state.squares
+    if( this.state.tetrominoe ){
+      squares = this.displayTetrominoe( squares )
+    }
+    let squaresJSX = squares.map( row => {
+      let rowJSX = row.map( square => {
+        let color = square
+        if( square === 'Shape' ){
+          color = this.state.tetrominoe.color
+        }
+        return <div className={`Square + ${color}`}/>
       })
-      return <div className="Row" key={index}>{rowJSX}</div>
+      return <div className='Row'>{rowJSX}</div>
     })
 
+
     return(
-      <div className="Board">
-        {boardRender}
+      <div onKeyPress={this.handleKeyPress.bind(this)}>
+        {squaresJSX}
+        <button onClick={this.newShape.bind(this)}>Start Game</button>
       </div>
+
     )
   }
 }
