@@ -466,21 +466,62 @@ function runAnimation(frameFunc) {
   requestAnimationFrame(frame);
 }
 
+runAnimation(function(step) {
+  level.animate(step, arrows);
+  display.drawFrame(step);
+  if (level.isFinished()) {
+    display.clear();
+    if (andThen)
+      andThen(level.status);
+    return false;
+  }
+})
+
 var arrows = trackKeys(arrowCodes);
 
 function runLevel(level, Display, andThen) {
   var display = new Display(document.body, level);
-  runAnimation(function(step) {
-    level.animate(step, arrows);
-    display.drawFrame(step);
-    if (level.isFinished()) {
-      display.clear();
-      if (andThen)
-        andThen(level.status);
+
+  var running = 'yes';
+
+  function handleKey(event) {
+    if(event.keyCode == 27) {
+      if (running == 'no') {
+      running = 'yes';
+      runAnimation(animation);
+    }
+      else if (running == 'pausing') {
+        running = 'yes';
+      }
+      else if (running == 'yes') {
+        running = 'pausing'
+      }
+    }
+  }
+  addEventListener('keydown', handleKey);
+
+  function animation(step) {
+    if(running == 'pausing') {
+      running = 'no';
       return false;
     }
-  })
+
+    level.animate(step, arrows);
+    display.drawFrame(step);
+
+    if(level.isFinished()) {
+      display.clear();
+
+      if(andThen) {
+        andThen(level.status);
+      return false
+      }
+    }
+  }
+  runAnimation(animation);
 }
+
+
 
 function runGame(plans, Display) {
   var lives = 3;
