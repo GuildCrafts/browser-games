@@ -4,27 +4,34 @@ class Board {
     for( let i = 0; i < x; i++ ){
       this.grid[i] = []
       for( let j = 0; j < y; j++){
-        this.grid[i][j] = 'x'
+        this.grid[i][j] = false
       }
     }
   }
 
-  getSpace( coord ){
-    let [x,y] = this.translateCoordinate( coord )
+  getSquare( coord ){
+    let [x,y] = this.letterToXY( coord )
     return this.grid[x][y]
   }
 
-  setSpace( coord, val ){
-    let [x,y] = this.translateCoordinate( coord )
+  setSquare( coord, val ){
+    let [x,y] = this.letterToXY( coord )
 
     this.grid[x][y] = val
   }
 
-  translateCoordinate( coord ){
+  letterToXY( coord ){
     const x = coord[0].charCodeAt() - 97
     const y = coord[1] - 1
 
     return [x,y]
+  }
+
+  xyToLetter( x, y ){
+    let coord = String.fromCharCode( x + 97 )
+    coord += y+1
+
+    return coord
   }
 
    map2d( fxnSquare, fxnRow ) {
