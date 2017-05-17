@@ -1,0 +1,37 @@
+html {
+  height: 95%
+}
+
+body {
+  background-color: #cfc4b9;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#board{
+  display: flex;
+  flex-direction: row;
+  border: 6px ridge brown;
+  height: auto;
+  width: auto;
+}
+
+.board-col{
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.board-square{
+  min-width: 60px;
+  min-height: 60px;
+}
+
+.white-space {
+  background-color: #d0bfb6;
+}
+
+.black-space {
+  background-color: #4d3e55;
+}
