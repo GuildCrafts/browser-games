@@ -3,7 +3,7 @@ html {
 }
 
 body {
-  background-color: #cfc4b9;
+  background-color: #d8d2cf;
   height: 100%;
   display: flex;
   justify-content: center;
@@ -14,18 +14,24 @@ body {
   display: flex;
   flex-direction: row;
   border: 6px ridge brown;
-  height: auto;
-  width: auto;
+  width: 60%;
+}
+
+#board:after {
+  content: "";
+  padding-bottom: 100%;
 }
 
 .board-col{
+  width: 12.5%;
+  height: auto;
   display: flex;
   flex-direction: column-reverse;
 }
 
 .board-square{
-  min-width: 60px;
-  min-height: 60px;
+  width: auto;
+  height: 12.5%;
 }
 
 .white-space {

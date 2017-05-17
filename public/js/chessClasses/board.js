@@ -11,7 +11,6 @@ class Board {
 
   getSpace( coord ){
     let [x,y] = this.translateCoordinate( coord )
-
     return this.grid[x][y]
   }
 
