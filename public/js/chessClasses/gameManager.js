@@ -2,21 +2,40 @@ class GameManager {
   constructor() {
     this.selected = false
     this.legalSpaces = []
-    this.turn = 1
+    this.turn = WHITE
     this.board = new Board( 8, 8 )
     this.placeStartingPositions()
   }
 
   onClick( coord ) {
     const piece = this.board.getSquare( coord )
+    const clickedMyPiece = this.clickedMyPiece( piece )
 
-    if( !piece && !this.selected ){
+    if( !clickedMyPiece && !this.selected ){
       return
-    } else if( !piece && this.selected ){
+    } else if( !clickedMyPiece && this.selected ){
       this.movePiece( this.selected.coord , coord )
       this.selected = false
-    } else if( piece ){
+      this.swapTurn()
+    } else if( clickedMyPiece ){
       this.selected = { coord: coord, piece: piece }
+    }
+  }
+
+  clickedMyPiece ( piece ) {
+    if ( piece ){
+      if( piece.color === this.turn ){
+        return true
+      }
+    }
+    return false
+  }
+
+  swapTurn() {
+    if (this.turn === WHITE ){
+      this.turn = BLACK
+    } else {
+      this.turn = WHITE
     }
   }
 
@@ -51,7 +70,7 @@ class GameManager {
     this.board.setSquare( 'f1', new Piece( BISHOP, WHITE ) )
     this.board.setSquare( 'g1', new Piece( KNIGHT, WHITE ) )
     this.board.setSquare( 'h1', new Piece( ROOK, WHITE ) )
-    
+
     this.board.setSquare( 'a8', new Piece( ROOK, BLACK ) )
     this.board.setSquare( 'b8', new Piece( KNIGHT, BLACK ) )
     this.board.setSquare( 'c8', new Piece( BISHOP, BLACK ) )
