@@ -1,4 +1,4 @@
-const manager = new GameManager()
+let manager = new GameManager()
 
 $(document).ready( () => {
   renderBoard( manager.board )
@@ -17,6 +17,13 @@ const checkMove = ( event ) => {
   }
 }
 
+const reset = () => {
+  manager = new GameManager()
+  renderBoard( manager.board )
+}
+
+
+//Rendering Functions
 const appendCol = ( col, x ) => {
   $('#board').append(`<div class="board-col" id=col-${x}></div>`)
 }
