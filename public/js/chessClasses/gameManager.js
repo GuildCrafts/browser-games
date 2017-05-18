@@ -21,6 +21,10 @@ class GameManager {
     }
   }
 
+  getSelected() {
+    return this.selected
+  }
+
   determineLegalMoves( piece, coord ){
 
   }

@@ -12,6 +12,9 @@ const checkMove = ( event ) => {
 
   manager.onClick( clickCoord )
   renderBoard( manager.board )
+  if( manager.selected ){
+    $(`#${manager.selected.coord}`).addClass('selected')
+  }
 }
 
 const appendCol = ( col, x ) => {
