@@ -8,12 +8,19 @@ if( sessionStorage.getItem('savedBoard')){
   })
   manager.turn = sessionStorage.getItem( 'turn' )
 }
+let folder = 'classic'
 
 $(document).ready( () => {
   renderBoard( manager.board )
   $('#board').click( checkMove )
+  $('#setMenu').change( changeSet )
   sessionStorage.setItem( 'savedBoard', JSON.stringify(manager.board) )
 })
+
+const changeSet = ( event ) => {
+  folder = event.target.value
+  renderBoard( manager.board )
+}
 
 const checkMove = ( event ) => {
   const clickCoord = event.target.id ?
@@ -51,7 +58,7 @@ const appendSquare = ( space, x, y, grid ) => {
   let coordString = manager.board.xyToLetter( x, y )
 
   let imgTag = grid[x][y] ?
-    `<img class="piece" src=${grid[x][y].renderString()}`:
+    `<img class="piece" src=${grid[x][y].renderString( folder )}`:
     ''
 
   $(`#col-${x}`).append(
