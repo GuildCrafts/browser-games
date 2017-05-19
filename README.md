@@ -1,3 +1,8 @@
+#bitter-steenbok
+## Somaya Bounouar
+#363 Browser Games: Generic Platform Game
+http://jsdev.learnersguild.org/goals/363-Browser_Games-Platform.html
+
 # Browser Games
 
 A collection of games to play in a web browser. See the full list of games in the [games.md](games.md) file.
