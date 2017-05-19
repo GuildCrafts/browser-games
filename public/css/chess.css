@@ -45,8 +45,8 @@ body {
 }
 
 .selected {
-  background-color: #856;
-  box-shadow: inset 0px 0px 20px 0px #eae;
+  background-color: #8a9f8e;
+  box-shadow: inset 0px 0px 40px 0px #c8ffc8;
 }
 
 .legal-move {
