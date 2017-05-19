@@ -1,10 +1,17 @@
+
 canvas = document.getElementById('tetris');
 context = canvas.getContext('2d');
 
-context.scale(20, 20);
 
-//*****around 41 minute mark of video*****//
-//make lines disappear (function happens in playerDrop()):
+let tetrisMusic = new Audio('audio/tetris-gameboy-02.mp3');
+let landingSound = new Audio('audio/Gun-Silencer-SoundBible.com-193331132.mp3');
+let scoreSound = new Audio('audio/Metroid_Door-Brandino480-995195341.mp3');
+let fourLineSound = new Audio('audio/8d82b5_SM64_High_Score_Sound_Effect.mp3');
+let loserSound = new Audio('audio/Pacman-death-sound.mp3');
+
+context.scale(20, 20);
+let rowArray = [];
+
 function arenaSweep() {
   let rowCount = 1;
   outer: for (let y = arena.length - 1; y > 0; --y) {
@@ -18,13 +25,46 @@ function arenaSweep() {
     arena.unshift(row);
     ++y;
 
-    player.score += rowCount * 10;
-    rowCount *= 2;
+    player.lines += rowCount;
+    rowArray.push(rowCount);
+    console.log(rowArray);
+    console.log(player.lines)
+
+    updateLevel();
+
+    gameMessage = document.getElementById('row-clear-message');
+    gameMessage.innerHTML = "GOOD JOB";
+    gameMessage.style.display = 'block';
+    setTimeout(clearMessage, 500)
+    scoreSound.play();
+    //This isn't working either:
+    if(rowCount >= 4){
+      gameMessage = document.getElementById('row-clear-message');
+      gameMessage.innerHTML = "AMAZING";
+      gameMessage.style.display = 'block';
+      setTimeout(clearMessage, 500)
+      fourLineSound.play();
+    }
   }
+
+  if (rowArray.length === 1){
+    player.score += 40*(player.level + 1)
+  } else if (rowArray.length === 2) {
+    player.score += 100*(player.level + 1)
+  } else if (rowArray.length === 3) {
+    player.score += 300*(player.level + 1)
+  } else if (rowArray.length >= 4) {
+    player.score += 1200*(player.level + 1)
+  }
+  landingSound.play();
+  rowArray = [];
+
 }
 
-//*****around 20 minute mark of video*****//
-//m=matrix, o=offset, I think?
+function clearMessage() {
+  gameMessage.style.display = 'none';
+}
+
 function collide(arena, player) {
   const [m, o] = [player.matrix, player.pos]
   for (let y = 0; y < m.length; ++y) {
@@ -47,7 +87,6 @@ function createMatrix(width, height) {
   return matrix;
 }
 
-/***************************/
 function createPiece(type) {
   if (type === 'T') {
     return [
@@ -93,8 +132,6 @@ function createPiece(type) {
     ];
   }
 }
-/***************************/
-
 
 function draw() {
   context.fillStyle = 'black';
@@ -139,8 +176,6 @@ function playerDrop () {
   dropCounter = 0;
 }
 
-//*****around 24 minute mark of video*****//
-//the stuff that keeps piece within the "arena"
 function playerMove(dir) {
   player.pos.x += dir;
   if (collide(arena, player)) {
@@ -148,20 +183,29 @@ function playerMove(dir) {
   }
 }
 
-//*****around 37 minute mark of video*****//
-//this happens within playerDrop()
 function playerReset() {
   const pieces = 'ILJOTSZ';
-  player.matrix = createPiece(pieces[pieces.length*Math.random() | 0]);
+  // player.matrix = createPiece(pieces[pieces.length*Math.random() | 0]);
+  player.matrix = createPiece(pieces[0])
   player.pos.y = 0;
   player.pos.x = (arena[0].length / 2 | 0) -
                  (player.matrix[0].length / 2 | 0);
-  //if pieces reach the top/game over:
   if (collide(arena, player)) {
-    arena.forEach(row => row.fill(0));
-    player.score = 0;
-    updateScore();
+    gameMessage = document.getElementById('loser-message');
+    gameMessage.innerHTML = "GAME OVER";
+    gameMessage.style.display = 'block';
+    loserSound.play();
+    setTimeout(clearBoard, 2000);
   }
+}
+
+function clearBoard(){
+  arena.forEach(row => row.fill(0));
+  player.score = 0;
+  player.lines = 0;
+  player.level = 0;
+  updateScore();
+  gameMessage.style.display = 'none';
 }
 
 function playerRotate(dir) {
@@ -170,7 +214,6 @@ function playerRotate(dir) {
   rotate(player.matrix, dir);
   while (collide(arena, player)) {
     player.pos.x += offset;
-    //around 31 min mark:
     offset = -(offset + (offset > 0 ? 1 : -1));
     if (offset > player.matrix[0].length) {
       rotate(player.matrix, -dir);
@@ -180,8 +223,6 @@ function playerRotate(dir) {
   }
 }
 
-
-//rotating the matrix:
 function rotate(matrix, dir) {
   for (let y = 0; y < matrix.length; ++y) {
     for (let x = 0; x < y; ++x) {
@@ -220,6 +261,29 @@ function update(time = 0) {
 
 function updateScore() {
   document.getElementById('score').innerText = player.score;
+  document.getElementById('lines').innerText = player.lines;
+  document.getElementById('levels').innerText = player.level;
+}
+
+function updateLevel() {
+  if (player.level === 0){
+    if (player.lines >= 10){//10
+      player.level ++
+      dropInterval -= 100;
+    }
+  } else if (player.level === 1) {
+    if (player.lines >= 20){
+      player.level ++;
+      dropInterval -= 100;
+      console.log(dropInterval)
+    }
+  } else if (player.level > 1){
+    if (player.lines >= 10 * player.level + 10) {//10
+      player.level ++;
+      dropInterval -= 100;
+      console.log(dropInterval)
+    }
+  }
 }
 
 const colors = [
@@ -239,11 +303,11 @@ const player = {
   pos: {x: 5, y: 5},
   matrix: null,
   score: 0,
+  lines: 0,
+  level: 0,
 }
 
-//q = 81, w = 87 (for rotation)
 document.addEventListener('keydown', event => {
-  console.log(event);
   if (event.keyCode === 37) {
     playerMove(-1);
     // player.pos.x--;
@@ -258,6 +322,21 @@ document.addEventListener('keydown', event => {
   }
 });
 
-playerReset();
-updateScore();
-update();
+draw();
+
+function startGame(){
+  player.score = 0;
+  player.lines = 0;
+  player.level = 0;
+  for(let i = 0; i < arena.length; i++){
+    arena[i].fill(0);
+  }
+  tetrisMusic.addEventListener('ended', function() {
+      this.currentTime = 0;
+      this.play();
+  }, false);
+  tetrisMusic.play();
+  playerReset();
+  updateScore();
+  update();
+}
