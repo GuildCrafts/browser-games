@@ -2,12 +2,12 @@
 
 #### General
 
-- [ ] Artifact produced is a fork of the [browser-games][browser-games] repo.
-- [ ] Variables, functions, files, etc. have appropriate and meaningful names.
-- [ ] HTML, CSS, and JS files are well formatted with proper spacing and indentation.
-- [ ] There is a clear separation of game logic code from view/rendering code.
-- [ ] All major features are added via pull requests with a clear description and concise commit messages.
-- [ ] The artifact produced is properly licensed, preferably with the [MIT license][mit-license].
+- [x] Artifact produced is a fork of the [browser-games][browser-games] repo.
+- [x] Variables, functions, files, etc. have appropriate and meaningful names.
+- [x] HTML, CSS, and JS files are well formatted with proper spacing and indentation.
+- [x] There is a clear separation of game logic code from view/rendering code.
+- [x] All major features are added via pull requests with a clear description and concise commit messages.
+- [x] The artifact produced is properly licensed, preferably with the [MIT license][mit-license].
 
 #### Chess
 
