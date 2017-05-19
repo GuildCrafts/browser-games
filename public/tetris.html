@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+    <title>Tetris</title>
+    <link rel="stylesheet" type="text/css" href="./css/tetris.css">
+    <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Inknut+Antiqua|Titillium+Web" rel="stylesheet">
+	</head>
+  <nav>
+    <ul>
+      <li><a href="index.html" style="color: orange">HOME</a></li>
+      <li><a href="ticTacToe.html" style="color: orange">TIC TAC TOE</a></li>
+      <li><a href="simon.html" style="color: orange">SIMON</a></li>
+      <li><a href="tetris.html" style="color: orange">TETRIS</a></li>
+    </ul>
+  </nav>
+  <body>
+    <h1>Tetris</h1>
+    <div id="container">
+      <canvas id='tetris' width="400" height="400"></canvas>
+      <div id="score-keeper">
+				<p style="color: orange">SCORE:</p>
+				<p id="score" style="color: white"></p>
+			</div>
+			<div id="line-counter">
+				<p style="color: orange">LINES:</p>
+				<p id="lines" style="color: white"></p>
+			</div>
+			<div id="level-counter">
+				<p style="color: orange">LEVEL:</p>
+				<p id="levels" style="color: white"></p>
+			</div>
+      <div id="game-messages">
+        <h2 hidden id="loser-message" style="color: orange"></h2>
+        <h2 hidden id="row-clear-message" style="color: orange"></h2>
+      </div>
+      <div id="game-start"><button type="button" onClick="startGame()">New Game</button></div>
+			<div id="game-reset"><button type="button" onClick ="location.reload()">Reset</button></div>
+    </div>
+    <script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
+    <script src="./js/tetris.js"></script>
+  </body>
+</html>
