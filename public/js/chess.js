@@ -25,6 +25,10 @@ const checkMove = ( event ) => {
     $(`#${manager.selected.coord}`).addClass('selected')
   }
   sessionStorage.setItem( 'savedBoard', JSON.stringify(manager.board) )
+  console.log('SPACES', manager.legalSpaces);
+  manager.legalSpaces.map( (coord) => {
+    $(`#${coord}`).addClass('legal-move')
+  } )
 }
 
 const reset = () => {

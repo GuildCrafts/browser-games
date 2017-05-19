@@ -49,6 +49,10 @@ body {
   box-shadow: inset 0px 0px 20px 0px #eae;
 }
 
+.legal-move {
+  box-shadow: inset 0px 0px 0px 100px rgba(200,255,200,0.5);
+}
+
 .piece {
   width: 100%;
   height: 100%;

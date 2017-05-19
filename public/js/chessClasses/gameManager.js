@@ -16,9 +16,11 @@ class GameManager {
     } else if( !clickedMyPiece && this.selected ){
       this.movePiece( this.selected.coord , coord )
       this.selected = false
+      this.legalSpaces = []
       this.swapTurn()
     } else if( clickedMyPiece ){
-      this.selected = { coord: coord, piece: piece }
+      this.selected = { piece: piece, coord: coord }
+      this.legalSpaces = this.legalMoves( piece, coord)
     }
   }
 
@@ -43,17 +45,21 @@ class GameManager {
     return this.selected
   }
 
-  determineLegalMoves( piece, coord ){
-
+  legalMoves( piece, coord ){
+    let moves = {
+      king: () => this.kingMoves,
+      queen: () => this.queenMoves,
+      bishop: () => this.bishopMoves,
+      rook: () => this.rookMoves,
+      knight: () => this.knightMoves,
+      pawn: () => this.pawnMoves(piece, coord),
+    }
+    return moves[piece.type]()
   }
 
   movePiece ( startCoord, endCoord ) {
     this.board.setSquare( endCoord, this.board.getSquare( startCoord ))
     this.board.setSquare( startCoord, false )
-  }
-
-  placeScattered () {
-    this.board.setSquare( 'e7', new Piece( KNIGHT, BLACK ) )
   }
 
   newGrid( grid ){
@@ -84,4 +90,60 @@ class GameManager {
     this.board.setSquare( 'g8', new Piece( KNIGHT, BLACK ) )
     this.board.setSquare( 'h8', new Piece( ROOK, BLACK ) )
   }
+
+  placeScattered () {
+    this.board.setSquare( 'e7', new Piece( KNIGHT, BLACK ) )
+  }
+
+  validSpace ( square, color) {
+    if( !square || square.color !== color ){
+      return true
+    }
+    return false
+  }
+
+  pawnMoves(piece, coord )  {
+    let result = []
+    let direction = piece.color === WHITE ? 1 : -1
+    let [x,y] = this.board.letterToXY( coord )
+
+    if( this.validSpace(this.board.grid[x][y+direction], piece.color) ){
+      result.push( this.board.xyToLetter( x, y+1 ) )
+    }
+    if( this.validSpace(this.board.grid[x][y+(direction*2)], piece.color) ){
+      result.push( this.board.xyToLetter( x, y+2 ) )
+    }
+    return result
+  }
+
+  knightMoves( piece, coord )  {
+    let result = []
+
+    return result
+  }
+
+  rookMoves( piece, coord )  {
+    let result = []
+
+    return result
+  }
+
+  bishopMoves( piece, coord )  {
+    let result = []
+
+    return result
+  }
+
+  queenMoves( piece, coord )  {
+    let result = []
+
+    return result
+  }
+
+  kingMoves( piece, coord )  {
+    let result = []
+
+    return result
+  }
+
 }
