@@ -6,6 +6,7 @@ if( sessionStorage.getItem('savedBoard')){
       manager.board.grid[x][y] = new Piece( type = space.type, color = space.color)
     }
   })
+  manager.turn = sessionStorage.getItem( 'turn' )
 }
 
 $(document).ready( () => {
@@ -25,6 +26,10 @@ const checkMove = ( event ) => {
     $(`#${manager.selected.coord}`).addClass('selected')
   }
   sessionStorage.setItem( 'savedBoard', JSON.stringify(manager.board) )
+  sessionStorage.setItem( 'turn', manager.turn )
+  manager.legalSpaces.map( (coord) => {
+    $(`#${coord}`).addClass('legal-move')
+  } )
 }
 
 const reset = () => {
@@ -58,8 +63,4 @@ const appendSquare = ( space, x, y, grid ) => {
 const renderBoard = ( aBoard ) => {
   $('#board').empty()
   aBoard.map2d( appendSquare, appendCol )
-}
-
-const boardTest = ( space, x, y ) => {
-  console.log(space);
 }
