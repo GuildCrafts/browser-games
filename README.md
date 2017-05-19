@@ -41,19 +41,28 @@ Then open `http://localhost:4321/` in your browser of choice and play away!
 - [X] Simon game is playable
 - [X] Simon game page is linked from `public/index.html`
 
+### Tetris
+
+ - [ ] User stories and features for the game are added as issues to your repo with the label feature or user-story
+You’ll have to define these yourself by looking at the rules of the game and coming up with the right user stories & features
+ - [ ] jQuery is used for DOM manipulation code
+ - [X] Tetris game can be found at public/tetris.html
+ - [X] Tetris game is playable
+ - [X] Players have a score
+ - [X] Game page is linked from public/index.html
+
 ### Stretch
 
-- [ ] Tic-Tac-Toe has a player-vs-computer version
-- [ ] Tic-Tac-Toe AI will always win or tie
-- [ ] Simon plays sounds
+- Simon & Tic-Tac-Toe:
+  - [ ] Tic-Tac-Toe has a player-vs-computer version
+  - [ ] Tic-Tac-Toe AI will always win or tie
+  - [X] Simon plays sounds
+
 - Implement Connect Four game
   - [ ] Connect Four game can be found at `public/connectFour.html`
   - [ ] Connect Four game is playable by two people (human v human)
   - [ ] Connect Four game page is linked from `public/index.html`
 
-
-# Browser Games
-
-A collection of games to play in a web browser. See the full list of games in the [games.md](games.md) file.
-
-## Installation and Setup
+- Tetris:
+  - [ ] Players can configure the key mapping (e.g. change the “drop” key to the space bar)
+  - [ ]Game follows object-oriented patterns using ES6 classes
