@@ -56,6 +56,10 @@ class GameManager {
     this.board.setSquare( 'e7', new Piece( KNIGHT, BLACK ) )
   }
 
+  newGrid( grid ){
+    this.board.grid = grid
+  }
+
   placeStartingPositions () {
     for( let i = 0; i < this.board.grid.length; i++){
       this.board.grid[i][1] = new Piece( PAWN, WHITE )
