@@ -1,0 +1,20 @@
+html {
+  background: #F7F7F7;
+}
+
+#board {
+  background: white;
+  border: 2px solid black;
+  border-bottom: 5px solid green;
+  display: block;
+  margin: 0 auto;
+}
+
+#lines {
+  color: #444;
+  display: block;
+  font-size: 1.5em;
+  margin: 0 auto;
+  margin-top: 2em;
+  width: 240px;
+}
