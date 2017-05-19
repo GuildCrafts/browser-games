@@ -231,4 +231,9 @@ function calculateDelta() {
   drawBoard();
   main();
 
+  $('#newGame').on('click', function() {
+
+    location.reload()
+  })
+
 })
