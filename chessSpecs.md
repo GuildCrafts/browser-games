@@ -27,4 +27,4 @@
 
 ### Max's stretch goals
 
-- [ ] User can select different sets with a dropdown.
+- [x] User can select different sets with a dropdown.
