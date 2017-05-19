@@ -37,14 +37,6 @@ function arenaSweep() {
     gameMessage.style.display = 'block';
     setTimeout(clearMessage, 500)
     scoreSound.play();
-    //This isn't working either:
-    if(rowCount >= 4){
-      gameMessage = document.getElementById('row-clear-message');
-      gameMessage.innerHTML = "AMAZING";
-      gameMessage.style.display = 'block';
-      setTimeout(clearMessage, 500)
-      fourLineSound.play();
-    }
   }
 
   if (rowArray.length === 1){
@@ -55,6 +47,11 @@ function arenaSweep() {
     player.score += 300*(player.level + 1)
   } else if (rowArray.length >= 4) {
     player.score += 1200*(player.level + 1)
+    gameMessage = document.getElementById('row-clear-message');
+    gameMessage.innerHTML = "AMAZING";
+    gameMessage.style.display = 'block';
+    setTimeout(clearMessage, 500)
+    fourLineSound.play();
   }
   landingSound.play();
   rowArray = [];
@@ -185,8 +182,7 @@ function playerMove(dir) {
 
 function playerReset() {
   const pieces = 'ILJOTSZ';
-  // player.matrix = createPiece(pieces[pieces.length*Math.random() | 0]);
-  player.matrix = createPiece(pieces[0])
+  player.matrix = createPiece(pieces[pieces.length*Math.random() | 0]);
   player.pos.y = 0;
   player.pos.x = (arena[0].length / 2 | 0) -
                  (player.matrix[0].length / 2 | 0);
