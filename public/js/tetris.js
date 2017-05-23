@@ -1,5 +1,5 @@
-var canvas = document.getElementByID("board");
-var ctx = canvas.getContext("2d");
+var canvas = document.getElementById('board');
+var ctx = canvas.getContext('2d');
 
 
 var board = [];
@@ -107,7 +107,7 @@ Piece.prototype.undraw = function(ctx) {
   this._fill("black");
 };
 
-Piece.protototype.draw = function(ctx) {
+Piece.prototype.draw = function(ctx) {
   this._fill(this.color);
 };
 
@@ -147,7 +147,7 @@ Piece.prototype.moveLeft = function() {
   }
 };
 
-Piece.protototype._collides = function(dx, dy, pat) {
+Piece.prototype._collides = function(dx, dy, pat) {
   for(var ix = 0; ix < pat.length; ix++) {
     for(var iy = 0; iy < pat.lenght; iy++) {
       if(!pat[ix][iy]) {
@@ -246,3 +246,18 @@ if (nlines > 0) {
       console.log(lines);
 }
 };
+
+var pieces = [
+	[I, "cyan"],
+	[J, "blue"],
+	[L, "orange"],
+	[O, "yellow"],
+	[S, "green"],
+	[T, "purple"],
+	[Z, "red"]
+];
+
+function newPiece() {
+  var p = pieces[parseInt(Math.random() * pieces.length, 10)];
+  return new Piece(p[0], p[1]);
+}
