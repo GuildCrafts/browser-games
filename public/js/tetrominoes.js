@@ -1,3 +1,6 @@
+
+context.scale(20, 20);
+
 var I = [
 	[
 		[0, 0, 0, 0],
@@ -148,3 +151,12 @@ var Z = [
 		[1, 0, 0]
 	]
 ];
+
+z.forEach((row, y) => {
+  row.forEach((value, x) =>){
+    if(value !== 0) {
+      context.fillStyle = "red";
+      context.fillRect(x,y,1,1);
+    }
+  });
+})
