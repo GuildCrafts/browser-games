@@ -1,0 +1,33 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.board {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  background-color: tan;
+  position: relative;
+  width: 50vw;
+  height: 50vw;
+  max-height: 50vh;
+  max-width: 50vh;
+}
+
+.square {
+  display: flex;
+  /*border:  solid 1px;
+  border-color: black;*/
+  background-color: #F0EAD6;
+  /*position: relative;*/
+  height: 6vw;
+  width: 6vw;
+  max-width: 6vh;
+  max-height: 6vh;
+}
+
+.square:nth-child(even) {
+  background-color: red;
+}
