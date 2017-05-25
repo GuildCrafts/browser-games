@@ -6,28 +6,35 @@ body {
 
 .board {
   display: flex;
+  border: solid 1px black;
   flex-wrap: wrap;
-  justify-content: space-around;
-  background-color: tan;
+  justify-content: space-between;
+  align-items: stretch;
   position: relative;
   width: 50vw;
   height: 50vw;
   max-height: 50vh;
   max-width: 50vh;
+  min-height: 200px;
+  min-width: 200px;
 }
 
 .square {
   display: flex;
-  /*border:  solid 1px;
-  border-color: black;*/
+  flex: 1 1 auto;
   background-color: #F0EAD6;
-  /*position: relative;*/
-  height: 6vw;
-  width: 6vw;
-  max-width: 6vh;
-  max-height: 6vh;
+  height: 6.25vw;
+  width: 6.25vw;
+  max-width: 6.25vh;
+  max-height: 6.25vh;
+  min-height: 25px;
+  min-width: 25px;
 }
 
-.square:nth-child(even) {
-  background-color: red;
+div[data-pattern=white]:nth-child(even) {
+  background-color: black;
+}
+
+div[data-pattern=black]:nth-child(odd) {
+  background-color: black;
 }
