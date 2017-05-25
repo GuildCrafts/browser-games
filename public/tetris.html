@@ -1,13 +1,32 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>Tetris</title>
-  </head>
-  <body>
-    <canvas id="tetris" width="240" height="400">
+
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <link rel="stylesheet" type="text/css" href="css/tetris.css">
+  <title>Tetris</title>
+</head>
+
+<body>
+
+     <!-- <h1 class="title">TETRIS</h1> -->
+     <button id="start">START</button>
+<button id="pause">PAUSE</button>
+<button id="exit">EXIT</button>
+<div class="block"></div>
+
+  <div id="score" width="40" height="100"></div>
+  <div id="level" width="40" height="100"></div>
+  <div id="status" title="game over dialog">
+    <h2 id="alert_text">GAME OVER!</h2>
+    <p id="tryAgain">Try again</p>
+  </div>
+  <canvas id="tetris" width="240" height="400">
     </canvas>
-    <script src="js/tetris.js"></script>
-    <!-- <script src="js/tetrominoes.js"></script> -->
-  </body>
+  <script src="js/tetris.js"></script>
+</body>
+
 </html>
