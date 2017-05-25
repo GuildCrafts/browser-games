@@ -100,6 +100,7 @@ const piecesColors = [
 ];
 
 
+
 function draw() {
 
   context.fillStyle = "#000";
@@ -107,6 +108,7 @@ function draw() {
   drawMatrix(arena, {x: 0, y: 0})
   drawMatrix(player.matrix, player.position);
 }
+
 
 function drawMatrix(matrix, offset) {
 matrix.forEach((row, y) => {
@@ -120,6 +122,7 @@ matrix.forEach((row, y) => {
   });
 });
 }
+
 
 function merge(arena, player) {
   player.matrix.forEach((row, y) => {
@@ -192,6 +195,7 @@ let dropCounter = 0;
 let dropInterval = 1000;
 let lastTime = 0;
 
+
 function update(time = 0) {
   const deltaTime = time - lastTime;
   lastTime = time;
@@ -205,6 +209,14 @@ function update(time = 0) {
   draw();
   requestAnimationFrame(update);
 }
+
+function levelSpeed() {
+  if (score > 30) {
+    let dropInterval = 3000;
+
+  }
+}  console.log(score)
+levelSpeed()
 
 function updateScore() {
   document.getElementById('score').innerText = "Score: " +player.score;
@@ -237,6 +249,8 @@ document.addEventListener('keydown', event => {
 $("#alert_text").hide();
 $("#tryAgain").hide();
 
+
+
 function playerReset() {
   const pieces = "ILJOTSZ";
   player.matrix = createPiece(pieces[pieces.length * Math.random() | 0]);
@@ -246,19 +260,36 @@ function playerReset() {
   if(collide(arena, player)) {
     arena.forEach(row => row.fill(0));
     player.score = 0;
+
     $(function() {
       $("#alert_text").show();
       $("#tryAgain").show();
+      $( "#status" ).dialog();
       $("#tryAgain").click(function(){
-        event.playerReset()
+
       })
-        $( "#status" ).dialog();
-      } )
+      update();
+      })
+
     updateScore();
   }
 
 }
+// }
+
 
 playerReset();
 updateScore();
-update();
+draw()
+$('#pause').click(update);
+
+
+$('#exit').click(function() {
+  window.location.href='index.html'
+});
+
+$( "#start" ).click(function() {
+  update();
+  playerDrop();
+  $("#start").html('RESUME');
+});
