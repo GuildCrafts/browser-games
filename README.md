@@ -39,16 +39,12 @@ Arrow keys to move pieces
 Start Game by pressing start button
 
 ## user-story
-Q W key rotate pieces
-Arrow keys move pieces
 
-Start Game by pressing start button
-
-“As a player I want a start game option so that I can start playing
-As a player I want to exit the game in order to do other things.
-As a player I want to see my score.
-As a player I want to be able to pause the game.
-As a Player I need different pieces to be able to fill the wall.”
+- As a player I want a start game option so that I can start playing
+- As a player I want to exit the game in order to do other things.
+- As a player I want to see my score.
+- As a player I want to be able to pause the game.
+- As a Player I need different pieces to be able to fill the wall.”
 
 
 ## Specifications
