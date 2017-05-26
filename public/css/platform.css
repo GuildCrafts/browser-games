@@ -1,0 +1,47 @@
+/*Each row of the grid is turned into a table row (<tr> element). The strings in
+the grid are used as class names for the table cell (<td>) elements.*/
+
+.background {
+  background: #33a6fb;
+  table-layout: fixed;
+  border-spacing: 0;
+}
+
+.background td {
+  padding: 0;
+}
+
+.lava {
+  background: #ff6363;
+}
+
+.wall {
+  background: #ffffff;
+}
+
+.actor {
+  position: absolute;
+}
+
+.coin {
+  background: #f1e559;
+}
+
+.player {
+  background: #404040;
+}
+
+.lost .player {
+  background: #9f4141;
+}
+
+.won .player {
+  box-shadow: -4px -7px 8px white, 4px -7px 8px white;
+}
+
+.game {
+  overflow: hidden;
+  max-width: 600px;
+  max-height: 450px;
+  position: relative;
+}
