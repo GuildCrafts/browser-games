@@ -1,31 +1,39 @@
 body {
   background-color: rgb(0, 0, 0);
   background-image: url(http://www.zingerbugimages.com/backgrounds/charcoal_gray_mini_bricks_seamless_pattern.gif);
-  /*background-position: top left;*/
-  /*background-repeat: repeat;
-  background-attachment: fixed;*/
-  text-align: left;
+  text-align: center;
 }
 
 #score {
   font-family: serif;
-  font-size: 3em;
+  font-size: 2em;
   width: 250px;
-  height: 50px;
+  height: 45px;
   background-color: yellow;
-  box-shadow: 10px 10px 5px #888888;
   padding-right: 30px;
 }
 
 canvas {
   border: outset 10px #fff;
-  height: 90vh;
+  height: 80vh;
   border-style: inset;
 }
 
 h1 {
-    font-family: Helvetica, Arial, sans-serif;
-    font-weight: bold;
-    font-size: 6em;
-    text-align: right;
-  }
+  font-family: Helvetica, Arial, sans-serif;
+  font-weight: bold;
+  font-size: 6em;
+}
+
+button {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
