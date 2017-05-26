@@ -1,0 +1,44 @@
+body {
+  display: flex;
+  background-color: grey;
+  justify-content: center;
+  align-items: center;
+}
+
+.board {
+  display: flex;
+  border: solid 1px black;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: stretch;
+  position: relative;
+  width: 50vw;
+  height: 50vw;
+  max-height: 50vh;
+  max-width: 50vh;
+  min-height: 200px;
+  min-width: 200px;
+}
+
+.square {
+  display: flex;
+  flex: 1 1 auto;
+  font-size: 4vh;
+  background-color: #F0EAD6;
+  justify-content: center;
+  align-items: center;
+  height: 6.25vw;
+  width: 6.25vw;
+  max-width: 6.25vh;
+  max-height: 6.25vh;
+  min-height: 25px;
+  min-width: 25px;
+}
+
+div[data-pattern=blackFirst]:nth-child(even) {
+  background-color: teal;
+}
+
+div[data-pattern=whiteFirst]:nth-child(odd) {
+  background-color: teal;
+}
