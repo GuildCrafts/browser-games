@@ -1,5 +1,6 @@
 body {
   display: flex;
+  background-color: grey;
   justify-content: center;
   align-items: center;
 }
@@ -22,7 +23,10 @@ body {
 .square {
   display: flex;
   flex: 1 1 auto;
+  font-size: 4vh;
   background-color: #F0EAD6;
+  justify-content: center;
+  align-items: center;
   height: 6.25vw;
   width: 6.25vw;
   max-width: 6.25vh;
@@ -31,10 +35,10 @@ body {
   min-width: 25px;
 }
 
-div[data-pattern=white]:nth-child(even) {
-  background-color: black;
+div[data-pattern=blackFirst]:nth-child(even) {
+  background-color: teal;
 }
 
-div[data-pattern=black]:nth-child(odd) {
-  background-color: black;
+div[data-pattern=whiteFirst]:nth-child(odd) {
+  background-color: teal;
 }
