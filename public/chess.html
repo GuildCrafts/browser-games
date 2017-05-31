@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--
+        UTF-8 (U from Universal Character Set + Transformation Format—8-bit[1]) is a character encoding capable of encoding all possible characters
+     -->
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/chess.css"/>
+    <script type="text/javascript" src="js/chess.js" > </script>
+    <script src="https://code.jquery.com/jquery-1.10.1.js"></script>
+</head>
+<body >
+    <div id="board1" style="width: 400px"></div>
+
+</body>
+<script type="text/javascript">
+
+var init = function() {
+
+//--- start example JS ---
+var board = ChessBoard('board1', 'start');
+//--- end example JS ---
+
+}; // end init()
+$(document).ready(init);
+</script>
+
+</html>
