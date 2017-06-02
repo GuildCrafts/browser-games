@@ -3,7 +3,7 @@
 start the server:
 
 ...
-`````
+```
 $ npm start
 ...
 Starting up http-server, serving ./public
