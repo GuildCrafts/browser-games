@@ -1,51 +1,31 @@
-# Browser Games
+# Browser Games: Chess
 
-A collection of games to play in a web browser. See the full list of games in the [games.md](games.md) file.
+## Challenge Rating
 
-## Installation and Setup
+This goal will likely be within your ZPD if you...
 
-Clone the repo, install npm dependencies, and start the server:
-
-```shell-session
-$ git clone git@github.com:GuildCrafts/browser-games.git
-$ cd browser-games
-$ npm install
-
-...
-
-$ npm start
-...
-Starting up http-server, serving ./public
-Available on:
-  http://127.0.0.1:4321
-  http://10.0.1.11:4321
-```
-
-Then open `http://localhost:4321/` in your browser of choice and play away!
+- Can build web sites with HTML & CSS
+- Can add behavior to a web site with JavaScript
+- Can use jQuery
+- Have built other browser games
+- Are familiar with the rules of Chess
+- Are interested in making more complex interactive web pages
 
 ## Description
 
-Build a [Tetris](https://en.wikipedia.org/wiki/Tetris) game in the browser using HTML, CSS, JavaScript, and the [jQuery][jquery] library.
+Build a [Chess](https://en.wikipedia.org/wiki/Chess) game in the browser using HTML, CSS, JavaScript, and the [jQuery][jquery] library.
 
-Fork the the [browser-games repository][browser-games] and use the fork as your project artifact. It is recommended that you follow along with this tutorial: https://github.com/jonhoo/tetris-tutorial/.
+Fork the the [browser-games repository][browser-games] and use the fork as your project artifact.
 
-Implement the **Tetris** game from the list in the [games.md][games-list] file.
+Implement the **Chess** game from the list in the [games.md][games-list] file.
 
-![tetris](https://cloud.githubusercontent.com/assets/709100/25557948/482ba5be-2cd1-11e7-8a3f-1cbc07138dbe.gif)
-## Game instructions
-Q W keys rotate pieces
-Arrow keys to move pieces
+![chess-gif](https://cloud.githubusercontent.com/assets/709100/25557927/a936f2b0-2cd0-11e7-84d8-faf1cf988d7c.gif)
 
-Start Game by pressing start button
+## Context
 
-## user-story
+This goal will challenge your ability to take a _formal, defined system_ from the real world and replicate it in code. You will start with all of the logic of the system (the rules of the game) and most of the UI already designed.
 
-- As a player I want a start game option so that I can start playing
-- As a player I want to exit the game in order to do other things.
-- As a player I want to see my score.
-- As a player I want to be able to pause the game.
-- As a Player I need different pieces to be able to fill the wall.”
-
+Your work will be mainly in deciding how to replicate that formal logic and user interface using JavaScript + jQuery, HTML, and CSS.
 
 ## Specifications
 
@@ -58,29 +38,28 @@ Start Game by pressing start button
 - [x] All major features are added via pull requests with a clear description and concise commit messages.
 - [x] The artifact produced is properly licensed, preferably with the [MIT license][mit-license].
 
-#### Tetris
+#### Chess
 
-- [X] [User stories](http://searchsoftwarequality.techtarget.com/definition/user-story) and features for the game are added as issues to your repo with the label `feature` or `user-story`
+- [x] [User stories](http://searchsoftwarequality.techtarget.com/definition/user-story) and features for the game are added as issues to your repo with the label `feature` or `user-story`
   <br>_You'll have to define these yourself by looking at the rules of the game and coming up with the right user stories & features_
 - [x] jQuery is used for DOM manipulation code
-- [x] Tetris game can be found at `public/tetris.html`
-- [x] Tetris game is playable
-- [x] Players have a score
-- [x] Game page is linked from `public/index.html`
+- [x] Chess game can be found at `public/chess.html`
+- [x] Chess game is playable by two people
+- [x] Pieces can only be moved according to the rules of chess
+- [ ] The game state is persisted (so reloading the page resumes where you left off)
+- [ ] The board can scale to the window size
+- [X] Game page is linked from `public/index.html`
 
 ### Stretch
 
-- [ ] Players can configure the key mapping (e.g. change the "drop" key to the space bar)
-- [ ] Game follows object-oriented patterns using ES6 classes
+- [ ] Game can be played against a computer AI (i.e. human v. computer)
 
 ## Resources
 
 - [jQuery Learning Center](https://learn.jquery.com/) #jquery
 - Code School: [Try jQuery](https://www.codeschool.com/courses/try-jquery) #jquery #js #dom
 - CSS Tricks: [Learn jQuery from Scratch](https://css-tricks.com/lodge/learn-jquery/) #jquery #js #dom
-- Tetris Tutorial https://github.com/jonhoo/tetris-tutorial/
-- Video series on building tetris: [part 1](https://www.youtube.com/watch?v=Z3wvP27eW98), [part 2](https://www.youtube.com/watch?v=JRcjqwktccc), [part 3](https://www.youtube.com/watch?v=pSPx2JXSRfM), and [part 4](https://www.youtube.com/watch?v=TZrRS14G8Ns)
-
+- FreeCodeCamp article: [A step-by-step guide to building a simple chess AI](https://medium.freecodecamp.com/simple-chess-ai-step-by-step-1d55a9266977)
 
 [browser-games]: https://github.com/GuildCrafts/browser-games
 [games-list]: https://github.com/GuildCrafts/browser-games/blob/master/games.md
