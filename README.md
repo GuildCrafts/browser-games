@@ -1,15 +1,16 @@
 # Browser Games: Chess
 
-## Challenge Rating
+start the server:
 
-This goal will likely be within your ZPD if you...
-
-- Can build web sites with HTML & CSS
-- Can add behavior to a web site with JavaScript
-- Can use jQuery
-- Have built other browser games
-- Are familiar with the rules of Chess
-- Are interested in making more complex interactive web pages
+...
+`````
+$ npm start
+...
+Starting up http-server, serving ./public
+Available on:
+  http://127.0.0.1:4321
+  http://10.0.1.11:4321
+```
 
 ## Description
 
