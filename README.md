@@ -31,24 +31,24 @@ Your work will be mainly in deciding how to replicate that formal logic and user
 
 #### General
 
-- [ ] Artifact produced is a fork of the [browser-games][browser-games] repo.
-- [ ] Variables, functions, files, etc. have appropriate and meaningful names.
-- [ ] HTML, CSS, and JS files are well formatted with proper spacing and indentation.
-- [ ] There is a clear separation of game logic code from view/rendering code.
-- [ ] All major features are added via pull requests with a clear description and concise commit messages.
-- [ ] The artifact produced is properly licensed, preferably with the [MIT license][mit-license].
+- [x] Artifact produced is a fork of the [browser-games][browser-games] repo.
+- [x] Variables, functions, files, etc. have appropriate and meaningful names.
+- [x] HTML, CSS, and JS files are well formatted with proper spacing and indentation.
+- [x] There is a clear separation of game logic code from view/rendering code.
+- [x] All major features are added via pull requests with a clear description and concise commit messages.
+- [x] The artifact produced is properly licensed, preferably with the [MIT license][mit-license].
 
 #### Chess
 
-- [ ] [User stories](http://searchsoftwarequality.techtarget.com/definition/user-story) and features for the game are added as issues to your repo with the label `feature` or `user-story`
+- [x] [User stories](http://searchsoftwarequality.techtarget.com/definition/user-story) and features for the game are added as issues to your repo with the label `feature` or `user-story`
   <br>_You'll have to define these yourself by looking at the rules of the game and coming up with the right user stories & features_
-- [ ] jQuery is used for DOM manipulation code
-- [ ] Chess game can be found at `public/chess.html`
-- [ ] Chess game is playable by two people
-- [ ] Pieces can only be moved according to the rules of chess
+- [x] jQuery is used for DOM manipulation code
+- [x] Chess game can be found at `public/chess.html`
+- [x] Chess game is playable by two people
+- [x] Pieces can only be moved according to the rules of chess
 - [ ] The game state is persisted (so reloading the page resumes where you left off)
 - [ ] The board can scale to the window size
-- [ ] Game page is linked from `public/index.html`
+- [X] Game page is linked from `public/index.html`
 
 ### Stretch
 

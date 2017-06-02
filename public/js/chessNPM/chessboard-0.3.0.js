@@ -1,4 +1,14 @@
-var board = ChessBoard('board', 'start');
+/*!
+ * chessboard.js v0.3.0
+ *
+ * Copyright 2013 Chris Oakman
+ * Released under the MIT license
+ * http://chessboardjs.com/license
+ *
+ * Date: 10 Aug 2013
+ */
+
+// start anonymous scope
 ;(function() {
 'use strict';
 
