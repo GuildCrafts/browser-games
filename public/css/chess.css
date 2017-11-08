@@ -15,14 +15,15 @@ body {
   display: flex;
   flex-direction: row;
   border: 6px ridge brown;
-  width: 60%;
+  width: 60vw;
+  height: 60vw;
   margin: 5px;
 }
 
-#board:after {
+/*#board:after {
   content: "";
   padding-bottom: 100%;
-}
+}*/
 
 .board-col{
   width: 12.5%;
